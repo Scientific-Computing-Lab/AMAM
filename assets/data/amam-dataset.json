@@ -1,0 +1,2527 @@
+{
+  "name": "Annotated Metallic Alloys Microstructures (AMAM)",
+  "shortName": "AMAM",
+  "version": "v2-local-git",
+  "overview": "AMAM is a benchmark for segmentation of metallic microstructures across diverse alloys, conditions, and magnifications, designed for robust and comparable evaluation under real morphological variability. The dataset provides expert-refined image-label tuples to support fair method comparison and reproducible reporting.",
+  "excludedSubsets": [
+    "3105-aluminum-high",
+    "7075-aluminum-low"
+  ],
+  "materialFamilies": [
+    "Cast Iron",
+    "Steel"
+  ],
+  "method": {
+    "tool": "Clemex Studio",
+    "workflowSummary": "Experts partially label representative regions, an ad-hoc U-Net predicts full-image labels, and iterative review/refinement continues until acceptable quality is reached.",
+    "steps": [
+      "Select representative micrographs for each material condition.",
+      "Create partial labels for key regions and phases.",
+      "Train a segmentation model to predict unlabeled regions.",
+      "Review predictions, add corrective labels, and iterate.",
+      "Finalize full-image labels for benchmark release."
+    ]
+  },
+  "localDataNote": "Only categories with both root images and a detected label/mask subfolder are included.",
+  "downloadAllRepoZip": "https://github.com/scientific-computing-user/amam-benchmark-site/archive/refs/heads/main.zip",
+  "totalImages": 128,
+  "includedSubsets": 6,
+  "gallerySummary": {
+    "totalOriginals": 128,
+    "totalMasks": 128,
+    "totalPairs": 128
+  },
+  "subsets": [
+    {
+      "id": "4130-steel",
+      "material": "4130 Steel",
+      "family": "Steel",
+      "condition": "Normalized",
+      "magnification": "Standard",
+      "description": "Ferrite and pearlite morphology with clear phase contrast.",
+      "annotationNotes": "Ferrite is labeled in blue and pearlite in red. Some pores/scratches can be confused with pearlite.",
+      "phases": [
+        "Ferrite",
+        "Pearlite"
+      ],
+      "localOnly": true,
+      "images": 40,
+      "download": {
+        "categoryPath": "data/local/4130-steel",
+        "imagesPath": "data/local/4130-steel/images",
+        "labelsPath": "data/local/4130-steel/labels"
+      },
+      "gallery": {
+        "originals": [
+          {
+            "id": "24bd4c7596a75c9a2716c537",
+            "name": "4130 x 10 (1).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (1).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (1).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (1).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (1).jpg",
+            "maskId": "1220463b78a781925a6366a3",
+            "maskName": "4130 x 10 (1).png"
+          },
+          {
+            "id": "f7dbf5ea5ceb5cf96aa3e916",
+            "name": "4130 x 10 (2).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (2).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (2).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (2).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (2).jpg",
+            "maskId": "596d9830bf60ed01b649c9eb",
+            "maskName": "4130 x 10 (2).png"
+          },
+          {
+            "id": "01312beca08cea02d970ea67",
+            "name": "4130 x 10 (3).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (3).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (3).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (3).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (3).jpg",
+            "maskId": "3a3b3b9745a30f4cd8c962d9",
+            "maskName": "4130 x 10 (3).png"
+          },
+          {
+            "id": "a7df281a734f9ea8a34e288b",
+            "name": "4130 x 10 (4).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (4).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (4).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (4).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (4).jpg",
+            "maskId": "fa1ba42c88fe645183d09704",
+            "maskName": "4130 x 10 (4).png"
+          },
+          {
+            "id": "6960815db674dd277fcd38ed",
+            "name": "4130 x 10 (5).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (5).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (5).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (5).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (5).jpg",
+            "maskId": "8aebf84526fae046e7ee0177",
+            "maskName": "4130 x 10 (5).png"
+          },
+          {
+            "id": "f57129681f119f7b323447d7",
+            "name": "4130 x 10 (6).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (6).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (6).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (6).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (6).jpg",
+            "maskId": "deb9795270f14c2d6581cb6d",
+            "maskName": "4130 x 10 (6).png"
+          },
+          {
+            "id": "89a34364c25cfc8f27382b8d",
+            "name": "4130 x 10 (7).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (7).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (7).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (7).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (7).jpg",
+            "maskId": "73d1abb039ced4d4d96f12df",
+            "maskName": "4130 x 10 (7).png"
+          },
+          {
+            "id": "20d3518e13cfd63023bfeccf",
+            "name": "4130 x 10 (8).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (8).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (8).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (8).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (8).jpg",
+            "maskId": "e460a509b575671c5ca1bc5d",
+            "maskName": "4130 x 10 (8).png"
+          },
+          {
+            "id": "f08cbc9c10112c719377981e",
+            "name": "4130 x 10 (9).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (9).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (9).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (9).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (9).jpg",
+            "maskId": "f19267935b5a87d1792ab6b3",
+            "maskName": "4130 x 10 (9).png"
+          },
+          {
+            "id": "9751e71c3ad743ba5702d49d",
+            "name": "4130 x 10 (10).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (10).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (10).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (10).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (10).jpg",
+            "maskId": "f3fe88ce5bdcf65c0d68ca3d",
+            "maskName": "4130 x 10 (10).png"
+          },
+          {
+            "id": "d106507ebaba40f50dbc3a2d",
+            "name": "4130 x 10 (11).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (11).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (11).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (11).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (11).jpg",
+            "maskId": "b0c86180daf46b962bc90660",
+            "maskName": "4130 x 10 (11).png"
+          },
+          {
+            "id": "fedb79382b53a2b009f2cdaf",
+            "name": "4130 x 10 (12).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (12).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (12).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (12).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (12).jpg",
+            "maskId": "19d462677aa0acaba13b4b30",
+            "maskName": "4130 x 10 (12).png"
+          },
+          {
+            "id": "6f571704b86591baf514007b",
+            "name": "4130 x 10 (13).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (13).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (13).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (13).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (13).jpg",
+            "maskId": "35c726454af00e0ebfda487c",
+            "maskName": "4130 x 10 (13).png"
+          },
+          {
+            "id": "d3a66cd6e32c0038d2f6c870",
+            "name": "4130 x 10 (14).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (14).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (14).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (14).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (14).jpg",
+            "maskId": "c3e67a206d556b9a625dec85",
+            "maskName": "4130 x 10 (14).png"
+          },
+          {
+            "id": "b1413c92c4d7aacae70094fa",
+            "name": "4130 x 10 (15).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (15).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (15).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (15).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (15).jpg",
+            "maskId": "f1ca51308dc8f9f35bc4fc45",
+            "maskName": "4130 x 10 (15).png"
+          },
+          {
+            "id": "9c4e4aa317527314a4610cc3",
+            "name": "4130 x 10 (16).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (16).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (16).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (16).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (16).jpg",
+            "maskId": "7e047fbc06af7fd5e8f21150",
+            "maskName": "4130 x 10 (16).png"
+          },
+          {
+            "id": "8018ec222d2000f84799f637",
+            "name": "4130 x 10 (17).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (17).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (17).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (17).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (17).jpg",
+            "maskId": "71081e1ab4cdbdad57888326",
+            "maskName": "4130 x 10 (17).png"
+          },
+          {
+            "id": "ae7bda4ef2bb5b2d3ba8b516",
+            "name": "4130 x 10 (18).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (18).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (18).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (18).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (18).jpg",
+            "maskId": "81262abfd46c60631f1cdfa5",
+            "maskName": "4130 x 10 (18).png"
+          },
+          {
+            "id": "f427e37fd96ee570b08756bc",
+            "name": "4130 x 10 (19).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (19).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (19).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (19).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (19).jpg",
+            "maskId": "b81c842f7d20dd527f7ae2d0",
+            "maskName": "4130 x 10 (19).png"
+          },
+          {
+            "id": "f94fb44360eff2070a3c3a4e",
+            "name": "4130 x 10 (20).jpg",
+            "path": "data/local/4130-steel/images/4130 x 10 (20).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 10 (20).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 10 (20).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 10 (20).jpg",
+            "maskId": "dca68395291f6b80cfc89f7d",
+            "maskName": "4130 x 10 (20).png"
+          },
+          {
+            "id": "e4b47c5755fdd312dcdb0e6b",
+            "name": "4130 x 20 (1).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (1).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (1).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (1).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (1).jpg",
+            "maskId": "cfa81a24b1165adcce4ca94c",
+            "maskName": "4130 x 20 (1).png"
+          },
+          {
+            "id": "bcdfd662721be6680802294b",
+            "name": "4130 x 20 (2).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (2).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (2).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (2).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (2).jpg",
+            "maskId": "18a83b029aa5a376fce57b0e",
+            "maskName": "4130 x 20 (2).png"
+          },
+          {
+            "id": "4bce726a9f5bf4d15f1652a0",
+            "name": "4130 x 20 (3).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (3).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (3).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (3).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (3).jpg",
+            "maskId": "e92f3e04070ca50392e1cecc",
+            "maskName": "4130 x 20 (3).png"
+          },
+          {
+            "id": "b885ec81df80cfb9c97af4d4",
+            "name": "4130 x 20 (4).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (4).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (4).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (4).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (4).jpg",
+            "maskId": "cb1642049875af757a243b3c",
+            "maskName": "4130 x 20 (4).png"
+          },
+          {
+            "id": "a73f04f4da24cced1c8d4cd0",
+            "name": "4130 x 20 (5).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (5).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (5).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (5).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (5).jpg",
+            "maskId": "5a8c747ab00631b943d5c450",
+            "maskName": "4130 x 20 (5).png"
+          },
+          {
+            "id": "d23055ec762ae81805504f2e",
+            "name": "4130 x 20 (6).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (6).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (6).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (6).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (6).jpg",
+            "maskId": "fd1c8e7cea2467048156b956",
+            "maskName": "4130 x 20 (6).png"
+          },
+          {
+            "id": "127cac65e24dc9d5120036ea",
+            "name": "4130 x 20 (7).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (7).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (7).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (7).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (7).jpg",
+            "maskId": "8ba33a2866c852d0a2ea845c",
+            "maskName": "4130 x 20 (7).png"
+          },
+          {
+            "id": "376d6c46195a7c59b61fc917",
+            "name": "4130 x 20 (8).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (8).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (8).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (8).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (8).jpg",
+            "maskId": "e4877460c5695be9308736cf",
+            "maskName": "4130 x 20 (8).png"
+          },
+          {
+            "id": "34f6c1c1ae1aa60159a0dd87",
+            "name": "4130 x 20 (9).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (9).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (9).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (9).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (9).jpg",
+            "maskId": "efce8ef9b18315dbd58f209f",
+            "maskName": "4130 x 20 (9).png"
+          },
+          {
+            "id": "6fda44b82b952044d1c89008",
+            "name": "4130 x 20 (10).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (10).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (10).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (10).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (10).jpg",
+            "maskId": "a2feccc5af32e3c29da5af81",
+            "maskName": "4130 x 20 (10).png"
+          },
+          {
+            "id": "06525611826425958cf61bed",
+            "name": "4130 x 20 (11).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (11).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (11).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (11).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (11).jpg",
+            "maskId": "7079306f0a720b20fe3b5529",
+            "maskName": "4130 x 20 (11).png"
+          },
+          {
+            "id": "7d6a19329847dc6e6525d223",
+            "name": "4130 x 20 (12).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (12).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (12).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (12).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (12).jpg",
+            "maskId": "b7393df47f55db145d90eb84",
+            "maskName": "4130 x 20 (12).png"
+          },
+          {
+            "id": "c01b621884ac3065dcdb9ff6",
+            "name": "4130 x 20 (13).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (13).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (13).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (13).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (13).jpg",
+            "maskId": "99b33b686e0e92c39cabc0be",
+            "maskName": "4130 x 20 (13).png"
+          },
+          {
+            "id": "7e5fa0d32d0e92962ef8925a",
+            "name": "4130 x 20 (14).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (14).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (14).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (14).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (14).jpg",
+            "maskId": "14ce8ac53966f7071acce05f",
+            "maskName": "4130 x 20 (14).png"
+          },
+          {
+            "id": "b5c61dbf884cef27a10de6f7",
+            "name": "4130 x 20 (15).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (15).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (15).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (15).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (15).jpg",
+            "maskId": "122a3358c9ef3af734950df9",
+            "maskName": "4130 x 20 (15).png"
+          },
+          {
+            "id": "9c78489a7bdab1cd9e1191ab",
+            "name": "4130 x 20 (16).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (16).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (16).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (16).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (16).jpg",
+            "maskId": "c98fd21f7c0b6eab18c427ec",
+            "maskName": "4130 x 20 (16).png"
+          },
+          {
+            "id": "5edecbb5552c5ec9f2371305",
+            "name": "4130 x 20 (17).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (17).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (17).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (17).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (17).jpg",
+            "maskId": "6e44d2c15e59bbe0b07fa65e",
+            "maskName": "4130 x 20 (17).png"
+          },
+          {
+            "id": "0a054c3848950493ca9cfeb5",
+            "name": "4130 x 20 (18).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (18).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (18).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (18).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (18).jpg",
+            "maskId": "7280787ec3e39b15e3a5623d",
+            "maskName": "4130 x 20 (18).png"
+          },
+          {
+            "id": "ca4e84372eb839db4d33d253",
+            "name": "4130 x 20 (19).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (19).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (19).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (19).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (19).jpg",
+            "maskId": "fa6152ec444881c0fd5df68f",
+            "maskName": "4130 x 20 (19).png"
+          },
+          {
+            "id": "54977ec60a8dbf75317058f0",
+            "name": "4130 x 20 (20).jpg",
+            "path": "data/local/4130-steel/images/4130 x 20 (20).jpg",
+            "thumbnailUrl": "data/local/4130-steel/images/4130 x 20 (20).jpg",
+            "viewUrl": "data/local/4130-steel/images/4130 x 20 (20).jpg",
+            "downloadUrl": "data/local/4130-steel/images/4130 x 20 (20).jpg",
+            "maskId": "f0c5656ad60509abc4844189",
+            "maskName": "4130 x 20 (20).png"
+          }
+        ],
+        "masks": [
+          {
+            "id": "1220463b78a781925a6366a3",
+            "name": "4130 x 10 (1).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (1).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (1).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (1).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (1).png"
+          },
+          {
+            "id": "596d9830bf60ed01b649c9eb",
+            "name": "4130 x 10 (2).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (2).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (2).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (2).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (2).png"
+          },
+          {
+            "id": "3a3b3b9745a30f4cd8c962d9",
+            "name": "4130 x 10 (3).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (3).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (3).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (3).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (3).png"
+          },
+          {
+            "id": "fa1ba42c88fe645183d09704",
+            "name": "4130 x 10 (4).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (4).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (4).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (4).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (4).png"
+          },
+          {
+            "id": "8aebf84526fae046e7ee0177",
+            "name": "4130 x 10 (5).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (5).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (5).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (5).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (5).png"
+          },
+          {
+            "id": "deb9795270f14c2d6581cb6d",
+            "name": "4130 x 10 (6).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (6).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (6).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (6).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (6).png"
+          },
+          {
+            "id": "73d1abb039ced4d4d96f12df",
+            "name": "4130 x 10 (7).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (7).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (7).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (7).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (7).png"
+          },
+          {
+            "id": "e460a509b575671c5ca1bc5d",
+            "name": "4130 x 10 (8).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (8).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (8).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (8).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (8).png"
+          },
+          {
+            "id": "f19267935b5a87d1792ab6b3",
+            "name": "4130 x 10 (9).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (9).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (9).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (9).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (9).png"
+          },
+          {
+            "id": "f3fe88ce5bdcf65c0d68ca3d",
+            "name": "4130 x 10 (10).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (10).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (10).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (10).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (10).png"
+          },
+          {
+            "id": "b0c86180daf46b962bc90660",
+            "name": "4130 x 10 (11).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (11).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (11).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (11).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (11).png"
+          },
+          {
+            "id": "19d462677aa0acaba13b4b30",
+            "name": "4130 x 10 (12).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (12).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (12).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (12).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (12).png"
+          },
+          {
+            "id": "35c726454af00e0ebfda487c",
+            "name": "4130 x 10 (13).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (13).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (13).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (13).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (13).png"
+          },
+          {
+            "id": "c3e67a206d556b9a625dec85",
+            "name": "4130 x 10 (14).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (14).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (14).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (14).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (14).png"
+          },
+          {
+            "id": "f1ca51308dc8f9f35bc4fc45",
+            "name": "4130 x 10 (15).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (15).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (15).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (15).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (15).png"
+          },
+          {
+            "id": "7e047fbc06af7fd5e8f21150",
+            "name": "4130 x 10 (16).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (16).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (16).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (16).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (16).png"
+          },
+          {
+            "id": "71081e1ab4cdbdad57888326",
+            "name": "4130 x 10 (17).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (17).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (17).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (17).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (17).png"
+          },
+          {
+            "id": "81262abfd46c60631f1cdfa5",
+            "name": "4130 x 10 (18).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (18).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (18).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (18).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (18).png"
+          },
+          {
+            "id": "b81c842f7d20dd527f7ae2d0",
+            "name": "4130 x 10 (19).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (19).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (19).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (19).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (19).png"
+          },
+          {
+            "id": "dca68395291f6b80cfc89f7d",
+            "name": "4130 x 10 (20).png",
+            "path": "data/local/4130-steel/labels/4130 x 10 (20).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 10 (20).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 10 (20).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 10 (20).png"
+          },
+          {
+            "id": "cfa81a24b1165adcce4ca94c",
+            "name": "4130 x 20 (1).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (1).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (1).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (1).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (1).png"
+          },
+          {
+            "id": "18a83b029aa5a376fce57b0e",
+            "name": "4130 x 20 (2).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (2).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (2).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (2).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (2).png"
+          },
+          {
+            "id": "e92f3e04070ca50392e1cecc",
+            "name": "4130 x 20 (3).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (3).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (3).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (3).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (3).png"
+          },
+          {
+            "id": "cb1642049875af757a243b3c",
+            "name": "4130 x 20 (4).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (4).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (4).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (4).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (4).png"
+          },
+          {
+            "id": "5a8c747ab00631b943d5c450",
+            "name": "4130 x 20 (5).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (5).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (5).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (5).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (5).png"
+          },
+          {
+            "id": "fd1c8e7cea2467048156b956",
+            "name": "4130 x 20 (6).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (6).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (6).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (6).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (6).png"
+          },
+          {
+            "id": "8ba33a2866c852d0a2ea845c",
+            "name": "4130 x 20 (7).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (7).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (7).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (7).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (7).png"
+          },
+          {
+            "id": "e4877460c5695be9308736cf",
+            "name": "4130 x 20 (8).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (8).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (8).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (8).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (8).png"
+          },
+          {
+            "id": "efce8ef9b18315dbd58f209f",
+            "name": "4130 x 20 (9).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (9).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (9).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (9).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (9).png"
+          },
+          {
+            "id": "a2feccc5af32e3c29da5af81",
+            "name": "4130 x 20 (10).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (10).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (10).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (10).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (10).png"
+          },
+          {
+            "id": "7079306f0a720b20fe3b5529",
+            "name": "4130 x 20 (11).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (11).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (11).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (11).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (11).png"
+          },
+          {
+            "id": "b7393df47f55db145d90eb84",
+            "name": "4130 x 20 (12).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (12).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (12).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (12).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (12).png"
+          },
+          {
+            "id": "99b33b686e0e92c39cabc0be",
+            "name": "4130 x 20 (13).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (13).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (13).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (13).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (13).png"
+          },
+          {
+            "id": "14ce8ac53966f7071acce05f",
+            "name": "4130 x 20 (14).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (14).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (14).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (14).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (14).png"
+          },
+          {
+            "id": "122a3358c9ef3af734950df9",
+            "name": "4130 x 20 (15).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (15).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (15).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (15).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (15).png"
+          },
+          {
+            "id": "c98fd21f7c0b6eab18c427ec",
+            "name": "4130 x 20 (16).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (16).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (16).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (16).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (16).png"
+          },
+          {
+            "id": "6e44d2c15e59bbe0b07fa65e",
+            "name": "4130 x 20 (17).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (17).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (17).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (17).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (17).png"
+          },
+          {
+            "id": "7280787ec3e39b15e3a5623d",
+            "name": "4130 x 20 (18).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (18).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (18).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (18).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (18).png"
+          },
+          {
+            "id": "fa6152ec444881c0fd5df68f",
+            "name": "4130 x 20 (19).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (19).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (19).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (19).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (19).png"
+          },
+          {
+            "id": "f0c5656ad60509abc4844189",
+            "name": "4130 x 20 (20).png",
+            "path": "data/local/4130-steel/labels/4130 x 20 (20).png",
+            "thumbnailUrl": "data/local/4130-steel/labels/4130 x 20 (20).png",
+            "viewUrl": "data/local/4130-steel/labels/4130 x 20 (20).png",
+            "downloadUrl": "data/local/4130-steel/labels/4130 x 20 (20).png"
+          }
+        ],
+        "pairCount": 40,
+        "originalCount": 40,
+        "maskCount": 40,
+        "hasMaskPairs": true,
+        "notes": "Paired from local filenames by index/magnification heuristics."
+      }
+    },
+    {
+      "id": "418-17-4ph-x20",
+      "material": "418 Printed 17-4 PH Steel",
+      "family": "Steel",
+      "condition": "As-Sintered",
+      "magnification": "x20",
+      "description": "Higher magnification of printed ferritic morphology; includes more difficult local annotation regions.",
+      "annotationNotes": "Some samples remain challenging and can exhibit incomplete segmentation in local areas.",
+      "phases": [
+        "Equiaxed Ferrite Grains",
+        "Intergranular Ferrite"
+      ],
+      "localOnly": true,
+      "images": 21,
+      "download": {
+        "categoryPath": "data/local/418-17-4ph-x20",
+        "imagesPath": "data/local/418-17-4ph-x20/images",
+        "labelsPath": "data/local/418-17-4ph-x20/labels"
+      },
+      "gallery": {
+        "originals": [
+          {
+            "id": "a06efc3bba4cea1203f94d28",
+            "name": "x20 (1).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (1).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (1).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (1).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (1).jpg",
+            "maskId": "9459c9c1f9653b70db92f454",
+            "maskName": "x20 (1).png"
+          },
+          {
+            "id": "9cf0a9da870114b8398ec3e9",
+            "name": "x20 (2).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (2).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (2).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (2).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (2).jpg",
+            "maskId": "d903c4b369e3e8ba53732b5d",
+            "maskName": "x20 (2).png"
+          },
+          {
+            "id": "7870a682dc6fd41c8f31bde0",
+            "name": "x20 (3).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (3).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (3).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (3).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (3).jpg",
+            "maskId": "f1d43b904ce6e3db962bf375",
+            "maskName": "x20 (3).png"
+          },
+          {
+            "id": "60bb3adf22d84b8da3189fce",
+            "name": "x20 (4).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (4).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (4).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (4).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (4).jpg",
+            "maskId": "4b41540605d7d695e5314cc6",
+            "maskName": "x20 (4).png"
+          },
+          {
+            "id": "6abe8a374367ca51c6a3eb3c",
+            "name": "x20 (5).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (5).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (5).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (5).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (5).jpg",
+            "maskId": "cb38e5db3bd25c2e1a7c8902",
+            "maskName": "x20 (5).png"
+          },
+          {
+            "id": "e2eddaa6ec3ace4066cd9e6c",
+            "name": "x20 (6).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (6).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (6).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (6).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (6).jpg",
+            "maskId": "f5e7ffcb165ca2d7998b7b2c",
+            "maskName": "x20 (6).png"
+          },
+          {
+            "id": "311a011507e40cc4945aeaba",
+            "name": "x20 (7).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (7).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (7).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (7).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (7).jpg",
+            "maskId": "0e4b2cd1ff13196ec53b64f2",
+            "maskName": "x20 (7).png"
+          },
+          {
+            "id": "5cbc022f116f833e04d7c89e",
+            "name": "x20 (8).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (8).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (8).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (8).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (8).jpg",
+            "maskId": "99333714bbb925ace0649d17",
+            "maskName": "x20 (8).png"
+          },
+          {
+            "id": "d93a77aef1c4aa459d426a89",
+            "name": "x20 (9).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (9).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (9).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (9).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (9).jpg",
+            "maskId": "51783185b38ebf2ae8520686",
+            "maskName": "x20 (9).png"
+          },
+          {
+            "id": "038e21b955aa6f312a8f0328",
+            "name": "x20 (10).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (10).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (10).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (10).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (10).jpg",
+            "maskId": "2c9dbd2b5a12101f6952d019",
+            "maskName": "x20 (10).png"
+          },
+          {
+            "id": "034f0b0ee09571093c4762e5",
+            "name": "x20 (11).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (11).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (11).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (11).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (11).jpg",
+            "maskId": "c20dea61c4093813961cf722",
+            "maskName": "x20 (11).png"
+          },
+          {
+            "id": "77be1398adbb902fdbbbb2ee",
+            "name": "x20 (12).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (12).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (12).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (12).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (12).jpg",
+            "maskId": "0b549b9e884fe0ed7825f32f",
+            "maskName": "x20 (12).png"
+          },
+          {
+            "id": "ff671196bc278ec90bd12e91",
+            "name": "x20 (13).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (13).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (13).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (13).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (13).jpg",
+            "maskId": "57e1955cb1d71b749999c13c",
+            "maskName": "x20 (13).png"
+          },
+          {
+            "id": "2dc13e78de1b6acc58ce475f",
+            "name": "x20 (14).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (14).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (14).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (14).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (14).jpg",
+            "maskId": "54c99792a28bc86d0c289f90",
+            "maskName": "x20 (14).png"
+          },
+          {
+            "id": "49e780b6716726ffdae70fc8",
+            "name": "x20 (15).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (15).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (15).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (15).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (15).jpg",
+            "maskId": "f0d13f2273a38b9259475dde",
+            "maskName": "x20 (15).png"
+          },
+          {
+            "id": "761106d9f55aa22cb1511064",
+            "name": "x20 (16).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (16).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (16).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (16).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (16).jpg",
+            "maskId": "b8d83d67ffeab61659a7918d",
+            "maskName": "x20 (16).png"
+          },
+          {
+            "id": "1ad13f858a62b41d11be2247",
+            "name": "x20 (17).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (17).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (17).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (17).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (17).jpg",
+            "maskId": "1ff45ba7b844a65d90deea55",
+            "maskName": "x20 (17).png"
+          },
+          {
+            "id": "a46e02aeffcf43b630adef6b",
+            "name": "x20 (18).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (18).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (18).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (18).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (18).jpg",
+            "maskId": "8f60988b9687a9a01a2e9447",
+            "maskName": "x20 (18).png"
+          },
+          {
+            "id": "cfec92b1df4991d9f6951087",
+            "name": "x20 (19).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (19).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (19).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (19).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (19).jpg",
+            "maskId": "d850abd0dc197861d3b8e534",
+            "maskName": "x20 (19).png"
+          },
+          {
+            "id": "8e607b5f83a8069228271a74",
+            "name": "x20 (20).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (20).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (20).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (20).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (20).jpg",
+            "maskId": "f5f4c704273269ae67f43054",
+            "maskName": "x20 (20).png"
+          },
+          {
+            "id": "b0997c8575a2c489baa5dac2",
+            "name": "x20 (21).jpg",
+            "path": "data/local/418-17-4ph-x20/images/x20 (21).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/images/x20 (21).jpg",
+            "viewUrl": "data/local/418-17-4ph-x20/images/x20 (21).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x20/images/x20 (21).jpg",
+            "maskId": "8eba94d45cd6e8cde7dda673",
+            "maskName": "x20 (21).png"
+          }
+        ],
+        "masks": [
+          {
+            "id": "9459c9c1f9653b70db92f454",
+            "name": "x20 (1).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (1).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (1).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (1).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (1).png"
+          },
+          {
+            "id": "d903c4b369e3e8ba53732b5d",
+            "name": "x20 (2).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (2).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (2).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (2).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (2).png"
+          },
+          {
+            "id": "f1d43b904ce6e3db962bf375",
+            "name": "x20 (3).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (3).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (3).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (3).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (3).png"
+          },
+          {
+            "id": "4b41540605d7d695e5314cc6",
+            "name": "x20 (4).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (4).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (4).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (4).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (4).png"
+          },
+          {
+            "id": "cb38e5db3bd25c2e1a7c8902",
+            "name": "x20 (5).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (5).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (5).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (5).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (5).png"
+          },
+          {
+            "id": "f5e7ffcb165ca2d7998b7b2c",
+            "name": "x20 (6).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (6).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (6).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (6).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (6).png"
+          },
+          {
+            "id": "0e4b2cd1ff13196ec53b64f2",
+            "name": "x20 (7).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (7).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (7).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (7).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (7).png"
+          },
+          {
+            "id": "99333714bbb925ace0649d17",
+            "name": "x20 (8).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (8).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (8).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (8).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (8).png"
+          },
+          {
+            "id": "51783185b38ebf2ae8520686",
+            "name": "x20 (9).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (9).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (9).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (9).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (9).png"
+          },
+          {
+            "id": "2c9dbd2b5a12101f6952d019",
+            "name": "x20 (10).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (10).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (10).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (10).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (10).png"
+          },
+          {
+            "id": "c20dea61c4093813961cf722",
+            "name": "x20 (11).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (11).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (11).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (11).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (11).png"
+          },
+          {
+            "id": "0b549b9e884fe0ed7825f32f",
+            "name": "x20 (12).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (12).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (12).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (12).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (12).png"
+          },
+          {
+            "id": "57e1955cb1d71b749999c13c",
+            "name": "x20 (13).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (13).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (13).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (13).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (13).png"
+          },
+          {
+            "id": "54c99792a28bc86d0c289f90",
+            "name": "x20 (14).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (14).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (14).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (14).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (14).png"
+          },
+          {
+            "id": "f0d13f2273a38b9259475dde",
+            "name": "x20 (15).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (15).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (15).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (15).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (15).png"
+          },
+          {
+            "id": "b8d83d67ffeab61659a7918d",
+            "name": "x20 (16).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (16).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (16).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (16).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (16).png"
+          },
+          {
+            "id": "1ff45ba7b844a65d90deea55",
+            "name": "x20 (17).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (17).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (17).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (17).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (17).png"
+          },
+          {
+            "id": "8f60988b9687a9a01a2e9447",
+            "name": "x20 (18).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (18).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (18).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (18).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (18).png"
+          },
+          {
+            "id": "d850abd0dc197861d3b8e534",
+            "name": "x20 (19).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (19).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (19).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (19).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (19).png"
+          },
+          {
+            "id": "f5f4c704273269ae67f43054",
+            "name": "x20 (20).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (20).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (20).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (20).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (20).png"
+          },
+          {
+            "id": "8eba94d45cd6e8cde7dda673",
+            "name": "x20 (21).png",
+            "path": "data/local/418-17-4ph-x20/labels/x20 (21).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x20/labels/x20 (21).png",
+            "viewUrl": "data/local/418-17-4ph-x20/labels/x20 (21).png",
+            "downloadUrl": "data/local/418-17-4ph-x20/labels/x20 (21).png"
+          }
+        ],
+        "pairCount": 21,
+        "originalCount": 21,
+        "maskCount": 21,
+        "hasMaskPairs": true,
+        "notes": "Paired from local filenames by index/magnification heuristics."
+      }
+    },
+    {
+      "id": "418-17-4ph-x5",
+      "material": "418 Printed 17-4 PH Steel",
+      "family": "Steel",
+      "condition": "As-Sintered",
+      "magnification": "x5",
+      "description": "Sintered ferrite particles with subtle contrast between grains and intergranular regions.",
+      "annotationNotes": "Good overall annotation quality after iterative training, with occasional difficult regions.",
+      "phases": [
+        "Equiaxed Ferrite Grains",
+        "Intergranular Ferrite"
+      ],
+      "localOnly": true,
+      "images": 25,
+      "download": {
+        "categoryPath": "data/local/418-17-4ph-x5",
+        "imagesPath": "data/local/418-17-4ph-x5/images",
+        "labelsPath": "data/local/418-17-4ph-x5/labels"
+      },
+      "gallery": {
+        "originals": [
+          {
+            "id": "a8c6ccaaee049cabf562dbed",
+            "name": "x5 (1).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (1).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (1).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (1).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (1).jpg",
+            "maskId": "430fd19141d166e5fb5c95ca",
+            "maskName": "x5 (1).png"
+          },
+          {
+            "id": "a8b51e319dc0ac2e99ed5a89",
+            "name": "x5 (2).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (2).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (2).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (2).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (2).jpg",
+            "maskId": "75637e22057fd5e566de555c",
+            "maskName": "x5 (2).png"
+          },
+          {
+            "id": "c2178e99ac96af692fb0c17c",
+            "name": "x5 (3).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (3).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (3).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (3).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (3).jpg",
+            "maskId": "d0c224bf9700ef10d418509f",
+            "maskName": "x5 (3).png"
+          },
+          {
+            "id": "7defa8bd3cf26846656935fb",
+            "name": "x5 (4).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (4).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (4).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (4).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (4).jpg",
+            "maskId": "1bc717e2fff9c3557ec174b8",
+            "maskName": "x5 (4).png"
+          },
+          {
+            "id": "d79aa998e7c0b59aaab4e538",
+            "name": "x5 (5).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (5).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (5).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (5).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (5).jpg",
+            "maskId": "a0741c1c5aa05447f73fc5bc",
+            "maskName": "x5 (5).png"
+          },
+          {
+            "id": "ff9f191a3719cf4d56a7566c",
+            "name": "x5 (6).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (6).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (6).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (6).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (6).jpg",
+            "maskId": "4cb5f71b3eeb111ead7c98b2",
+            "maskName": "x5 (6).png"
+          },
+          {
+            "id": "3d325e19c5ba76bbaaf629a8",
+            "name": "x5 (7).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (7).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (7).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (7).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (7).jpg",
+            "maskId": "179849ab758123aff0e5ed89",
+            "maskName": "x5 (7).png"
+          },
+          {
+            "id": "52ad344f01ad90103f99664d",
+            "name": "x5 (8).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (8).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (8).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (8).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (8).jpg",
+            "maskId": "617ae67e43afe199e4a1ff0c",
+            "maskName": "x5 (8).png"
+          },
+          {
+            "id": "d209722fe04e0aa8fa8ff766",
+            "name": "x5 (9).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (9).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (9).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (9).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (9).jpg",
+            "maskId": "075e8c41a6e524ad0cd1259e",
+            "maskName": "x5 (9).png"
+          },
+          {
+            "id": "c71985469fa1ee0c2cfacf88",
+            "name": "x5 (10).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (10).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (10).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (10).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (10).jpg",
+            "maskId": "00b1e83d6b3f8166497f5f95",
+            "maskName": "x5 (10).png"
+          },
+          {
+            "id": "b266af6cf0486e2e19291092",
+            "name": "x5 (11).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (11).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (11).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (11).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (11).jpg",
+            "maskId": "e045468b94da8a0a72ddbea9",
+            "maskName": "x5 (11).png"
+          },
+          {
+            "id": "22919cb10dd2d4ba8d49f028",
+            "name": "x5 (12).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (12).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (12).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (12).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (12).jpg",
+            "maskId": "dfe56bd4b27da9c971c4467a",
+            "maskName": "x5 (12).png"
+          },
+          {
+            "id": "622004561b74bf5ea86b59cd",
+            "name": "x5 (13).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (13).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (13).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (13).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (13).jpg",
+            "maskId": "9c32e321c6996a489dea9dc5",
+            "maskName": "x5 (13).png"
+          },
+          {
+            "id": "b26e4917f750ee69814a3bef",
+            "name": "x5 (14).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (14).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (14).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (14).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (14).jpg",
+            "maskId": "13821af857ac6c21301aa4e6",
+            "maskName": "x5 (14).png"
+          },
+          {
+            "id": "26e42a7c7a79da21bf59fd7e",
+            "name": "x5 (15).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (15).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (15).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (15).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (15).jpg",
+            "maskId": "9d6a5b38f0e691bd27dfa372",
+            "maskName": "x5 (15).png"
+          },
+          {
+            "id": "5ab4a338712d96e8acb669ce",
+            "name": "x5 (16).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (16).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (16).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (16).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (16).jpg",
+            "maskId": "ae820db2e5ab9277a9cee126",
+            "maskName": "x5 (16).png"
+          },
+          {
+            "id": "486cc4eddee1b338800b14d1",
+            "name": "x5 (17).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (17).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (17).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (17).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (17).jpg",
+            "maskId": "563971f8a7b8a754fce459c7",
+            "maskName": "x5 (17).png"
+          },
+          {
+            "id": "b2307260d48d097753c5d26f",
+            "name": "x5 (18).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (18).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (18).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (18).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (18).jpg",
+            "maskId": "20b235e9864ac64a42cb0f5a",
+            "maskName": "x5 (18).png"
+          },
+          {
+            "id": "9924d48d6655e82b042fd6b2",
+            "name": "x5 (19).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (19).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (19).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (19).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (19).jpg",
+            "maskId": "eee76e12baee3e030bbdb333",
+            "maskName": "x5 (19).png"
+          },
+          {
+            "id": "4815551074ab22a5185651b3",
+            "name": "x5 (20).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (20).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (20).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (20).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (20).jpg",
+            "maskId": "489bd2990c354fcb3178aace",
+            "maskName": "x5 (20).png"
+          },
+          {
+            "id": "46e60080ad5c3262ca2a23dc",
+            "name": "x5 (21).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (21).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (21).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (21).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (21).jpg",
+            "maskId": "acddc7236e88082fc125b627",
+            "maskName": "x5 (21).png"
+          },
+          {
+            "id": "500682b4042688b64972303f",
+            "name": "x5 (22).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (22).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (22).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (22).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (22).jpg",
+            "maskId": "1f3da458756260e34dab1e61",
+            "maskName": "x5 (22).png"
+          },
+          {
+            "id": "5544661e2088b18637f27465",
+            "name": "x5 (23).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (23).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (23).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (23).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (23).jpg",
+            "maskId": "f7be87bbd68bf9b1b580d9e5",
+            "maskName": "x5 (23).png"
+          },
+          {
+            "id": "63474806448eb8b165dae823",
+            "name": "x5 (24).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (24).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (24).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (24).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (24).jpg",
+            "maskId": "6c2d97204b6e4f55ad15977d",
+            "maskName": "x5 (24).png"
+          },
+          {
+            "id": "3826d12392864cd895280463",
+            "name": "x5 (25).jpg",
+            "path": "data/local/418-17-4ph-x5/images/x5 (25).jpg",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/images/x5 (25).jpg",
+            "viewUrl": "data/local/418-17-4ph-x5/images/x5 (25).jpg",
+            "downloadUrl": "data/local/418-17-4ph-x5/images/x5 (25).jpg",
+            "maskId": "0682e8ec11a87e8532b9baf4",
+            "maskName": "x5 (25).png"
+          }
+        ],
+        "masks": [
+          {
+            "id": "430fd19141d166e5fb5c95ca",
+            "name": "x5 (1).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (1).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (1).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (1).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (1).png"
+          },
+          {
+            "id": "75637e22057fd5e566de555c",
+            "name": "x5 (2).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (2).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (2).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (2).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (2).png"
+          },
+          {
+            "id": "d0c224bf9700ef10d418509f",
+            "name": "x5 (3).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (3).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (3).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (3).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (3).png"
+          },
+          {
+            "id": "1bc717e2fff9c3557ec174b8",
+            "name": "x5 (4).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (4).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (4).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (4).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (4).png"
+          },
+          {
+            "id": "a0741c1c5aa05447f73fc5bc",
+            "name": "x5 (5).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (5).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (5).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (5).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (5).png"
+          },
+          {
+            "id": "4cb5f71b3eeb111ead7c98b2",
+            "name": "x5 (6).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (6).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (6).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (6).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (6).png"
+          },
+          {
+            "id": "179849ab758123aff0e5ed89",
+            "name": "x5 (7).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (7).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (7).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (7).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (7).png"
+          },
+          {
+            "id": "617ae67e43afe199e4a1ff0c",
+            "name": "x5 (8).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (8).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (8).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (8).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (8).png"
+          },
+          {
+            "id": "075e8c41a6e524ad0cd1259e",
+            "name": "x5 (9).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (9).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (9).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (9).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (9).png"
+          },
+          {
+            "id": "00b1e83d6b3f8166497f5f95",
+            "name": "x5 (10).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (10).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (10).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (10).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (10).png"
+          },
+          {
+            "id": "e045468b94da8a0a72ddbea9",
+            "name": "x5 (11).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (11).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (11).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (11).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (11).png"
+          },
+          {
+            "id": "dfe56bd4b27da9c971c4467a",
+            "name": "x5 (12).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (12).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (12).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (12).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (12).png"
+          },
+          {
+            "id": "9c32e321c6996a489dea9dc5",
+            "name": "x5 (13).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (13).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (13).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (13).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (13).png"
+          },
+          {
+            "id": "13821af857ac6c21301aa4e6",
+            "name": "x5 (14).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (14).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (14).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (14).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (14).png"
+          },
+          {
+            "id": "9d6a5b38f0e691bd27dfa372",
+            "name": "x5 (15).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (15).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (15).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (15).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (15).png"
+          },
+          {
+            "id": "ae820db2e5ab9277a9cee126",
+            "name": "x5 (16).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (16).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (16).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (16).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (16).png"
+          },
+          {
+            "id": "563971f8a7b8a754fce459c7",
+            "name": "x5 (17).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (17).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (17).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (17).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (17).png"
+          },
+          {
+            "id": "20b235e9864ac64a42cb0f5a",
+            "name": "x5 (18).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (18).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (18).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (18).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (18).png"
+          },
+          {
+            "id": "eee76e12baee3e030bbdb333",
+            "name": "x5 (19).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (19).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (19).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (19).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (19).png"
+          },
+          {
+            "id": "489bd2990c354fcb3178aace",
+            "name": "x5 (20).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (20).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (20).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (20).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (20).png"
+          },
+          {
+            "id": "acddc7236e88082fc125b627",
+            "name": "x5 (21).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (21).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (21).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (21).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (21).png"
+          },
+          {
+            "id": "1f3da458756260e34dab1e61",
+            "name": "x5 (22).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (22).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (22).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (22).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (22).png"
+          },
+          {
+            "id": "f7be87bbd68bf9b1b580d9e5",
+            "name": "x5 (23).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (23).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (23).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (23).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (23).png"
+          },
+          {
+            "id": "6c2d97204b6e4f55ad15977d",
+            "name": "x5 (24).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (24).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (24).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (24).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (24).png"
+          },
+          {
+            "id": "0682e8ec11a87e8532b9baf4",
+            "name": "x5 (25).png",
+            "path": "data/local/418-17-4ph-x5/labels/x5 (25).png",
+            "thumbnailUrl": "data/local/418-17-4ph-x5/labels/x5 (25).png",
+            "viewUrl": "data/local/418-17-4ph-x5/labels/x5 (25).png",
+            "downloadUrl": "data/local/418-17-4ph-x5/labels/x5 (25).png"
+          }
+        ],
+        "pairCount": 25,
+        "originalCount": 25,
+        "maskCount": 25,
+        "hasMaskPairs": true,
+        "notes": "Paired from local filenames by index/magnification heuristics."
+      }
+    },
+    {
+      "id": "5884-armor-steel",
+      "material": "5884 Armor Steel",
+      "family": "Steel",
+      "condition": "Quenched and Tempered",
+      "magnification": "Mixed",
+      "description": "Etched to reveal pre-austenite grains with challenging blurry grain boundaries.",
+      "annotationNotes": "Dendrites are marked in red and interdendritic areas in blue; boundary blur can produce small local errors.",
+      "phases": [
+        "Pre-Austenite Dendrites",
+        "Interdendritic Region"
+      ],
+      "localOnly": true,
+      "images": 21,
+      "download": {
+        "categoryPath": "data/local/5884-armor-steel",
+        "imagesPath": "data/local/5884-armor-steel/images",
+        "labelsPath": "data/local/5884-armor-steel/labels"
+      },
+      "gallery": {
+        "originals": [
+          {
+            "id": "28c01ad9b621015df802eb55",
+            "name": "5884 x 5 (1).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 5 (1).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 5 (1).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 5 (1).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 5 (1).jpg",
+            "maskId": "45a0b193d286443858ec4ae3",
+            "maskName": "5884 x 5 (1).png"
+          },
+          {
+            "id": "3aa5de2acbf9bb1afca36e13",
+            "name": "5884 x 5 (2).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 5 (2).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 5 (2).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 5 (2).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 5 (2).jpg",
+            "maskId": "d077a369658cde1c03334656",
+            "maskName": "5884 x 5 (2).png"
+          },
+          {
+            "id": "9dbf91108647dc0f92e91b02",
+            "name": "5884 x 5 (3).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 5 (3).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 5 (3).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 5 (3).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 5 (3).jpg",
+            "maskId": "a01693800d263019b5fd4c11",
+            "maskName": "5884 x 5 (3).png"
+          },
+          {
+            "id": "bce8c622f67f68d276c27485",
+            "name": "5884 x 5 (4).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 5 (4).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 5 (4).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 5 (4).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 5 (4).jpg",
+            "maskId": "4fa0703c208d139b0707d1d6",
+            "maskName": "5884 x 5 (4).png"
+          },
+          {
+            "id": "4e31558dbf57e4f7d10ae63e",
+            "name": "5884 x 5 (5).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 5 (5).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 5 (5).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 5 (5).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 5 (5).jpg",
+            "maskId": "b199a0fc3920f14b5eb7896a",
+            "maskName": "5884 x 5 (5).png"
+          },
+          {
+            "id": "ab92b007559626bf1014d4a0",
+            "name": "5884 x 10 (1).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 10 (1).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 10 (1).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 10 (1).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 10 (1).jpg",
+            "maskId": "4758902fd82dc9cfbb5645e4",
+            "maskName": "5884 x 10 (1).png"
+          },
+          {
+            "id": "565cc50763be46a5de1c6794",
+            "name": "5884 x 10 (2).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 10 (2).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 10 (2).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 10 (2).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 10 (2).jpg",
+            "maskId": "029f88ef64fd8154c97de540",
+            "maskName": "5884 x 10 (2).png"
+          },
+          {
+            "id": "9c939e9709b2f1f9a46154db",
+            "name": "5884 x 10 (3).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 10 (3).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 10 (3).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 10 (3).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 10 (3).jpg",
+            "maskId": "acaa3f745675d77f69f34fe4",
+            "maskName": "5884 x 10 (3).png"
+          },
+          {
+            "id": "edf89f66ce46be3eb206236e",
+            "name": "5884 x 10 (4).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 10 (4).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 10 (4).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 10 (4).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 10 (4).jpg",
+            "maskId": "b46a39ca67eee5eed168ba15",
+            "maskName": "5884 x 10 (4).png"
+          },
+          {
+            "id": "fc6462838e8879be9664d230",
+            "name": "5884 x 10 (5).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 10 (5).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 10 (5).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 10 (5).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 10 (5).jpg",
+            "maskId": "fddae71db9e98e74024e2264",
+            "maskName": "5884 x 10 (5).png"
+          },
+          {
+            "id": "83bde5ba43e750187f10e15c",
+            "name": "5884 x 10 (6).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 10 (6).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 10 (6).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 10 (6).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 10 (6).jpg",
+            "maskId": "75a69787d020770984c00eb8",
+            "maskName": "5884 x 10 (6).png"
+          },
+          {
+            "id": "e97f454ce839cd653492daff",
+            "name": "5884 x 20 (1).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 20 (1).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 20 (1).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 20 (1).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 20 (1).jpg",
+            "maskId": "756637072d663b3d5e469230",
+            "maskName": "5884 x 20 (1).png"
+          },
+          {
+            "id": "3a3b63e57d6bbe00f50d279c",
+            "name": "5884 x 20 (2).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 20 (2).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 20 (2).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 20 (2).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 20 (2).jpg",
+            "maskId": "5a119183272199e0e4c528c5",
+            "maskName": "5884 x 20 (2).png"
+          },
+          {
+            "id": "89a3bfca008ad7357e62ae80",
+            "name": "5884 x 20 (3).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 20 (3).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 20 (3).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 20 (3).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 20 (3).jpg",
+            "maskId": "9964bbad425d4dffb4fc9c93",
+            "maskName": "5884 x 20 (3).png"
+          },
+          {
+            "id": "527e2873c50d6e9459874fa6",
+            "name": "5884 x 20 (4).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 20 (4).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 20 (4).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 20 (4).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 20 (4).jpg",
+            "maskId": "f543832ec4c2e1971ac93369",
+            "maskName": "5884 x 20 (4).png"
+          },
+          {
+            "id": "777aa513832ac6dbea7ddc1f",
+            "name": "5884 x 20 (5).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 20 (5).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 20 (5).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 20 (5).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 20 (5).jpg",
+            "maskId": "ed2e61a94945cf15c349f2cc",
+            "maskName": "5884 x 20 (5).png"
+          },
+          {
+            "id": "4447e684da868951892b1f35",
+            "name": "5884 x 20 (6).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 20 (6).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 20 (6).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 20 (6).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 20 (6).jpg",
+            "maskId": "fcdb40666d8c671ef59056cd",
+            "maskName": "5884 x 20 (6).png"
+          },
+          {
+            "id": "491502be8c0c4e865b4aae1b",
+            "name": "5884 x 50 (1).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 50 (1).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 50 (1).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 50 (1).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 50 (1).jpg",
+            "maskId": "90efca3d726e6aa59bc2f20c",
+            "maskName": "5884 x 50 (1).png"
+          },
+          {
+            "id": "ee4203358db5d76318ad249d",
+            "name": "5884 x 50 (2).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 50 (2).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 50 (2).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 50 (2).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 50 (2).jpg",
+            "maskId": "f2832d27108001bfe53de43a",
+            "maskName": "5884 x 50 (2).png"
+          },
+          {
+            "id": "c70da4f575b1e92a58daee1d",
+            "name": "5884 x 50 (3).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 50 (3).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 50 (3).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 50 (3).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 50 (3).jpg",
+            "maskId": "f4dc9f5127cb4ce0accc684a",
+            "maskName": "5884 x 50 (3).png"
+          },
+          {
+            "id": "ae03d4db95ad48f3f6ef19bf",
+            "name": "5884 x 50 (4).jpg",
+            "path": "data/local/5884-armor-steel/images/5884 x 50 (4).jpg",
+            "thumbnailUrl": "data/local/5884-armor-steel/images/5884 x 50 (4).jpg",
+            "viewUrl": "data/local/5884-armor-steel/images/5884 x 50 (4).jpg",
+            "downloadUrl": "data/local/5884-armor-steel/images/5884 x 50 (4).jpg",
+            "maskId": "a8795ba22a735acbab511b3a",
+            "maskName": "5884 x 50 (4).png"
+          }
+        ],
+        "masks": [
+          {
+            "id": "45a0b193d286443858ec4ae3",
+            "name": "5884 x 5 (1).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 5 (1).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 5 (1).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 5 (1).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 5 (1).png"
+          },
+          {
+            "id": "d077a369658cde1c03334656",
+            "name": "5884 x 5 (2).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 5 (2).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 5 (2).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 5 (2).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 5 (2).png"
+          },
+          {
+            "id": "a01693800d263019b5fd4c11",
+            "name": "5884 x 5 (3).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 5 (3).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 5 (3).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 5 (3).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 5 (3).png"
+          },
+          {
+            "id": "4fa0703c208d139b0707d1d6",
+            "name": "5884 x 5 (4).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 5 (4).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 5 (4).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 5 (4).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 5 (4).png"
+          },
+          {
+            "id": "b199a0fc3920f14b5eb7896a",
+            "name": "5884 x 5 (5).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 5 (5).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 5 (5).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 5 (5).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 5 (5).png"
+          },
+          {
+            "id": "4758902fd82dc9cfbb5645e4",
+            "name": "5884 x 10 (1).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 10 (1).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 10 (1).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 10 (1).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 10 (1).png"
+          },
+          {
+            "id": "029f88ef64fd8154c97de540",
+            "name": "5884 x 10 (2).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 10 (2).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 10 (2).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 10 (2).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 10 (2).png"
+          },
+          {
+            "id": "acaa3f745675d77f69f34fe4",
+            "name": "5884 x 10 (3).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 10 (3).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 10 (3).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 10 (3).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 10 (3).png"
+          },
+          {
+            "id": "b46a39ca67eee5eed168ba15",
+            "name": "5884 x 10 (4).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 10 (4).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 10 (4).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 10 (4).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 10 (4).png"
+          },
+          {
+            "id": "fddae71db9e98e74024e2264",
+            "name": "5884 x 10 (5).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 10 (5).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 10 (5).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 10 (5).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 10 (5).png"
+          },
+          {
+            "id": "75a69787d020770984c00eb8",
+            "name": "5884 x 10 (6).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 10 (6).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 10 (6).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 10 (6).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 10 (6).png"
+          },
+          {
+            "id": "756637072d663b3d5e469230",
+            "name": "5884 x 20 (1).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 20 (1).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 20 (1).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 20 (1).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 20 (1).png"
+          },
+          {
+            "id": "5a119183272199e0e4c528c5",
+            "name": "5884 x 20 (2).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 20 (2).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 20 (2).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 20 (2).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 20 (2).png"
+          },
+          {
+            "id": "9964bbad425d4dffb4fc9c93",
+            "name": "5884 x 20 (3).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 20 (3).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 20 (3).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 20 (3).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 20 (3).png"
+          },
+          {
+            "id": "f543832ec4c2e1971ac93369",
+            "name": "5884 x 20 (4).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 20 (4).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 20 (4).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 20 (4).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 20 (4).png"
+          },
+          {
+            "id": "ed2e61a94945cf15c349f2cc",
+            "name": "5884 x 20 (5).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 20 (5).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 20 (5).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 20 (5).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 20 (5).png"
+          },
+          {
+            "id": "fcdb40666d8c671ef59056cd",
+            "name": "5884 x 20 (6).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 20 (6).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 20 (6).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 20 (6).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 20 (6).png"
+          },
+          {
+            "id": "90efca3d726e6aa59bc2f20c",
+            "name": "5884 x 50 (1).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 50 (1).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 50 (1).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 50 (1).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 50 (1).png"
+          },
+          {
+            "id": "f2832d27108001bfe53de43a",
+            "name": "5884 x 50 (2).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 50 (2).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 50 (2).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 50 (2).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 50 (2).png"
+          },
+          {
+            "id": "f4dc9f5127cb4ce0accc684a",
+            "name": "5884 x 50 (3).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 50 (3).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 50 (3).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 50 (3).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 50 (3).png"
+          },
+          {
+            "id": "a8795ba22a735acbab511b3a",
+            "name": "5884 x 50 (4).png",
+            "path": "data/local/5884-armor-steel/labels/5884 x 50 (4).png",
+            "thumbnailUrl": "data/local/5884-armor-steel/labels/5884 x 50 (4).png",
+            "viewUrl": "data/local/5884-armor-steel/labels/5884 x 50 (4).png",
+            "downloadUrl": "data/local/5884-armor-steel/labels/5884 x 50 (4).png"
+          }
+        ],
+        "pairCount": 21,
+        "originalCount": 21,
+        "maskCount": 21,
+        "hasMaskPairs": true,
+        "notes": "Paired from local filenames by index/magnification heuristics."
+      }
+    },
+    {
+      "id": "6280-cast-iron-high",
+      "material": "6280 Gray Cast Iron",
+      "family": "Cast Iron",
+      "condition": "As-Cast",
+      "magnification": "High",
+      "description": "High-magnification view resolves ferrite matrix and graphite flakes.",
+      "annotationNotes": "Thin graphite flakes increase annotation difficulty and may require near pixel-level labeling.",
+      "phases": [
+        "Ferrite Matrix",
+        "Graphite Flakes"
+      ],
+      "localOnly": true,
+      "images": 10,
+      "download": {
+        "categoryPath": "data/local/6280-cast-iron-high",
+        "imagesPath": "data/local/6280-cast-iron-high/images",
+        "labelsPath": "data/local/6280-cast-iron-high/labels"
+      },
+      "gallery": {
+        "originals": [
+          {
+            "id": "acf8e70a5108f4649ba167f1",
+            "name": "6280 x 20 (1).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (1).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (1).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (1).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (1).jpg",
+            "maskId": "a8e0dff83850b56a1e32c42e",
+            "maskName": "6280 x 20 (1).png"
+          },
+          {
+            "id": "7c09b02bc57c6ac4be0e52cf",
+            "name": "6280 x 20 (2).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (2).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (2).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (2).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (2).jpg",
+            "maskId": "1762b050d69bcbef1e6a3a8d",
+            "maskName": "6280 x 20 (2).png"
+          },
+          {
+            "id": "4cc282d2b785ccf217f9112c",
+            "name": "6280 x 20 (3).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (3).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (3).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (3).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (3).jpg",
+            "maskId": "492227da62d5b55624f22f32",
+            "maskName": "6280 x 20 (3).png"
+          },
+          {
+            "id": "466aa7a6ff3f226398884005",
+            "name": "6280 x 20 (4).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (4).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (4).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (4).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (4).jpg",
+            "maskId": "75e27cc4244d7d8ffd408d3d",
+            "maskName": "6280 x 20 (4).png"
+          },
+          {
+            "id": "2ed06df5ff0c9dcf7ea141fc",
+            "name": "6280 x 20 (5).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (5).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (5).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (5).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (5).jpg",
+            "maskId": "82e1e965b9d500dee6856baf",
+            "maskName": "6280 x 20 (5).png"
+          },
+          {
+            "id": "74b4a863c2ca5f4af453bfed",
+            "name": "6280 x 20 (6).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (6).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (6).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (6).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (6).jpg",
+            "maskId": "ae538409ff9dc501a97b396a",
+            "maskName": "6280 x 20 (6).png"
+          },
+          {
+            "id": "c2d75775ade267af7f644579",
+            "name": "6280 x 20 (7).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (7).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (7).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (7).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (7).jpg",
+            "maskId": "14c6020d7eb4f0daa43ed05e",
+            "maskName": "6280 x 20 (7).png"
+          },
+          {
+            "id": "d63d829920a5a4d76f6608ec",
+            "name": "6280 x 20 (8).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (8).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (8).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (8).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (8).jpg",
+            "maskId": "6d94edbef0facb86ccea3031",
+            "maskName": "6280 x 20 (8).png"
+          },
+          {
+            "id": "e835ded51bdf101c73bb1d29",
+            "name": "6280 x 20 (9).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (9).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (9).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (9).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (9).jpg",
+            "maskId": "969db0b926406e0501548854",
+            "maskName": "6280 x 20 (9).png"
+          },
+          {
+            "id": "0ca5a18c53c5d2fdce3a2265",
+            "name": "6280 x 20 (10).jpg",
+            "path": "data/local/6280-cast-iron-high/images/6280 x 20 (10).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (10).jpg",
+            "viewUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (10).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-high/images/6280 x 20 (10).jpg",
+            "maskId": "27003d189ec183d7940fd8be",
+            "maskName": "6280 x 20 (10).png"
+          }
+        ],
+        "masks": [
+          {
+            "id": "a8e0dff83850b56a1e32c42e",
+            "name": "6280 x 20 (1).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (1).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (1).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (1).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (1).png"
+          },
+          {
+            "id": "1762b050d69bcbef1e6a3a8d",
+            "name": "6280 x 20 (2).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (2).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (2).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (2).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (2).png"
+          },
+          {
+            "id": "492227da62d5b55624f22f32",
+            "name": "6280 x 20 (3).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (3).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (3).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (3).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (3).png"
+          },
+          {
+            "id": "75e27cc4244d7d8ffd408d3d",
+            "name": "6280 x 20 (4).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (4).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (4).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (4).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (4).png"
+          },
+          {
+            "id": "82e1e965b9d500dee6856baf",
+            "name": "6280 x 20 (5).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (5).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (5).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (5).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (5).png"
+          },
+          {
+            "id": "ae538409ff9dc501a97b396a",
+            "name": "6280 x 20 (6).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (6).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (6).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (6).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (6).png"
+          },
+          {
+            "id": "14c6020d7eb4f0daa43ed05e",
+            "name": "6280 x 20 (7).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (7).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (7).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (7).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (7).png"
+          },
+          {
+            "id": "6d94edbef0facb86ccea3031",
+            "name": "6280 x 20 (8).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (8).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (8).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (8).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (8).png"
+          },
+          {
+            "id": "969db0b926406e0501548854",
+            "name": "6280 x 20 (9).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (9).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (9).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (9).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (9).png"
+          },
+          {
+            "id": "27003d189ec183d7940fd8be",
+            "name": "6280 x 20 (10).png",
+            "path": "data/local/6280-cast-iron-high/labels/6280 x 20 (10).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (10).png",
+            "viewUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (10).png",
+            "downloadUrl": "data/local/6280-cast-iron-high/labels/6280 x 20 (10).png"
+          }
+        ],
+        "pairCount": 10,
+        "originalCount": 10,
+        "maskCount": 10,
+        "hasMaskPairs": true,
+        "notes": "Paired from local filenames by index/magnification heuristics."
+      }
+    },
+    {
+      "id": "6280-cast-iron-low",
+      "material": "6280 Gray Cast Iron",
+      "family": "Cast Iron",
+      "condition": "As-Cast",
+      "magnification": "Low",
+      "description": "Large ferrite dendrites with an interdendritic region rich in ferrite and graphite flakes.",
+      "annotationNotes": "Dendrites are highlighted in red and interdendritic area in blue. Some low-graphite regions may be misannotated.",
+      "phases": [
+        "Ferrite Dendrites",
+        "Interdendritic Region",
+        "Graphite Flakes"
+      ],
+      "localOnly": true,
+      "images": 11,
+      "download": {
+        "categoryPath": "data/local/6280-cast-iron-low",
+        "imagesPath": "data/local/6280-cast-iron-low/images",
+        "labelsPath": "data/local/6280-cast-iron-low/labels"
+      },
+      "gallery": {
+        "originals": [
+          {
+            "id": "fe645888a2f15d52e75fdf35",
+            "name": "6280 x 10 (1).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (1).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (1).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (1).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (1).jpg",
+            "maskId": "6b99f071ef7ccfa34ceed0d4",
+            "maskName": "6280 x 10 (1).png"
+          },
+          {
+            "id": "4d7e6ae83aa474541fe65546",
+            "name": "6280 x 10 (2).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (2).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (2).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (2).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (2).jpg",
+            "maskId": "f73826a0e6b34a9fd3455665",
+            "maskName": "6280 x 10 (2).png"
+          },
+          {
+            "id": "dc63bbcc3f4b896d5d65a626",
+            "name": "6280 x 10 (3).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (3).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (3).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (3).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (3).jpg",
+            "maskId": "3aa75111064732188033e257",
+            "maskName": "6280 x 10 (3).png"
+          },
+          {
+            "id": "3e306f368aa512478a533dbb",
+            "name": "6280 x 10 (4).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (4).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (4).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (4).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (4).jpg",
+            "maskId": "bff9e37a15e96ba289c11ffc",
+            "maskName": "6280 x 10 (4).png"
+          },
+          {
+            "id": "0d5ee482759b445f528712d4",
+            "name": "6280 x 10 (5).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (5).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (5).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (5).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (5).jpg",
+            "maskId": "94ce7e6520772affa8e96a76",
+            "maskName": "6280 x 10 (5).png"
+          },
+          {
+            "id": "285052847a8b739a1e469be3",
+            "name": "6280 x 10 (6).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (6).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (6).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (6).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (6).jpg",
+            "maskId": "63a4315dcd1400d108b22199",
+            "maskName": "6280 x 10 (6).png"
+          },
+          {
+            "id": "be13494a908ea5bcd6860b97",
+            "name": "6280 x 10 (7).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (7).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (7).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (7).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (7).jpg",
+            "maskId": "0d36fb308bc4edc48a71a7be",
+            "maskName": "6280 x 10 (7).png"
+          },
+          {
+            "id": "00cb6f7fa3d5f0eb7f547411",
+            "name": "6280 x 10 (8).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (8).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (8).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (8).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (8).jpg",
+            "maskId": "c206092ab904415636364554",
+            "maskName": "6280 x 10 (8).png"
+          },
+          {
+            "id": "6c3bc37acf4046dfde059d8c",
+            "name": "6280 x 10 (9).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (9).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (9).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (9).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (9).jpg",
+            "maskId": "c6f8d8e034eda302e757d319",
+            "maskName": "6280 x 10 (9).png"
+          },
+          {
+            "id": "9f278ed2b5600b8ae7a4b726",
+            "name": "6280 x 10 (10).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (10).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (10).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (10).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (10).jpg",
+            "maskId": "375260b9e6eaba386df16794",
+            "maskName": "6280 x 10 (10).png"
+          },
+          {
+            "id": "f06708f34b16015f19d89308",
+            "name": "6280 x 10 (11).jpg",
+            "path": "data/local/6280-cast-iron-low/images/6280 x 10 (11).jpg",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (11).jpg",
+            "viewUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (11).jpg",
+            "downloadUrl": "data/local/6280-cast-iron-low/images/6280 x 10 (11).jpg",
+            "maskId": "b6cd6faca48e7c185d0e56cf",
+            "maskName": "6280 x 10 (11).png"
+          }
+        ],
+        "masks": [
+          {
+            "id": "6b99f071ef7ccfa34ceed0d4",
+            "name": "6280 x 10 (1).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (1).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (1).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (1).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (1).png"
+          },
+          {
+            "id": "f73826a0e6b34a9fd3455665",
+            "name": "6280 x 10 (2).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (2).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (2).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (2).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (2).png"
+          },
+          {
+            "id": "3aa75111064732188033e257",
+            "name": "6280 x 10 (3).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (3).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (3).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (3).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (3).png"
+          },
+          {
+            "id": "bff9e37a15e96ba289c11ffc",
+            "name": "6280 x 10 (4).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (4).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (4).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (4).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (4).png"
+          },
+          {
+            "id": "94ce7e6520772affa8e96a76",
+            "name": "6280 x 10 (5).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (5).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (5).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (5).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (5).png"
+          },
+          {
+            "id": "63a4315dcd1400d108b22199",
+            "name": "6280 x 10 (6).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (6).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (6).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (6).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (6).png"
+          },
+          {
+            "id": "0d36fb308bc4edc48a71a7be",
+            "name": "6280 x 10 (7).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (7).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (7).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (7).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (7).png"
+          },
+          {
+            "id": "c206092ab904415636364554",
+            "name": "6280 x 10 (8).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (8).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (8).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (8).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (8).png"
+          },
+          {
+            "id": "c6f8d8e034eda302e757d319",
+            "name": "6280 x 10 (9).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (9).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (9).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (9).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (9).png"
+          },
+          {
+            "id": "375260b9e6eaba386df16794",
+            "name": "6280 x 10 (10).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (10).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (10).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (10).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (10).png"
+          },
+          {
+            "id": "b6cd6faca48e7c185d0e56cf",
+            "name": "6280 x 10 (11).png",
+            "path": "data/local/6280-cast-iron-low/labels/6280 x 10 (11).png",
+            "thumbnailUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (11).png",
+            "viewUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (11).png",
+            "downloadUrl": "data/local/6280-cast-iron-low/labels/6280 x 10 (11).png"
+          }
+        ],
+        "pairCount": 11,
+        "originalCount": 11,
+        "maskCount": 11,
+        "hasMaskPairs": true,
+        "notes": "Paired from local filenames by index/magnification heuristics."
+      }
+    }
+  ]
+}

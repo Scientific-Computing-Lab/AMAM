@@ -1,0 +1,32 @@
+{
+  "seed": 17,
+  "img_size": [
+    256,
+    256
+  ],
+  "split_mode": "fullset_no_holdout",
+  "n_pairs": 128,
+  "train_images": 128,
+  "test_images": 128,
+  "methods": [
+    "canny_watershed",
+    "felzenszwalb_cluster",
+    "gabor_kmeans",
+    "gmm_rgb",
+    "kmeans_rgb",
+    "lbp_kmeans",
+    "rf_pixel",
+    "slic_cluster",
+    "sobel_watershed",
+    "svm_pixel"
+  ],
+  "subset_test_counts": {
+    "4130-steel": 40,
+    "418-17-4ph-x20": 21,
+    "418-17-4ph-x5": 25,
+    "5884-armor-steel": 21,
+    "6280-cast-iron-high": 10,
+    "6280-cast-iron-low": 11
+  },
+  "subset_metadata_source": "assets/data/amam-dataset.json"
+}
