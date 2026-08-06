@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AMAM benchmark report: why this dataset is a strong benchmark for metallography segmentation.">
+  <title>AMAM Benchmark Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/report.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-shell">
+      <a href="index.html#top" class="brand" aria-label="AMAM Home">
+        <span class="brand-mark">AM</span>
+        <span class="brand-text">AMAM Benchmark Dataset</span>
+      </a>
+      <nav class="top-nav" aria-label="Primary">
+        <a href="index.html#overview">Overview</a>
+        <a href="index.html#downloads">Downloads</a>
+        <a href="index.html#explorer">Explorer</a>
+        <a href="#model-results">Model Results</a>
+        <a href="report.html">Benchmark Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="report-main">
+    <section class="report-hero panel">
+      <div class="report-hero-main">
+        <p class="kicker">AMAM-128 No-Split Campaign</p>
+        <h1 id="reportHeadline">AMAM Benchmark Report</h1>
+        <p id="reportOverview" class="hero-overview">Loading campaign profile...</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="index.html#explorer">Open Dataset Explorer</a>
+          <a class="btn btn-ghost" href="assets/data/amam-dataset.json" download>Download Benchmark Metadata</a>
+        </div>
+      </div>
+      <aside class="report-hero-side">
+        <h2>Core Claim</h2>
+        <p>
+          The AMAM-128 campaign is a reproducible benchmark release: 45 models were evaluated under one strict
+          protocol on the same 128 paired images.
+        </p>
+        <ul class="report-list">
+          <li><code>fullset_no_holdout</code>: every model is evaluated on all 128 paired images</li>
+          <li>10 classical, 29 supervised deep, 6 foundation/edge add-on models</li>
+          <li>Hard reproducibility audit and per-model provenance manifest published</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Why Benchmarking This Problem Is Hard</h2>
+        <p>Metallography segmentation is not one task; it is a family of related tasks with shifting appearance, scale, and class semantics.</p>
+      </div>
+      <div class="challenge-grid">
+        <article class="challenge-card">
+          <h3>Semantic Drift Across Materials</h3>
+          <p>Class definitions vary by subset (for example ferrite/pearlite versus dendrite/interdendritic regions), so one global label map is often invalid.</p>
+        </article>
+        <article class="challenge-card">
+          <h3>Scale and Morphology Shift</h3>
+          <p>Low and high magnification expose different structures. A model that works on one scale can fail sharply on another.</p>
+        </article>
+        <article class="challenge-card">
+          <h3>Artifact Sensitivity</h3>
+          <p>Scratches, pores, glare, and blurry interfaces are common failure drivers and can be confused with true phases if not benchmarked explicitly.</p>
+        </article>
+        <article class="challenge-card">
+          <h3>Monolithic Scoring Can Mislead</h3>
+          <p>Single aggregate scores can hide minority-subset failures. Benchmark design must preserve subset-level reporting and OOD evaluation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Verified Dataset Evidence</h2>
+        <p>All values below are computed directly from the local release metadata and pair mappings.</p>
+      </div>
+
+      <div class="report-metrics-grid" id="reportMetrics"></div>
+
+      <div class="report-chart-grid">
+        <article class="chart-card">
+          <h3>Pairs by Material Family</h3>
+          <div id="familyChart" class="bar-chart" aria-live="polite"></div>
+        </article>
+        <article class="chart-card">
+          <h3>Pairs by Magnification Regime</h3>
+          <div id="magChart" class="bar-chart" aria-live="polite"></div>
+        </article>
+      </div>
+
+      <article class="subset-table-card">
+        <h3>Subset-Level Coverage</h3>
+        <p>Coverage = matched original-label pairs divided by local originals in the subset.</p>
+        <div class="table-wrap">
+          <table class="subset-table">
+            <thead>
+              <tr>
+                <th>Subset</th>
+                <th>Family</th>
+                <th>Condition</th>
+                <th>Magnification</th>
+                <th>Pairs</th>
+                <th>Coverage</th>
+              </tr>
+            </thead>
+            <tbody id="subsetTableBody"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" id="model-results">
+      <div class="panel-head">
+        <h2>Model Benchmark Results (All 45 Runs)</h2>
+        <p>Complete campaign table across 10 classical baselines, 29 supervised deep models, and 6 foundation/edge inference add-ons under one no-split protocol.</p>
+      </div>
+
+      <div class="results-summary" id="resultsSummary"></div>
+
+      <div class="results-tools">
+        <div class="field-group">
+          <label for="resultsGroupFilter">Model group</label>
+          <select id="resultsGroupFilter">
+            <option value="all">All groups</option>
+            <option value="classical">Classical baselines</option>
+            <option value="deep_general">Deep supervised (general)</option>
+            <option value="deep_metallography">Deep supervised (metallography)</option>
+            <option value="foundation_edge">Foundation/edge add-ons</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label for="resultsSortBy">Sort by</label>
+          <select id="resultsSortBy">
+            <option value="miou">mIoU</option>
+            <option value="dice">Dice</option>
+            <option value="pixelAcc">Pixel Accuracy</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label for="resultsSearch">Search model/category</label>
+          <input id="resultsSearch" type="search" placeholder="e.g. segformer, edge, clahe..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="results-downloads">
+        <a class="btn btn-ghost" href="assets/data/results/benchmark_summary.csv" download>Download Classical CSV</a>
+        <a class="btn btn-ghost" href="assets/data/results/deep_macro_over_subsets.csv" download>Download Deep CSV</a>
+        <a class="btn btn-ghost" href="assets/data/results/foundation_edge_summary.csv" download>Download Foundation/Edge CSV</a>
+        <a class="btn btn-ghost" href="repro/results/model_provenance_manifest.csv" download>Download Provenance Manifest</a>
+        <a class="btn btn-ghost" href="repro/results/reproducibility_audit_45_models.json" download>Download Repro Audit</a>
+      </div>
+
+      <p class="results-status" id="resultsStatus">Loading benchmark results...</p>
+
+      <div class="table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Model</th>
+              <th>Group</th>
+              <th>Category</th>
+              <th>mIoU</th>
+              <th>Dice</th>
+              <th>Pixel Acc</th>
+            </tr>
+          </thead>
+          <tbody id="resultsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Annotation and Curation Workflow</h2>
+        <p>The workflow follows the local AMAM documentation: expert partial labels, model-assisted completion, iterative correction, and final dense labels.</p>
+      </div>
+      <div class="workflow-layout">
+        <figure class="workflow-card">
+          <img src="assets/images/amam-workflow.png" alt="AMAM annotation and refinement workflow">
+          <figcaption>AMAM annotation and refinement workflow.</figcaption>
+        </figure>
+        <div>
+          <ol class="workflow-steps" id="workflowSteps"></ol>
+          <div class="quality-box">
+            <h3>Documented Edge Cases</h3>
+            <ul class="report-list">
+              <li>Pores/scratches can be confused with true phase regions</li>
+              <li>Scale bar or mounting media can be mistakenly segmented</li>
+              <li>Blurry phase boundaries can drive local under/over-labeling</li>
+              <li>Reflective precipitates can invert local contrast appearance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Representative Labeled Tuples</h2>
+        <p>One original-mask pair preview from each included subset, for quick visual inspection of task diversity.</p>
+      </div>
+      <div id="samplePairsGrid" class="sample-grid"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Campaign Protocol (Executed)</h2>
+        <p>The AMAM-128 campaign runs one fixed benchmark protocol so all model families are directly comparable.</p>
+      </div>
+      <div class="protocol-grid">
+        <article class="protocol-card">
+          <h3>Coverage Rule</h3>
+          <p><code>fullset_no_holdout</code> mode: each benchmarked model is evaluated on all 128 paired images.</p>
+        </article>
+        <article class="protocol-card">
+          <h3>Model Scope</h3>
+          <p>45 total models: 10 classical, 29 supervised deep, and 6 foundation/edge add-ons.</p>
+        </article>
+        <article class="protocol-card">
+          <h3>Metrics</h3>
+          <p>Subset-aware macro mIoU, Dice, and Pixel Accuracy with per-subset and per-image outputs.</p>
+        </article>
+        <article class="protocol-card">
+          <h3>Auditability</h3>
+          <p>Published checkpoint provenance plus strict 45-model reproducibility audit artifacts.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Post-Campaign Next Steps</h2>
+      </div>
+      <div class="limits-grid">
+        <article class="limits-card">
+          <h3>Already Strong</h3>
+          <ul class="report-list">
+            <li>One fixed 45-model campaign with synchronized reporting</li>
+            <li>Paired original-mask tuples with transparent subset definitions</li>
+            <li>Hard verification artifacts for reproducibility checks</li>
+          </ul>
+        </article>
+        <article class="limits-card">
+          <h3>To Reach Full Benchmark Governance</h3>
+          <ul class="report-list" id="nextStepsList">
+            <li>Add hidden-test governance and submission protocol</li>
+            <li>Define official OOD tracks (cross-material and cross-scale)</li>
+            <li>Publish annotation reliability and inter-rater audit stats</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>AMAM Benchmark Report • Built from local AMAM release artifacts and verified dataset metadata.</p>
+  </footer>
+
+  <script src="assets/js/report.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+# AMAM-128 Reproducibility Audit (45 Models)
+
+- Status: **PASS**
+- Git commit: `748d635a5a3318fbc049b9a11e33f31fe31b3654`
+- Model counts:
+  - Classical: 10
+  - Deep general: 14
+  - Deep metallography: 15
+  - Foundation/edge: 6
+  - Total: 45
+
+## Consistency Checks
+- Classical summary/per-image/per-subset IDs match: `True`
+- Deep summary/per-image/per-subset IDs match: `True`
+- Foundation summary/per-image/per-subset IDs match: `True`
+- Provenance manifest matches results IDs: `True`
+
+## Key Artifacts (SHA256)
+- `repro/results/classical/benchmark_summary.csv`: `1564cb9395988534bf05ac0e7877a624d5677c63fd86e4330da62cc9cff870b2`
+- `repro/results/classical/benchmark_raw_per_image.csv`: `92c1751ac2d59cde900b4c206d3f5960e8d76729694ba49298c23f30e2aebb78`
+- `repro/results/classical/benchmark_per_subset.csv`: `ef3e8b9495d039e33dd93485d3d00b24d319dde20f4598141272940f9721605c`
+- `repro/results/deep_survey/deep_general_summary.csv`: `065659842a23d10e5d1a6c639f3c5208ad9932179f3a00c76d90d9631782cf1a`
+- `repro/results/deep_survey/deep_metallography_summary.csv`: `246cbfc43599a63b40d43d892a60c698349cf67a6b444ad4f39a61d50e847e69`
+- `repro/results/deep_survey/deep_per_image.csv`: `64ee16dc36ee3ca63f4d7cafecd72303b00e92ec97eb69a26981454344d46c2e`
+- `repro/results/deep_survey/deep_per_subset.csv`: `58094a1cec95f74c1270681d6491763de00a7bcec9bc698af705e22d280392be`
+- `repro/results/foundation_edge/foundation_edge_summary.csv`: `80af8b708b93285f2f809f440401a4a06ff917e1ce64882afcc2b4c9339c621f`
+- `repro/results/foundation_edge/foundation_edge_per_image.csv`: `cdc85e921eda7d51577b9c5adf6b412c8eb76415807214cb93150e0d74c43eb1`
+- `repro/results/foundation_edge/foundation_edge_per_subset.csv`: `7ea8be5b9cb7c0632a6acc470bf7db9a84f476ad523ddbcb4b2a0184caa72121`
+- `repro/results/classical/benchmark_protocol.json`: `191f97b9b1d0b7c1ef79b3b3beb345480194d41584ecf3a178086e31e9380382`
+- `repro/results/deep_survey/deep_protocol.json`: `1ceef6901f316a4ae8b21d678aa12b596b80f887152dea4eaf3bd0a53a04f79a`
+- `repro/results/foundation_edge/foundation_edge_protocol.json`: `1703dcf92581cc6c690f4462d2c8265eef7470931e384413515fe75b461364fc`
+- `repro/results/model_provenance_manifest.csv`: `9d21b13dae76e4c36b36ef2e49e24effa6218f1674f686e2c71453565154ff1f`

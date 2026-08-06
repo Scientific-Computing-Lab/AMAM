@@ -1,0 +1,34 @@
+{
+  "seed": 17,
+  "img_size": 192,
+  "device": "cuda:0",
+  "split_mode": "fullset_no_holdout",
+  "n_pairs": 128,
+  "train_images": 128,
+  "test_images": 128,
+  "models": [
+    "sam_vit_base",
+    "slimsam_50",
+    "slimsam_77",
+    "texturesam_03",
+    "hed_watershed",
+    "pidi_watershed"
+  ],
+  "selected_models": [
+    "sam_vit_base",
+    "slimsam_50",
+    "slimsam_77",
+    "texturesam_03",
+    "hed_watershed",
+    "pidi_watershed"
+  ],
+  "completed_models": [
+    "hed_watershed",
+    "pidi_watershed",
+    "sam_vit_base",
+    "slimsam_50",
+    "slimsam_77",
+    "texturesam_03"
+  ],
+  "resume_enabled": false
+}
