@@ -92,17 +92,29 @@ Seed `17` is set, but seeding alone does not make GPU training reproducible.
   mask-generation pipeline returns a whole-image mask as its top-scoring
   proposal, which collapses all three SAM variants to the same degenerate
   prediction.
-- **Deep survey (29 models)**: **not bit-reproducible.** `nll_loss2d` and
-  `adaptive_avg_pool2d_backward` have no deterministic CUDA implementation, and
-  cuDNN autotuning varies between runs. Two runs on identical data can differ by
-  roughly 0.04 macro mIoU per model.
+- **Deep survey (29 models)**: **not bit-reproducible.** GPU gradient reductions
+  do not fix their summation order and float addition is not associative, so a
+  backward pass can differ in its last bits; once it does, the difference
+  compounds for the rest of training. Seeding cannot prevent this — the seed
+  controls initialization and batch order, not thread scheduling.
 
-That last figure matters when reading the deep table: the median gap between
-adjacent models is about 0.006, so **neighbouring ranks are within run-to-run
-variance and should not be read as meaningful differences.** Broad groupings are
-stable; the precise ordering of nearby models is not. Comparing individual deep
-models reliably would require repeating each run across several seeds and
-reporting the spread, which this campaign does not do.
+Five runs of the deep survey (seeds 17-21, same machine and code) measure the
+spread: **per-model std 0.032 macro mIoU** (range 0.006-0.060), rank spread 9
+positions median and 18 at worst, pairwise Spearman between seeds 0.743. This is
+not seed variance — three runs at the *same* seed 17 agreed on none of the 29
+models, with a median difference of 0.018.
+
+That matters because the median gap between adjacent models in the deep table is
+0.0055, roughly six times smaller. Testing all 406 pairs across the five seeds
+(Welch, p < 0.05): **58% of pairs are separated**, so coarse structure is real,
+but **only 2 of 28 adjacent pairs are**, and the highest-scoring model ties with
+four others. Neighbouring ranks carry no information; the table supports a "top
+group" claim, not a single best model.
+
+Per-model means, standard deviations and rank ranges are in
+`repro/results/deep_survey_multiseed_summary.csv`. Cite deep results from that
+file as mean +/- std rather than as the single-run point estimates in
+`deep_macro_over_subsets.csv`.
 
 ## Where Outputs Are Written
 
