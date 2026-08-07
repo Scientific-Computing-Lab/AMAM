@@ -203,6 +203,15 @@ def kmeans_rgb(img_rgb: np.ndarray, k: int) -> np.ndarray:
     return y.reshape(img_rgb.shape[:2]).astype(np.int64)
 
 
+class MaskProposalFailure(RuntimeError):
+    """A mask-proposal model returned too little to segment with.
+
+    Falling back to kmeans_rgb here would emit a prediction that does not
+    depend on the model at all, so every affected model scores identically and
+    the result silently stops measuring the model under test.
+    """
+
+
 def region_cluster_from_masks(
     masks: List[np.ndarray],
     scores: np.ndarray,
@@ -211,7 +220,7 @@ def region_cluster_from_masks(
 ) -> np.ndarray:
     h, w = img_rgb.shape[:2]
     if len(masks) == 0:
-        return kmeans_rgb(img_rgb, k)
+        raise MaskProposalFailure("model returned 0 mask proposals")
 
     order = np.argsort(scores)[::-1]
     region = np.full((h, w), -1, dtype=np.int32)
@@ -227,7 +236,9 @@ def region_cluster_from_masks(
         rid += 1
 
     if rid == 0:
-        return kmeans_rgb(img_rgb, k)
+        raise MaskProposalFailure(
+            f"none of the {len(masks)} mask proposals covered >=16 new pixels"
+        )
 
     if np.any(region < 0):
         region[region < 0] = rid
@@ -239,7 +250,9 @@ def region_cluster_from_masks(
         means[r] = px.mean(axis=0) if len(px) else np.zeros((3,), dtype=np.float32)
 
     if rid < k:
-        return kmeans_rgb(img_rgb, k)
+        raise MaskProposalFailure(
+            f"only {rid} usable regions from {len(masks)} mask proposals, need k={k}"
+        )
 
     km = KMeans(n_clusters=k, n_init=10, random_state=SEED)
     reg_labels = km.fit_predict(means)
@@ -481,7 +494,17 @@ def main() -> None:
             mask = read_image(sample.mask_path, img_size=args.img_size, mode="RGB")
             gt = mask_to_labels(mask, centers[sample.subset_id])
             k = sample.phase_count
-            pred = fn(img, k)
+            try:
+                pred = fn(img, k)
+            except MaskProposalFailure as exc:
+                raise RuntimeError(
+                    f"{model_id} produced no usable segmentation for "
+                    f"{sample.subset_id}/{sample.original_path.name} "
+                    f"(image {idx}/{len(test_samples)}): {exc}.\n"
+                    "This model is not measurable on this image. Fix the model setup "
+                    "(checkpoint, device, mask-generation settings) and rerun; do not "
+                    "publish a run that reaches this point."
+                ) from exc
             pred = hu_map(pred, gt, k)
             m = metrics(pred, gt, k)
             rows.append(
