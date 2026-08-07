@@ -1,7 +1,7 @@
 # AMAM-128 Reproducibility Audit (45 Models)
 
 - Status: **PASS**
-- Git commit: `748d635a5a3318fbc049b9a11e33f31fe31b3654`
+- Git commit: `79981fc28ac4f3bae036e419f59f2fe2c7e48ac9`
 - Model counts:
   - Classical: 10
   - Deep general: 14
@@ -23,10 +23,10 @@
 - `repro/results/deep_survey/deep_metallography_summary.csv`: `246cbfc43599a63b40d43d892a60c698349cf67a6b444ad4f39a61d50e847e69`
 - `repro/results/deep_survey/deep_per_image.csv`: `64ee16dc36ee3ca63f4d7cafecd72303b00e92ec97eb69a26981454344d46c2e`
 - `repro/results/deep_survey/deep_per_subset.csv`: `58094a1cec95f74c1270681d6491763de00a7bcec9bc698af705e22d280392be`
-- `repro/results/foundation_edge/foundation_edge_summary.csv`: `80af8b708b93285f2f809f440401a4a06ff917e1ce64882afcc2b4c9339c621f`
-- `repro/results/foundation_edge/foundation_edge_per_image.csv`: `cdc85e921eda7d51577b9c5adf6b412c8eb76415807214cb93150e0d74c43eb1`
-- `repro/results/foundation_edge/foundation_edge_per_subset.csv`: `7ea8be5b9cb7c0632a6acc470bf7db9a84f476ad523ddbcb4b2a0184caa72121`
+- `repro/results/foundation_edge/foundation_edge_summary.csv`: `6eaf32e714137dfc0ccdeed4f938a1c1657631ea7ef16d8baf5ffddad2dcbfce`
+- `repro/results/foundation_edge/foundation_edge_per_image.csv`: `5974a5e775af8298e6d1f8b1a00194ef1e7ac70bf9de9419e84f1efe51b5bb0a`
+- `repro/results/foundation_edge/foundation_edge_per_subset.csv`: `b251b3cb9689bcf977619d1ba7d8904aed3ee47b84f65ad75fad99bc9082fcc8`
 - `repro/results/classical/benchmark_protocol.json`: `191f97b9b1d0b7c1ef79b3b3beb345480194d41584ecf3a178086e31e9380382`
 - `repro/results/deep_survey/deep_protocol.json`: `1ceef6901f316a4ae8b21d678aa12b596b80f887152dea4eaf3bd0a53a04f79a`
-- `repro/results/foundation_edge/foundation_edge_protocol.json`: `1703dcf92581cc6c690f4462d2c8265eef7470931e384413515fe75b461364fc`
-- `repro/results/model_provenance_manifest.csv`: `9d21b13dae76e4c36b36ef2e49e24effa6218f1674f686e2c71453565154ff1f`
+- `repro/results/foundation_edge/foundation_edge_protocol.json`: `e34cd5510fa0ba6025a97eb756edc38d6b60ba5fb8cc2a4653b662f13b34f670`
+- `repro/results/model_provenance_manifest.csv`: `e763275cc664ff5ea7d009aa5a1f485c18e46261454ad0f7af21cd6e3dcbe3fe`
