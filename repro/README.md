@@ -84,7 +84,13 @@ The full 45-row model checkpoint/source manifest is generated at:
 - `repro/results/model_provenance_manifest.csv`
 - `repro/results/model_provenance_manifest.md`
 
-Hard reproducibility audit outputs:
+Internal consistency audit outputs:
 
 - `repro/results/reproducibility_audit_45_models.json`
 - `repro/results/reproducibility_audit_45_models.md`
+
+These validate a single run's artifacts — model counts, agreement between the
+result files, and artifact hashes. They do not compare one run against another,
+so a `PASS` is not evidence that a rerun reproduces the published numbers. For
+what does and does not reproduce, see "Scope of reproducibility" in
+`repro/benchmark/README.md`.
