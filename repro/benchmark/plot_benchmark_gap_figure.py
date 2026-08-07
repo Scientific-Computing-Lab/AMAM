@@ -197,10 +197,16 @@ def build_figure(df: pd.DataFrame) -> None:
     ax_right.axhline(median_val, color="#6a6a6a", linestyle=":", linewidth=1.0)
     ax_right.text(45.5, 1.0, "1.0", fontsize=8, va="bottom", ha="right", color="#555555")
     ax_right.text(45.5, median_val, f"Median {median_val:.3f}", fontsize=8, va="bottom", ha="right", color="#666666")
+    # The top of the ranking is not separable. The leading deep models are
+    # retrained on every run and carry roughly 0.03 macro mIoU of run-to-run
+    # spread (see "Scope of reproducibility" in repro/benchmark/README.md), which
+    # is wider than the gap between rank 1 and the leading deep model. Label the
+    # top of the curve without asserting a single winner.
     ax_right.annotate(
-        f"Best overall: {best['model']} ({best['miou']:.3f})",
+        f"Top of ranking: {best['model']} ({best['miou']:.3f});\n"
+        "leading models are within run-to-run variance",
         xy=(best["rank"], best["miou"]),
-        xytext=(6.5, 0.965),
+        xytext=(6.5, 0.945),
         textcoords="data",
         fontsize=8,
         arrowprops={"arrowstyle": "->", "color": "#333333", "lw": 0.9},
