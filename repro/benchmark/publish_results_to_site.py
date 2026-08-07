@@ -18,6 +18,7 @@ COPY_MAP = {
     REPRO_RESULTS / "classical" / "benchmark_summary.csv": SITE_RESULTS / "benchmark_summary.csv",
     REPRO_RESULTS / "deep_survey" / "deep_macro_over_subsets.csv": SITE_RESULTS / "deep_macro_over_subsets.csv",
     REPRO_RESULTS / "foundation_edge" / "foundation_edge_summary.csv": SITE_RESULTS / "foundation_edge_summary.csv",
+    REPRO_RESULTS / "deep_survey_multiseed_summary.csv": SITE_RESULTS / "deep_survey_multiseed_summary.csv",
 }
 
 
