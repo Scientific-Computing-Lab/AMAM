@@ -57,10 +57,18 @@ PREFLIGHT_ONLY=1 bash repro/benchmark/run_all_repro.sh
 
 Use `SKIP_FOUNDATION=1` to run without TextureSAM.
 
+A rerun does not reproduce every published number. The 10 classical methods and
+6 foundation/edge models are deterministic, but the 29 supervised deep models
+are retrained on each run and move by about 0.03 macro mIoU. See "Scope of
+reproducibility" in `repro/benchmark/README.md` before comparing results.
+
 Detailed instructions are in `repro/README.md`.
 Execution details for every model family are in `repro/benchmark/README.md`.
 Per-model checkpoint/source traceability is in `repro/results/model_provenance_manifest.csv`.
-Hard 45-model consistency proof is in `repro/results/reproducibility_audit_45_models.json`.
+The 45-model internal consistency audit — model counts, cross-file agreement and
+artifact hashes for a single run — is in
+`repro/results/reproducibility_audit_45_models.json`. It does not compare
+separate runs.
 
 ## Deployment notes
 
