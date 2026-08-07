@@ -59,7 +59,6 @@ MAX_PIXELS_PER_MASK = 20_000
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_JSON = REPO_ROOT / "assets/data/amam-dataset.json"
 OUT_DIR = REPO_ROOT / "repro/results/deep_survey"
-OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 IMAGENET_MEAN = np.array([0.485, 0.456, 0.406], dtype=np.float32)
 IMAGENET_STD = np.array([0.229, 0.224, 0.225], dtype=np.float32)
@@ -814,15 +813,40 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument("--max-models", type=int, default=0, help="For smoke runs only.")
     p.add_argument("--no-resume", action="store_true")
+    p.add_argument(
+        "--seed",
+        type=int,
+        default=SEED,
+        help=(
+            "Random seed for weight init, batch order, and centroid k-means. "
+            "Note that seeding alone does not make GPU training reproducible; see "
+            "the 'Scope of reproducibility' section in repro/benchmark/README.md."
+        ),
+    )
+    p.add_argument(
+        "--out-dir",
+        type=str,
+        default="",
+        help=(
+            "Directory for result CSVs (default: repro/results/deep_survey). "
+            "Use a distinct directory per seed so runs do not overwrite each other."
+        ),
+    )
     return p.parse_args()
 
 
 def main() -> None:
+    global SEED, OUT_DIR
+
     args = parse_args()
+    SEED = args.seed
+    if args.out_dir:
+        OUT_DIR = Path(args.out_dir).expanduser().resolve()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
     set_seed(SEED)
 
     device = get_device(args.device)
-    print(f"[info] device={device}")
+    print(f"[info] device={device} seed={SEED} out_dir={OUT_DIR}")
 
     pairs, phase_count, _subset_meta = load_dataset_pairs()
     split = deterministic_split(pairs)
