@@ -217,10 +217,28 @@
   font-size: 0.9rem;
 }
 
+.results-note {
+  margin: 0.9rem 0 0;
+  max-width: 78ch;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.spread-none,
+.spread-ranks {
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.spread-ranks {
+  white-space: nowrap;
+}
+
 .results-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 980px;
+  min-width: 1120px;
 }
 
 .results-table th,

@@ -366,6 +366,17 @@
     `;
   }
 
+  function formatSpread(row) {
+    if (!Number.isFinite(row.miouStd)) {
+      return '<span class="spread-none">deterministic</span>';
+    }
+    const rankRange =
+      Number.isFinite(row.rankBest) && Number.isFinite(row.rankWorst)
+        ? ` <span class="spread-ranks">ranks ${row.rankBest}&ndash;${row.rankWorst}</span>`
+        : "";
+    return `&plusmn;${row.miouStd.toFixed(3)}${rankRange}`;
+  }
+
   function renderResultsTable() {
     if (!els.resultsTableBody) {
       return;
@@ -377,7 +388,7 @@
     if (rows.length === 0) {
       els.resultsTableBody.innerHTML = `
         <tr>
-          <td colspan="7">No models match the current filters.</td>
+          <td colspan="8">No models match the current filters.</td>
         </tr>
       `;
       if (els.resultsStatus) {
@@ -397,6 +408,7 @@
             <td>${formatMetric(row.miou)}</td>
             <td>${formatMetric(row.dice)}</td>
             <td>${formatMetric(row.pixelAcc)}</td>
+            <td>${formatSpread(row)}</td>
           </tr>
         `
       )
@@ -439,6 +451,27 @@
       })
     ]);
 
+    // Optional: per-model spread over the multi-seed deep runs. The table still
+    // renders without it, so a missing file degrades to no spread column values
+    // rather than an error.
+    const multiseedByModel = await fetch("assets/data/results/deep_survey_multiseed_summary.csv")
+      .then(response => (response.ok ? response.text() : ""))
+      .catch(() => "")
+      .then(text => {
+        const byModel = {};
+        if (!text) {
+          return byModel;
+        }
+        parseCsv(text).forEach(row => {
+          byModel[row.model_id] = {
+            miouStd: toNumber(row.miou_std),
+            rankBest: toNumber(row.rank_best),
+            rankWorst: toNumber(row.rank_worst)
+          };
+        });
+        return byModel;
+      });
+
     const classicalRows = parseCsv(classicalCsv).map(row => ({
       model: CLASSICAL_METHOD_NAMES[row.method] || humanizeToken(row.method),
       groupKey: "classical",
@@ -451,6 +484,7 @@
 
     const deepRows = parseCsv(deepCsv).map(row => {
       const groupKey = row.group === "metallography" ? "deep_metallography" : "deep_general";
+      const spread = multiseedByModel[row.model_id] || {};
       return {
         model: row.display_name || humanizeToken(row.model_id),
         groupKey,
@@ -458,7 +492,10 @@
         category: humanizeToken(row.category),
         miou: toNumber(row.miou),
         dice: toNumber(row.dice),
-        pixelAcc: toNumber(row.pixel_acc)
+        pixelAcc: toNumber(row.pixel_acc),
+        miouStd: spread.miouStd,
+        rankBest: spread.rankBest,
+        rankWorst: spread.rankWorst
       };
     });
 
