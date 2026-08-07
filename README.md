@@ -32,8 +32,30 @@ python3 -m http.server 4177
 
 ```bash
 # from repository root
+python3 -m venv .venv
+.venv/bin/pip install -r repro/requirements.txt
 bash repro/benchmark/run_all_repro.sh
 ```
+
+The complete 45-model run also needs TextureSAM, which is not tracked in this
+repository. The runner validates it before any model stage, so set it up first:
+
+```bash
+mkdir -p repro/external
+git clone https://github.com/Scientific-Computing-Lab/TextureSAM repro/external/TextureSAM
+mkdir -p repro/external/TextureSAM_Datasets/checkpoints
+# then download sam2.1_hiera_small_0.3.pt from
+# https://drive.google.com/drive/folders/1pUJLa898WYEcb4Y_sOaXsSVe-CsPkwRv
+# to repro/external/TextureSAM_Datasets/checkpoints/sam2.1_hiera_small_0.3.pt
+```
+
+To check the environment and those assets without starting a model run:
+
+```bash
+PREFLIGHT_ONLY=1 bash repro/benchmark/run_all_repro.sh
+```
+
+Use `SKIP_FOUNDATION=1` to run without TextureSAM.
 
 Detailed instructions are in `repro/README.md`.
 Execution details for every model family are in `repro/benchmark/README.md`.
