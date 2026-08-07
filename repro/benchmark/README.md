@@ -81,6 +81,29 @@ python3 repro/benchmark/run_foundation_edge_addons.py --img-size 192 --device au
   - `repro/results/deep_survey/deep_protocol.json`
   - `repro/results/foundation_edge/foundation_edge_protocol.json`
 
+### Scope of reproducibility
+
+Seed `17` is set, but seeding alone does not make GPU training reproducible.
+
+- **Classical (10 methods)**: deterministic. A rerun reproduces the published
+  CSVs exactly.
+- **Foundation/edge (6 models)**: inference only, and reproducible to within
+  floating-point rounding. Requires `transformers` 4.x; on 5.x the SAM
+  mask-generation pipeline returns a whole-image mask as its top-scoring
+  proposal, which collapses all three SAM variants to the same degenerate
+  prediction.
+- **Deep survey (29 models)**: **not bit-reproducible.** `nll_loss2d` and
+  `adaptive_avg_pool2d_backward` have no deterministic CUDA implementation, and
+  cuDNN autotuning varies between runs. Two runs on identical data can differ by
+  roughly 0.04 macro mIoU per model.
+
+That last figure matters when reading the deep table: the median gap between
+adjacent models is about 0.006, so **neighbouring ranks are within run-to-run
+variance and should not be read as meaningful differences.** Broad groupings are
+stable; the precise ordering of nearby models is not. Comparing individual deep
+models reliably would require repeating each run across several seeds and
+reporting the spread, which this campaign does not do.
+
 ## Where Outputs Are Written
 
 ### Classical (10)
