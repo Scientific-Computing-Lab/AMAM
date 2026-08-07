@@ -42,13 +42,15 @@
       <aside class="report-hero-side">
         <h2>Core Claim</h2>
         <p>
-          The AMAM-128 campaign is a reproducible benchmark release: 45 models were evaluated under one strict
-          protocol on the same 128 paired images.
+          The AMAM-128 campaign evaluates 45 models under one strict protocol on the same 128 paired
+          images.
         </p>
         <ul class="report-list">
           <li><code>fullset_no_holdout</code>: every model is evaluated on all 128 paired images</li>
           <li>10 classical, 29 supervised deep, 6 foundation/edge add-on models</li>
-          <li>Hard reproducibility audit and per-model provenance manifest published</li>
+          <li>Per-model provenance manifest and single-run consistency audit published</li>
+          <li>The 16 inference-only models reproduce exactly; the 29 deep models are retrained per run
+            and carry a spread of about 0.03 macro mIoU</li>
         </ul>
       </aside>
     </section>
@@ -157,7 +159,7 @@
         <a class="btn btn-ghost" href="assets/data/results/deep_survey_multiseed_summary.csv" download>Download Deep Spread CSV</a>
         <a class="btn btn-ghost" href="assets/data/results/foundation_edge_summary.csv" download>Download Foundation/Edge CSV</a>
         <a class="btn btn-ghost" href="repro/results/model_provenance_manifest.csv" download>Download Provenance Manifest</a>
-        <a class="btn btn-ghost" href="repro/results/reproducibility_audit_45_models.json" download>Download Repro Audit</a>
+        <a class="btn btn-ghost" href="repro/results/reproducibility_audit_45_models.json" download>Download Consistency Audit</a>
       </div>
 
       <p class="results-status" id="resultsStatus">Loading benchmark results...</p>
@@ -246,7 +248,8 @@
         </article>
         <article class="protocol-card">
           <h3>Auditability</h3>
-          <p>Published checkpoint provenance plus strict 45-model reproducibility audit artifacts.</p>
+          <p>Published checkpoint provenance plus a 45-model consistency audit that validates each
+            run's artifacts against each other. It does not compare separate runs.</p>
         </article>
       </div>
     </section>
@@ -261,7 +264,8 @@
           <ul class="report-list">
             <li>One fixed 45-model campaign with synchronized reporting</li>
             <li>Paired original-mask tuples with transparent subset definitions</li>
-            <li>Hard verification artifacts for reproducibility checks</li>
+            <li>Per-model provenance and consistency artifacts for every run</li>
+            <li>Deep-model spread measured across five seeds and reported per model</li>
           </ul>
         </article>
         <article class="limits-card">
