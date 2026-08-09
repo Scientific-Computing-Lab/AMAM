@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Hard verification for AMAM-128 45-model reproducibility package.
+Artifact-consistency verification for the AMAM-128 45-method result bundle.
 
 Checks:
 1) Expected model counts per family (10/29/6) and total 45.
 2) Model-id set consistency across summary/per-image/per-subset CSVs.
 3) Manifest consistency (same 45 ids + checkpoint/source fields present).
 4) Script/file existence for every manifest row.
-5) Writes an auditable report with SHA256 hashes of key artifacts.
+5) Completeness and aggregate consistency of the five-run deep mIoU artifacts.
+6) Writes an auditable report with SHA256 hashes of key artifacts.
 """
 
 from __future__ import annotations
@@ -32,6 +33,8 @@ DEEP_GENERAL_SUMMARY = RESULTS / "deep_survey/deep_general_summary.csv"
 DEEP_METAL_SUMMARY = RESULTS / "deep_survey/deep_metallography_summary.csv"
 DEEP_PER_IMAGE = RESULTS / "deep_survey/deep_per_image.csv"
 DEEP_PER_SUBSET = RESULTS / "deep_survey/deep_per_subset.csv"
+DEEP_MULTISEED_RUNS = RESULTS / "deep_survey_multiseed_runs.csv"
+DEEP_MULTISEED_SUMMARY = RESULTS / "deep_survey_multiseed_summary.csv"
 
 FOUNDATION_SUMMARY = RESULTS / "foundation_edge/foundation_edge_summary.csv"
 FOUNDATION_PER_IMAGE = RESULTS / "foundation_edge/foundation_edge_per_image.csv"
@@ -42,6 +45,14 @@ DEEP_PROTOCOL = RESULTS / "deep_survey/deep_protocol.json"
 FOUNDATION_PROTOCOL = RESULTS / "foundation_edge/foundation_edge_protocol.json"
 
 MANIFEST = RESULTS / "model_provenance_manifest.csv"
+DATASET_MANIFEST = REPO_ROOT / "assets/data/amam-dataset.json"
+CODE_ARTIFACTS = [
+    REPO_ROOT / "repro/benchmark/run_deep_survey.py",
+    REPO_ROOT / "repro/benchmark/aggregate_deep_multiseed.py",
+    REPO_ROOT / "repro/benchmark/plot_benchmark_gap_figure.py",
+    REPO_ROOT / "repro/requirements.txt",
+    REPO_ROOT / "assets/js/report.js",
+]
 
 OUT_JSON = RESULTS / "reproducibility_audit_45_models.json"
 OUT_MD = RESULTS / "reproducibility_audit_45_models.md"
@@ -145,6 +156,8 @@ def main() -> None:
         DEEP_METAL_SUMMARY,
         DEEP_PER_IMAGE,
         DEEP_PER_SUBSET,
+        DEEP_MULTISEED_RUNS,
+        DEEP_MULTISEED_SUMMARY,
         FOUNDATION_SUMMARY,
         FOUNDATION_PER_IMAGE,
         FOUNDATION_PER_SUBSET,
@@ -152,6 +165,8 @@ def main() -> None:
         DEEP_PROTOCOL,
         FOUNDATION_PROTOCOL,
         MANIFEST,
+        DATASET_MANIFEST,
+        *CODE_ARTIFACTS,
     ]
     require_files(required_files)
 
@@ -186,6 +201,50 @@ def main() -> None:
     all_ids = c_summary | d_summary | f_summary
     if len(all_ids) != 45:
         raise RuntimeError(f"expected 45 unique models, got {len(all_ids)}")
+
+    deep_runs = pd.read_csv(DEEP_MULTISEED_RUNS)
+    deep_multiseed = pd.read_csv(DEEP_MULTISEED_SUMMARY)
+    required_run_cols = {"seed", "model_id", "miou", "rank"}
+    if not required_run_cols.issubset(deep_runs.columns):
+        raise RuntimeError(
+            f"deep multi-seed runs missing columns: {sorted(required_run_cols - set(deep_runs.columns))}"
+        )
+    if set(deep_runs["seed"].astype(int)) != {17, 18, 19, 20, 21}:
+        raise RuntimeError("deep multi-seed runs must contain seeds 17--21")
+    if len(deep_runs) != 29 * 5:
+        raise RuntimeError(f"expected 145 deep seed/model rows, got {len(deep_runs)}")
+    per_seed_counts = deep_runs.groupby("seed")["model_id"].nunique()
+    if not (per_seed_counts == 29).all():
+        raise RuntimeError(f"deep per-seed model counts are incomplete: {per_seed_counts.to_dict()}")
+    if set(deep_runs["model_id"].astype(str)) != EXPECTED_DEEP:
+        raise RuntimeError("deep multi-seed run IDs do not match the expected deep model set")
+    if set(deep_multiseed["model_id"].astype(str)) != EXPECTED_DEEP:
+        raise RuntimeError("deep multi-seed summary IDs do not match the expected deep model set")
+    if not (deep_multiseed["n_seeds"].astype(int) == 5).all():
+        raise RuntimeError("deep multi-seed summary must report five seeds per model")
+
+    recomputed = (
+        deep_runs.groupby("model_id", as_index=False)
+        .agg(
+            miou_mean=("miou", "mean"),
+            miou_std=("miou", "std"),
+            miou_min=("miou", "min"),
+            miou_max=("miou", "max"),
+            n_seeds=("seed", "nunique"),
+            rank_best=("rank", "min"),
+            rank_worst=("rank", "max"),
+        )
+        .sort_values("model_id")
+        .reset_index(drop=True)
+    )
+    published = deep_multiseed.sort_values("model_id").reset_index(drop=True)
+    for column in ["miou_mean", "miou_std", "miou_min", "miou_max"]:
+        difference = (recomputed[column] - published[column]).abs()
+        if (difference > 1e-6).any():
+            raise RuntimeError(f"deep multi-seed summary column `{column}` does not match per-seed values")
+    for column in ["n_seeds", "rank_best", "rank_worst"]:
+        if not (recomputed[column].astype(int) == published[column].astype(int)).all():
+            raise RuntimeError(f"deep multi-seed summary column `{column}` does not match per-seed values")
 
     # Full-set protocol checks: each model must have 128 per-image rows.
     c_img_df = pd.read_csv(CLASSICAL_PER_IMAGE)
@@ -271,6 +330,8 @@ def main() -> None:
             "deep_consistent": d_summary == d_img == d_subset,
             "foundation_consistent": f_summary == f_img == f_subset,
             "manifest_matches_results": m_ids == all_ids,
+            "deep_multiseed_complete": len(deep_runs) == 29 * 5,
+            "deep_multiseed_summary_matches_runs": True,
         },
         "artifact_sha256": {str(p.relative_to(REPO_ROOT)): sha256(p) for p in required_files + [MANIFEST]},
     }
@@ -278,7 +339,7 @@ def main() -> None:
     OUT_JSON.write_text(json.dumps(audit, indent=2))
 
     md_lines: List[str] = [
-        "# AMAM-128 Reproducibility Audit (45 Models)",
+        "# AMAM-128 Artifact Consistency Audit (45 Methods)",
         "",
         f"- Status: **{audit['status']}**",
         f"- Git commit: `{audit['git_commit']}`",
@@ -294,6 +355,8 @@ def main() -> None:
         f"- Deep summary/per-image/per-subset IDs match: `{audit['consistency']['deep_consistent']}`",
         f"- Foundation summary/per-image/per-subset IDs match: `{audit['consistency']['foundation_consistent']}`",
         f"- Provenance manifest matches results IDs: `{audit['consistency']['manifest_matches_results']}`",
+        f"- Deep five-run values are complete (29 x 5): `{audit['consistency']['deep_multiseed_complete']}`",
+        f"- Deep aggregate matches the per-seed values: `{audit['consistency']['deep_multiseed_summary_matches_runs']}`",
         "",
         "## Key Artifacts (SHA256)",
     ]
@@ -302,7 +365,7 @@ def main() -> None:
 
     OUT_MD.write_text("\n".join(md_lines) + "\n")
 
-    print("[PASS] 45-model reproducibility audit")
+    print("[PASS] 45-method artifact consistency audit")
     print(" -", OUT_JSON)
     print(" -", OUT_MD)
 

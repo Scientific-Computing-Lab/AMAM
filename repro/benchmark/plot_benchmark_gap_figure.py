@@ -3,7 +3,8 @@
 
 This figure is built directly from the released CSV outputs:
 - repro/results/classical/benchmark_macro_over_subsets.csv
-- repro/results/deep_survey/deep_macro_over_subsets.csv
+- repro/results/deep_survey/deep_macro_over_subsets.csv (model metadata)
+- repro/results/deep_survey_multiseed_summary.csv (five-run deep mIoU means)
 - repro/results/foundation_edge/foundation_edge_summary.csv
 """
 
@@ -45,10 +46,20 @@ def load_all_results() -> pd.DataFrame:
         family="Classical",
     )[["model", "family", "miou"]]
 
-    deep = pd.read_csv(RESULTS / "deep_survey" / "deep_macro_over_subsets.csv")
+    deep_meta = pd.read_csv(RESULTS / "deep_survey" / "deep_macro_over_subsets.csv")
+    deep_spread = pd.read_csv(RESULTS / "deep_survey_multiseed_summary.csv")
+    deep = deep_meta.merge(
+        deep_spread[["model_id", "miou_mean"]],
+        on="model_id",
+        how="inner",
+        validate="one_to_one",
+    )
+    if len(deep) != len(deep_meta):
+        raise ValueError("Deep multiseed summary does not cover every deep model.")
     deep = deep.assign(
         model=deep["display_name"],
         family=np.where(deep["group"] == "general", "Deep-General", "Deep-Metallography"),
+        miou=deep["miou_mean"],
     )[["model", "family", "miou"]]
 
     foundation = pd.read_csv(RESULTS / "foundation_edge" / "foundation_edge_summary.csv")
@@ -86,7 +97,7 @@ def build_figure(df: pd.DataFrame) -> None:
     ax_left.set_facecolor("white")
     ax_right.set_facecolor("white")
 
-    # Left panel: per-family distributions with best markers.
+    # Left panel: per-group distributions with highest-score markers.
     rng = np.random.default_rng(7)
     positions = np.arange(len(family_order))
     family_values = [df.loc[df["family"] == fam, "miou"].to_numpy() for fam in family_order]
@@ -153,10 +164,10 @@ def build_figure(df: pd.DataFrame) -> None:
         ["Classical\n(n=10)", "Deep-General\n(n=14)", "Deep-Metal\n(n=15)", "Foundation/Edge\n(n=6)"],
         fontsize=8,
     )
-    ax_left.set_title("Family-Wise Performance Distribution")
+    ax_left.set_title("Track-Group Performance Distributions")
     ax_left.grid(axis="y", alpha=0.22, linewidth=0.7)
 
-    # Right panel: global ranking and unresolved gap.
+    # Right panel: descriptive ordering and unresolved gap.
     ranked = df.sort_values("miou", ascending=False).reset_index(drop=True)
     ranked["rank"] = np.arange(1, len(ranked) + 1)
 
@@ -197,14 +208,12 @@ def build_figure(df: pd.DataFrame) -> None:
     ax_right.axhline(median_val, color="#6a6a6a", linestyle=":", linewidth=1.0)
     ax_right.text(45.5, 1.0, "1.0", fontsize=8, va="bottom", ha="right", color="#555555")
     ax_right.text(45.5, median_val, f"Median {median_val:.3f}", fontsize=8, va="bottom", ha="right", color="#666666")
-    # The top of the ranking is not separable. The leading deep models are
-    # retrained on every run and carry roughly 0.03 macro mIoU of run-to-run
-    # spread (see "Scope of reproducibility" in repro/benchmark/README.md), which
-    # is wider than the gap between rank 1 and the leading deep model. Label the
-    # top of the curve without asserting a single winner.
+    # Label the highest displayed point while keeping the ranking descriptive:
+    # deep points are five-run means, whereas classical and foundation/edge
+    # points are fixed-seed estimates.
     ax_right.annotate(
-        f"Top of ranking: {best['model']} ({best['miou']:.3f});\n"
-        "leading models are within run-to-run variance",
+        f"Highest displayed score: {best['model']} ({best['miou']:.3f});\n"
+        "ranking is descriptive under the executed protocol",
         xy=(best["rank"], best["miou"]),
         xytext=(6.5, 0.945),
         textcoords="data",
@@ -213,9 +222,9 @@ def build_figure(df: pd.DataFrame) -> None:
     )
     ax_right.set_xlim(0.5, 45.5)
     ax_right.set_ylim(0.30, 1.02)
-    ax_right.set_xlabel("Method Rank (45 total; descending mIoU)")
+    ax_right.set_xlabel("Position in Descriptive Ordering (45 methods)")
     ax_right.set_ylabel("Subset-Macro mIoU")
-    ax_right.set_title("Global Ranking: No Family Closes the Gap")
+    ax_right.set_title("Displayed Score Ordering and Remaining Gap")
     ax_right.grid(axis="y", alpha=0.22, linewidth=0.7)
 
     handles, labels = ax_right.get_legend_handles_labels()

@@ -361,18 +361,19 @@
       </article>
       <article class="metric-tile result-metric result-metric-wide">
         <span class="metric-value">${topOverall ? topOverall.miou.toFixed(4) : "—"}</span>
-        <span class="metric-label">Best mIoU overall: ${topOverall ? escapeHtml(topOverall.model) : "N/A"}</span>
+        <span class="metric-label">Highest displayed mIoU center: ${topOverall ? escapeHtml(topOverall.model) : "N/A"}</span>
       </article>
     `;
   }
 
   function formatSpread(row) {
     if (!Number.isFinite(row.miouStd)) {
-      return '<span class="spread-none">deterministic</span>';
+      return '<span class="spread-none">seed-17 point</span>';
     }
+    const runCount = Number.isFinite(row.nSeeds) ? `n=${row.nSeeds}; ` : "";
     const rankRange =
       Number.isFinite(row.rankBest) && Number.isFinite(row.rankWorst)
-        ? ` <span class="spread-ranks">ranks ${row.rankBest}&ndash;${row.rankWorst}</span>`
+        ? ` <span class="spread-ranks">${runCount}ranks ${row.rankBest}&ndash;${row.rankWorst}</span>`
         : "";
     return `&plusmn;${row.miouStd.toFixed(3)}${rankRange}`;
   }
@@ -451,20 +452,22 @@
       })
     ]);
 
-    // Optional: per-model spread over the multi-seed deep runs. The table still
-    // renders without it, so a missing file degrades to no spread column values
-    // rather than an error.
+    // Five-run deep mIoU centers and spread. The seed-17 deep table remains the
+    // source of display names, categories, Dice, and Pixel Accuracy.
     const multiseedByModel = await fetch("assets/data/results/deep_survey_multiseed_summary.csv")
-      .then(response => (response.ok ? response.text() : ""))
-      .catch(() => "")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Failed loading five-run deep results (${response.status})`);
+        }
+        return response.text();
+      })
       .then(text => {
         const byModel = {};
-        if (!text) {
-          return byModel;
-        }
         parseCsv(text).forEach(row => {
           byModel[row.model_id] = {
+            miouMean: toNumber(row.miou_mean),
             miouStd: toNumber(row.miou_std),
+            nSeeds: toNumber(row.n_seeds),
             rankBest: toNumber(row.rank_best),
             rankWorst: toNumber(row.rank_worst)
           };
@@ -485,15 +488,19 @@
     const deepRows = parseCsv(deepCsv).map(row => {
       const groupKey = row.group === "metallography" ? "deep_metallography" : "deep_general";
       const spread = multiseedByModel[row.model_id] || {};
+      if (!Number.isFinite(spread.miouMean) || !Number.isFinite(spread.miouStd)) {
+        throw new Error(`Missing five-run deep result for ${row.model_id}`);
+      }
       return {
         model: row.display_name || humanizeToken(row.model_id),
         groupKey,
         groupLabel: formatGroupLabel(groupKey),
         category: humanizeToken(row.category),
-        miou: toNumber(row.miou),
+        miou: spread.miouMean,
         dice: toNumber(row.dice),
         pixelAcc: toNumber(row.pixel_acc),
         miouStd: spread.miouStd,
+        nSeeds: spread.nSeeds,
         rankBest: spread.rankBest,
         rankWorst: spread.rankWorst
       };
