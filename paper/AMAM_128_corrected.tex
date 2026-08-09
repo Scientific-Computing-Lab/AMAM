@@ -743,7 +743,10 @@ image- or subset-aware resampling.
 
 \textbf{Coverage in this release.} The executed five-run deep experiment
 reports the individual model--seed mIoU values together with their mean,
-sample standard deviation, range, and rank range. Classical and
+sample standard deviation, range, and rank range. Each rank range is the
+best-to-worst position attained among the 29 supervised deep configurations
+within the five seed-specific runs; it is not a rank among all 45 methods.
+Classical and
 foundation/edge results remain seed-17 point estimates. Thus, uncertainty
 statements in this paper apply to the executed deep pipeline, not automatically
 to the other tracks or to dataset sampling.

@@ -370,12 +370,17 @@
     if (!Number.isFinite(row.miouStd)) {
       return '<span class="spread-none">seed-17 point</span>';
     }
-    const runCount = Number.isFinite(row.nSeeds) ? `n=${row.nSeeds}; ` : "";
-    const rankRange =
-      Number.isFinite(row.rankBest) && Number.isFinite(row.rankWorst)
-        ? ` <span class="spread-ranks">${runCount}ranks ${row.rankBest}&ndash;${row.rankWorst}</span>`
-        : "";
-    return `&plusmn;${row.miouStd.toFixed(3)}${rankRange}`;
+    const runCount = Number.isFinite(row.nSeeds)
+      ? ` <span class="spread-ranks">(<em>n</em>=${row.nSeeds})</span>`
+      : "";
+    return `&plusmn;${row.miouStd.toFixed(3)}${runCount}`;
+  }
+
+  function formatDeepRankRange(row) {
+    if (!Number.isFinite(row.rankBest) || !Number.isFinite(row.rankWorst)) {
+      return '<span class="spread-none">&mdash;</span>';
+    }
+    return `${row.rankBest}&ndash;${row.rankWorst}`;
   }
 
   function renderResultsTable() {
@@ -389,7 +394,7 @@
     if (rows.length === 0) {
       els.resultsTableBody.innerHTML = `
         <tr>
-          <td colspan="8">No models match the current filters.</td>
+          <td colspan="9">No models match the current filters.</td>
         </tr>
       `;
       if (els.resultsStatus) {
@@ -410,6 +415,7 @@
             <td>${formatMetric(row.dice)}</td>
             <td>${formatMetric(row.pixelAcc)}</td>
             <td>${formatSpread(row)}</td>
+            <td>${formatDeepRankRange(row)}</td>
           </tr>
         `
       )
