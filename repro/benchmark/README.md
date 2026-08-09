@@ -116,6 +116,10 @@ The auditable per-seed values and their aggregate are:
 - `repro/results/deep_survey_multiseed_summary.csv` (mean, sample SD, range,
   and rank range per model)
 
+Each rank range is the model's best-to-worst position among the 29 supervised
+deep configurations in the five seed-specific runs. It is not a rank among all
+45 displayed methods.
+
 Create the isolated runs and regenerate both published CSVs with:
 
 ```bash

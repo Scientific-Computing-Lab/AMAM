@@ -169,14 +169,15 @@
         <table class="results-table">
           <thead>
             <tr>
-              <th>Rank</th>
+              <th>Displayed position</th>
               <th>Model</th>
               <th>Group</th>
               <th>Category</th>
               <th>mIoU</th>
               <th>Dice</th>
               <th>Pixel Acc</th>
-              <th>Run-to-run spread</th>
+              <th>Run variability</th>
+              <th>Deep rank range</th>
             </tr>
           </thead>
           <tbody id="resultsTableBody"></tbody>
@@ -184,14 +185,16 @@
       </div>
 
       <p class="results-note">
-        Deep mIoU is the five-run mean plus or minus sample standard deviation
-        over clean end-to-end runs using seeds 17&ndash;21; the spread includes
-        both model-side stochasticity and seeded label decoding. Deep Dice and
-        Pixel Accuracy remain seed-17 values. The 10 classical and 6
-        foundation/edge entries are also seed-17 point estimates, so no
-        cross-seed uncertainty is claimed for those tracks. The mean-ranked
-        deep results should be read descriptively rather than as a stable total
-        ordering. See
+        Deep mIoU is the five-run mean over clean end-to-end runs using seeds
+        17&ndash;21. Run variability reports the sample standard deviation and
+        <em>n</em>=5; it includes both model-side stochasticity and seeded label
+        decoding. The deep rank range is the best-to-worst position among the
+        29 supervised deep models in each seed-specific run, not a rank among
+        all 45 methods. The displayed-position column reflects the currently
+        selected sorting and filtering and is descriptive. Deep Dice and Pixel
+        Accuracy remain seed-17 values. The 10 classical and 6 foundation/edge
+        entries are also seed-17 point estimates, so no cross-seed uncertainty
+        is claimed for those tracks. See
         <code>repro/benchmark/README.md</code>, &ldquo;Scope of
         reproducibility&rdquo;.
       </p>
