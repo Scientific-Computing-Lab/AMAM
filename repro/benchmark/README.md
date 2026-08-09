@@ -8,6 +8,8 @@ All model testing is executed locally from these scripts (not via a hosted infer
 
 - `run_benchmark.py`: 10 classical methods.
 - `run_deep_survey.py`: 29 supervised deep methods.
+- `aggregate_deep_multiseed.py`: combines the five isolated deep runs and
+  reproduces their per-seed and aggregate CSV artifacts.
 - `run_foundation_edge_addons.py`: 6 foundation/edge add-ons (including the required TextureSAM model).
 - `plot_benchmark_gap_figure.py`: main benchmark-gap figure.
 - `build_appendix_representative_assets.py`: appendix visual audit assets.
@@ -70,10 +72,10 @@ python3 repro/benchmark/run_deep_survey.py --img-size 192 --epochs 5 --batch-siz
 python3 repro/benchmark/run_foundation_edge_addons.py --img-size 192 --device auto
 ```
 
-## Determinism / Protocol
+## Seeds / Protocol
 
 - Pair-only inclusion from `assets/data/amam-dataset.json`.
-- Deterministic seed: `17` for randomized internals.
+- Default reporting seed: `17` for randomized internals.
 - Evaluation mode: `fullset_no_holdout` (all 128 paired tuples are used for per-model inference/evaluation).
 - Subset-aware macro metrics: mIoU, Dice, Pixel Accuracy.
 - Output protocol manifests:
@@ -85,36 +87,48 @@ python3 repro/benchmark/run_foundation_edge_addons.py --img-size 192 --device au
 
 Seed `17` is set, but seeding alone does not make GPU training reproducible.
 
-- **Classical (10 methods)**: deterministic. A rerun reproduces the published
-  CSVs exactly.
-- **Foundation/edge (6 models)**: inference only, and reproducible to within
-  floating-point rounding. Requires `transformers` 4.x; on 5.x the SAM
-  mask-generation pipeline returns a whole-image mask as its top-scoring
-  proposal, which collapses all three SAM variants to the same degenerate
-  prediction.
-- **Deep survey (29 models)**: **not bit-reproducible.** GPU gradient reductions
-  do not fix their summation order and float addition is not associative, so a
-  backward pass can differ in its last bits; once it does, the difference
-  compounds for the rest of training. Seeding cannot prevent this — the seed
-  controls initialization and batch order, not thread scheduling.
+- **Classical (10 methods)**: the published table reports seed-17 point
+  estimates. The pipelines include seeded label decoding, sampling, and/or
+  clustering, so the release makes no cross-seed uncertainty claim for them.
+- **Foundation/edge (6 methods)**: pretrained network weights are not updated
+  from AMAM labels, but downstream clustering and post-processing are
+  data-adaptive. The published table reports seed-17 point estimates. The
+  runner requires `transformers` 4.x; on 5.x the SAM mask-generation pipeline
+  returns a whole-image mask as its top-scoring proposal, which collapses all
+  three SAM variants to the same degenerate prediction.
+- **Deep survey (29 configurations)**: five clean, non-resumed end-to-end runs
+  using seeds 17--21 provide the reported mIoU means and sample standard
+  deviations. The seed changes both model-side stochasticity and seeded
+  ground-truth label decoding, so the spread is end-to-end run variability,
+  not pure training noise.
 
-Five runs of the deep survey (seeds 17-21, same machine and code) measure the
-spread: **per-model std 0.032 macro mIoU** (range 0.006-0.060), rank spread 9
-positions median and 18 at worst, pairwise Spearman between seeds 0.743. This is
-not seed variance — three runs at the *same* seed 17 agreed on none of the 29
-models, with a median difference of 0.018.
+Across the 29 deep configurations, the median sample standard deviation is
+`0.031784` macro mIoU (range `0.006102`--`0.059538`). After sorting models by
+their five-run mean, the median of the 28 adjacent mean gaps is `0.004426`;
+the ratio of these two descriptive summaries is `7.181`. The mean-ranked deep
+table should therefore be read descriptively rather than as a stable total
+ordering. These quantities are not confidence intervals for dataset-sampling
+uncertainty and are not pairwise significance tests.
 
-That matters because the median gap between adjacent models in the deep table is
-0.0055, roughly six times smaller. Testing all 406 pairs across the five seeds
-(Welch, p < 0.05): **58% of pairs are separated**, so coarse structure is real,
-but **only 2 of 28 adjacent pairs are**, and the highest-scoring model ties with
-four others. Neighbouring ranks carry no information; the table supports a "top
-group" claim, not a single best model.
+The auditable per-seed values and their aggregate are:
 
-Per-model means, standard deviations and rank ranges are in
-`repro/results/deep_survey_multiseed_summary.csv`. Cite deep results from that
-file as mean +/- std rather than as the single-run point estimates in
-`deep_macro_over_subsets.csv`.
+- `repro/results/deep_survey_multiseed_runs.csv` (145 rows: 29 models x 5 seeds)
+- `repro/results/deep_survey_multiseed_summary.csv` (mean, sample SD, range,
+  and rank range per model)
+
+Create the isolated runs and regenerate both published CSVs with:
+
+```bash
+for seed in 17 18 19 20 21; do
+  .venv/bin/python repro/benchmark/run_deep_survey.py \
+    --img-size 192 --epochs 5 --batch-size 4 --device auto \
+    --seed "$seed" --out-dir "repro/results/deep_survey_seed${seed}" --no-resume
+done
+.venv/bin/python repro/benchmark/aggregate_deep_multiseed.py
+```
+
+Use the multi-seed summary for deep mIoU. The Dice and Pixel Accuracy fields in
+`deep_macro_over_subsets.csv` remain seed-17 point estimates.
 
 ## Where Outputs Are Written
 
@@ -135,6 +149,8 @@ file as mean +/- std rather than as the single-run point estimates in
 - `repro/results/deep_survey/deep_macro_over_subsets.csv`
 - `repro/results/deep_survey/deep_per_subset.csv`
 - `repro/results/deep_survey/deep_per_image.csv`
+- `repro/results/deep_survey_multiseed_runs.csv`
+- `repro/results/deep_survey_multiseed_summary.csv`
 
 ### Foundation / Edge (6)
 
@@ -146,6 +162,8 @@ file as mean +/- std rather than as the single-run point estimates in
 
 - `assets/data/results/benchmark_summary.csv`
 - `assets/data/results/deep_macro_over_subsets.csv`
+- `assets/data/results/deep_survey_multiseed_runs.csv`
+- `assets/data/results/deep_survey_multiseed_summary.csv`
 - `assets/data/results/foundation_edge_summary.csv`
 
 ### Checkpoint / Source Manifest (All 45 Models)
@@ -153,7 +171,7 @@ file as mean +/- std rather than as the single-run point estimates in
 - `repro/results/model_provenance_manifest.csv`
 - `repro/results/model_provenance_manifest.md`
 
-## Hard Proof Command (45 Models)
+## Artifact Consistency Audit (45 Methods)
 
 ```bash
 python3 repro/benchmark/verify_45_model_repro.py
@@ -166,7 +184,7 @@ This command fails if any model id is missing/misaligned across result files, or
 
 ## TextureSAM Dependency
 
-TextureSAM is required for a complete 45-model reproduction. The full runner
+TextureSAM is required for a complete 45-method reproduction. The full runner
 checks these assets before starting any expensive model stage:
 
 - `repro/external/TextureSAM`

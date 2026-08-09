@@ -42,15 +42,15 @@
       <aside class="report-hero-side">
         <h2>Core Claim</h2>
         <p>
-          The AMAM-128 campaign evaluates 45 models under one strict protocol on the same 128 paired
-          images.
+          The AMAM-128 campaign evaluates 45 methods on the same 128 paired images with common
+          subset-macro aggregation and disclosed track-specific label handling.
         </p>
         <ul class="report-list">
           <li><code>fullset_no_holdout</code>: every model is evaluated on all 128 paired images</li>
           <li>10 classical, 29 supervised deep, 6 foundation/edge add-on models</li>
-          <li>Per-model provenance manifest and single-run consistency audit published</li>
-          <li>The 16 inference-only models reproduce exactly; the 29 deep models are retrained per run
-            and carry a spread of about 0.03 macro mIoU</li>
+          <li>Per-model provenance manifest and published-artifact consistency audit</li>
+          <li>The 29 deep configurations have five-run mIoU summaries; classical and
+            foundation/edge results remain seed-17 point estimates</li>
         </ul>
       </aside>
     </section>
@@ -154,10 +154,11 @@
       </div>
 
       <div class="results-downloads">
-        <a class="btn btn-ghost" href="assets/data/results/benchmark_summary.csv" download>Download Classical CSV</a>
-        <a class="btn btn-ghost" href="assets/data/results/deep_macro_over_subsets.csv" download>Download Deep CSV</a>
-        <a class="btn btn-ghost" href="assets/data/results/deep_survey_multiseed_summary.csv" download>Download Deep Spread CSV</a>
-        <a class="btn btn-ghost" href="assets/data/results/foundation_edge_summary.csv" download>Download Foundation/Edge CSV</a>
+        <a class="btn btn-ghost" href="assets/data/results/benchmark_summary.csv" download>Classical Seed-17 CSV</a>
+        <a class="btn btn-ghost" href="assets/data/results/deep_macro_over_subsets.csv" download>Deep Seed-17 Details</a>
+        <a class="btn btn-ghost" href="assets/data/results/deep_survey_multiseed_summary.csv" download>Deep Five-Run Summary</a>
+        <a class="btn btn-ghost" href="assets/data/results/deep_survey_multiseed_runs.csv" download>Deep Five-Run Values</a>
+        <a class="btn btn-ghost" href="assets/data/results/foundation_edge_summary.csv" download>Foundation/Edge Seed-17 CSV</a>
         <a class="btn btn-ghost" href="repro/results/model_provenance_manifest.csv" download>Download Provenance Manifest</a>
         <a class="btn btn-ghost" href="repro/results/reproducibility_audit_45_models.json" download>Download Consistency Audit</a>
       </div>
@@ -183,13 +184,14 @@
       </div>
 
       <p class="results-note">
-        The 29 supervised deep models are retrained on every run, and GPU
-        training is not bit-reproducible, so their scores move between runs.
-        The spread column gives the standard deviation and the observed rank
-        range over five runs (seeds 17&ndash;21): adjacent ranks are within that
-        spread and should not be read as meaningful differences. The 10
-        classical methods and 6 foundation/edge models run inference only and
-        reproduce exactly, so they carry no interval. See
+        Deep mIoU is the five-run mean plus or minus sample standard deviation
+        over clean end-to-end runs using seeds 17&ndash;21; the spread includes
+        both model-side stochasticity and seeded label decoding. Deep Dice and
+        Pixel Accuracy remain seed-17 values. The 10 classical and 6
+        foundation/edge entries are also seed-17 point estimates, so no
+        cross-seed uncertainty is claimed for those tracks. The mean-ranked
+        deep results should be read descriptively rather than as a stable total
+        ordering. See
         <code>repro/benchmark/README.md</code>, &ldquo;Scope of
         reproducibility&rdquo;.
       </p>
@@ -248,8 +250,8 @@
         </article>
         <article class="protocol-card">
           <h3>Auditability</h3>
-          <p>Published checkpoint provenance plus a 45-model consistency audit that validates each
-            run's artifacts against each other. It does not compare separate runs.</p>
+          <p>Published checkpoint/source provenance plus a 45-method consistency audit that checks
+            agreement within the published artifact bundle. It is not an independent rerun test.</p>
         </article>
       </div>
     </section>
@@ -262,17 +264,17 @@
         <article class="limits-card">
           <h3>Already Strong</h3>
           <ul class="report-list">
-            <li>One fixed 45-model campaign with synchronized reporting</li>
+            <li>One 45-method result collection with synchronized reporting</li>
             <li>Paired original-mask tuples with transparent subset definitions</li>
-            <li>Per-model provenance and consistency artifacts for every run</li>
-            <li>Deep-model spread measured across five seeds and reported per model</li>
+            <li>Per-model provenance and consistency artifacts for the published bundle</li>
+            <li>Deep-model values and spread reported across five seeds</li>
           </ul>
         </article>
         <article class="limits-card">
           <h3>To Reach Full Benchmark Governance</h3>
           <ul class="report-list" id="nextStepsList">
             <li>Add hidden-test governance and submission protocol</li>
-            <li>Define official OOD tracks (cross-material and cross-scale)</li>
+            <li>Define official OOD tracks with compatible target-label mappings</li>
             <li>Publish annotation reliability and inter-rater audit stats</li>
           </ul>
         </article>

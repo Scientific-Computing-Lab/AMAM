@@ -77,7 +77,7 @@ echo "[6/8] Publish results to website assets"
 echo "[7/8] Build per-model provenance manifest"
 "$PYTHON_BIN" -u repro/benchmark/build_model_provenance_manifest.py
 
-echo "[8/8] Hard reproducibility audit (45 models)"
+echo "[8/8] Artifact consistency audit (45 methods)"
 "$PYTHON_BIN" -u repro/benchmark/verify_45_model_repro.py
 
 echo "[done] Repro pipeline complete."
