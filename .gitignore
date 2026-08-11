@@ -16,3 +16,6 @@ repro/run_all_repro.log
 # stay in repro/results/deep_survey.
 repro/results/deep_survey_seed*/
 repro/multiseed_deep.log
+
+# Local manuscript files; not part of the public repository.
+paper/
