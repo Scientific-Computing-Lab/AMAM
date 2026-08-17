@@ -114,9 +114,9 @@ Seed `17` is set, but seeding alone does not make GPU training reproducible.
   variability rather than label-decoding variability.
 
 Across the 29 deep configurations, the median sample standard deviation is
-`0.031784` macro mIoU (range `0.006102`--`0.059538`). After sorting models by
-their five-run mean, the median of the 28 adjacent mean gaps is `0.004426`;
-the ratio of these two descriptive summaries is `7.181`. The mean-ranked deep
+`0.025993` macro mIoU (range `0.006200`--`0.069905`). After sorting models by
+their five-run mean, the median of the 28 adjacent mean gaps is `0.003456`;
+the ratio of these two descriptive summaries is `7.522`. The mean-ranked deep
 table should therefore be read descriptively rather than as a stable total
 ordering. These quantities are not confidence intervals for dataset-sampling
 uncertainty and are not pairwise significance tests.

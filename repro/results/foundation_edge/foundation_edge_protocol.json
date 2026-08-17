@@ -3,6 +3,12 @@
   "img_size": 192,
   "device": "cuda:0",
   "split_mode": "fullset_no_holdout",
+  "gt_decoder_version": "gt-source-rgb-v1",
+  "gt_palette_sha256": "bd9e45cc659f06fa5cf0a45004592c7c8b67691d2880f35d39a2e88ca5b56e6f",
+  "gt_decode_order": "source_rgb_to_labels_then_nearest_resize",
+  "segmentation_metric_version": "present-classes-per-image-v1",
+  "absent_class_policy": "exclude_if_absent_in_gt_and_prediction",
+  "metric_aggregation": "per_image_present_class_macro_then_subset_macro",
   "n_pairs": 128,
   "train_images": 128,
   "test_images": 128,
@@ -17,7 +23,10 @@
   "selected_models": [
     "sam_vit_base",
     "slimsam_50",
-    "slimsam_77"
+    "slimsam_77",
+    "texturesam_03",
+    "hed_watershed",
+    "pidi_watershed"
   ],
   "completed_models": [
     "hed_watershed",
@@ -27,5 +36,5 @@
     "slimsam_77",
     "texturesam_03"
   ],
-  "resume_enabled": true
+  "resume_enabled": false
 }

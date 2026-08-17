@@ -17,6 +17,14 @@ repro/run_all_repro.log
 # stay in repro/results/deep_survey.
 repro/results/deep_survey_seed*/
 repro/multiseed_deep.log
+repro/canonical_qualitative_rerun.log
+
+# Publish only the exact seed-17 prediction masks used by qualitative panels;
+# keep the rest of each per-seed training bundle local.
+!repro/results/deep_survey_seed17/
+repro/results/deep_survey_seed17/*
+!repro/results/deep_survey_seed17/canonical_predictions/
+!repro/results/deep_survey_seed17/canonical_predictions/**
 
 # Local manuscript files; not part of the public repository.
 paper/

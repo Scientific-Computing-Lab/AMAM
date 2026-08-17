@@ -1,175 +1,175 @@
 model_id,display_name,group,category,architecture,encoder,input_mode,subset,miou,dice,pixel_acc
-dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,4130-steel,0.2667776150943873,0.3478424717587655,0.5316718207465277
-dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,418-17-4ph-x20,0.2979193793402778,0.34228330583952793,0.5958387586805556
-dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,418-17-4ph-x5,0.47532497829861114,0.4872657386721939,0.9506499565972223
-dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,5884-armor-steel,0.27158152291781673,0.3494607295908537,0.5386245969742064
-dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,6280-cast-iron-high,0.4147474500868055,0.45337435414746097,0.829494900173611
-dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,6280-cast-iron-low,0.17296296889162857,0.25188995144566967,0.4590509588068182
-dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,4130-steel,0.5683289586674715,0.7203433782223072,0.7246880425347222
-dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,418-17-4ph-x20,0.44872583382352116,0.5081014975764052,0.8347064628802909
-dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,418-17-4ph-x5,0.7728596266767027,0.8561529324105873,0.9727170138888889
-dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,5884-armor-steel,0.676964132184477,0.8027587594375438,0.819118923611111
-dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,6280-cast-iron-high,0.5639241063248446,0.6825589940742025,0.8427083333333334
-dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,6280-cast-iron-low,0.5109992042748068,0.6677159332956325,0.7348854758522727
-dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,4130-steel,0.5441004917238854,0.7010701952450429,0.7058709038628472
-dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,418-17-4ph-x20,0.3911810883614036,0.4785504454004822,0.7036300739914021
-dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,418-17-4ph-x5,0.8039493837437405,0.8796782530230146,0.9790418836805556
-dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,5884-armor-steel,0.5194008194623544,0.6607817448189711,0.7147688285383598
-dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,6280-cast-iron-high,0.552647715358303,0.6653844167295967,0.8506320529513889
-dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,6280-cast-iron-low,0.4921753168991827,0.6546649214052788,0.7031373303345959
-dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,4130-steel,0.4628699251787797,0.62993363626708,0.6366115993923611
-dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,418-17-4ph-x20,0.21945954426314376,0.26005421554729996,0.43849981398809523
-dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,418-17-4ph-x5,0.5792411375050182,0.6315103252848778,0.9531868489583333
-dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,5884-armor-steel,0.5970315473661794,0.7405210689719292,0.7626165157903438
-dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,6280-cast-iron-high,0.5354877177750887,0.6451026222162091,0.84453125
-dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,6280-cast-iron-low,0.3915805480298442,0.5571132157412806,0.6066771227904041
-dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,4130-steel,0.35497099064992044,0.49915246524193957,0.5690205891927083
-dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,418-17-4ph-x20,0.40543142001657284,0.5014301763330069,0.7105047639715609
-dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,418-17-4ph-x5,0.7671374952627071,0.8515434943060337,0.9723307291666667
-dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,5884-armor-steel,0.5514847306899087,0.6760793673847215,0.7364973441633598
-dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,6280-cast-iron-high,0.48514613194931205,0.5727936756114315,0.8416965060763889
-dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,6280-cast-iron-low,0.2990170583636816,0.4420332592002208,0.5250355113636364
-dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,4130-steel,0.5594025695142621,0.7113976177395863,0.724368625217014
-dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,418-17-4ph-x20,0.3787348796060855,0.48146518149796397,0.6645249462632274
-dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,418-17-4ph-x5,0.7683994128011836,0.8511491837692808,0.9693478732638888
-dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,5884-armor-steel,0.6590171078039967,0.7798089754179566,0.8042392629794973
-dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,6280-cast-iron-high,0.5928085559835496,0.7096644942321914,0.8632025824652778
-dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,6280-cast-iron-low,0.3521850741193612,0.5056326677801176,0.5491684422348485
-dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,4130-steel,0.25421593937960657,0.3535820801053311,0.4838907877604167
-dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,418-17-4ph-x20,0.45022315254497464,0.5126207803991389,0.8295975942460319
-dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,418-17-4ph-x5,0.793423009956364,0.8714330190053634,0.9776540798611112
-dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,5884-armor-steel,0.42445919064755133,0.5572051857133892,0.6406069155092593
-dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,6280-cast-iron-high,0.4259616094735608,0.4737622845519291,0.8323486328125
-dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,6280-cast-iron-low,0.2589117396354909,0.3726637818481135,0.4677685053661616
-dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,4130-steel,0.5076979844201317,0.6643471035977957,0.6875413682725695
-dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,418-17-4ph-x20,0.4549133713103665,0.5319726697662459,0.814900070271164
-dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,418-17-4ph-x5,0.8077285102801147,0.8822537207974903,0.9796907552083333
-dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,5884-armor-steel,0.6928360896105532,0.8148482719692477,0.8272052744708995
-dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,6280-cast-iron-high,0.580133522240216,0.706228684252947,0.8294569227430555
-dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,6280-cast-iron-low,0.4905312532425045,0.6533200677891183,0.7018796362058081
-dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,4130-steel,0.4695217864565134,0.6307077332525277,0.6533535427517361
-dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,418-17-4ph-x20,0.29892726891190985,0.3442826326892195,0.5969638723544973
-dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,418-17-4ph-x5,0.6550558066045079,0.7525032970035288,0.9302528211805555
-dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,5884-armor-steel,0.6100836750967006,0.7462791856632874,0.7745587384259258
-dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,6280-cast-iron-high,0.565050408258478,0.6801177769524964,0.8529703776041666
-dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,6280-cast-iron-low,0.35188247499459546,0.5024983976535057,0.552117858270202
-dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,4130-steel,0.6579686354893767,0.7867670254933288,0.7916490342881944
-dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,418-17-4ph-x20,0.30345795719839963,0.35542855123956096,0.5931738797949736
-dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,418-17-4ph-x5,0.7540203443759484,0.8412098563431293,0.9675108506944444
-dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,5884-armor-steel,0.733808284648994,0.8416122441485253,0.8561107494212963
-dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,6280-cast-iron-high,0.6227740151823108,0.7393086901173833,0.8721028645833334
-dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,6280-cast-iron-low,0.517475494837486,0.6688867721475158,0.7548704821654041
-dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,4130-steel,0.5757950573772734,0.7228393285855224,0.7361972384982639
-dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,418-17-4ph-x20,0.36941208496527067,0.4836361111469418,0.6119184544477514
-dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,418-17-4ph-x5,0.7793066156626982,0.8600907507005582,0.9764832899305556
-dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,5884-armor-steel,0.7218855141526426,0.8331545495788971,0.8542015438988095
-dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,6280-cast-iron-high,0.5267885867841576,0.628246219847372,0.8557264539930556
-dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,6280-cast-iron-low,0.3906577498243999,0.5465797379383172,0.5735825047348485
-dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,4130-steel,0.5770957410471466,0.7251749415814832,0.7384955512152778
-dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,418-17-4ph-x20,0.4309294437645871,0.5184983615212496,0.7640787760416666
-dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,418-17-4ph-x5,0.7376498038979707,0.8285290781085617,0.9642654079861112
-dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,5884-armor-steel,0.7239269307275126,0.8355427984734621,0.8482866236772486
-dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,6280-cast-iron-high,0.6042370371852908,0.7274734979564198,0.8467881944444444
-dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,6280-cast-iron-low,0.4588799304340418,0.6229165075781734,0.67495758364899
-dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,4130-steel,0.26585322724070404,0.3460142502191238,0.5316385904947917
-dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,418-17-4ph-x20,0.28097810606370655,0.36552920618104784,0.5020655071924602
-dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,418-17-4ph-x5,0.8032424575471054,0.8787770124874487,0.9795399305555555
-dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,5884-armor-steel,0.4241362321666399,0.5583351823724465,0.6416028542493386
-dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,6280-cast-iron-high,0.1071731762344296,0.18675542676908713,0.20180121527777778
-dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,6280-cast-iron-low,0.25459826049584267,0.36029290311579754,0.5100886797664141
-dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,4130-steel,0.26583251953125,0.34594574341514117,0.5316650390625
-dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,418-17-4ph-x20,0.401582444473372,0.4863955696629572,0.7256763599537037
-dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,418-17-4ph-x5,0.805393857090642,0.8803286599714322,0.9808311631944444
-dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,5884-armor-steel,0.3856991955804064,0.5376351360780196,0.5818064856150793
-dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,6280-cast-iron-high,0.2531092573240622,0.40178685389607216,0.40689019097222223
-dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,6280-cast-iron-low,0.2392867457216415,0.34074559700102647,0.507117069128788
-metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,4130-steel,0.5497728125189482,0.7024638643788295,0.7133246527777778
-metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,418-17-4ph-x20,0.4134495178537917,0.5086791016825716,0.7318005435681216
-metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,418-17-4ph-x5,0.8017118156872989,0.8782770845327612,0.9784494357638889
-metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,5884-armor-steel,0.5415947577939346,0.692419443679773,0.7250563202711641
-metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,6280-cast-iron-high,0.560369648068843,0.6815297459518124,0.8327555338541666
-metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,6280-cast-iron-low,0.5039868343632949,0.6610902815979279,0.7300199258207072
-metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,4130-steel,0.38396366828328465,0.5382914787947991,0.581411404079861
-metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,418-17-4ph-x20,0.3055392616649434,0.362948909919662,0.5939166356646826
-metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,418-17-4ph-x5,0.7049779013934514,0.7973756155678349,0.9569032118055556
-metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,5884-armor-steel,0.6027670439483109,0.7474523437696788,0.7628064029431217
-metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,6280-cast-iron-high,0.5457126859694545,0.6646114416450746,0.8296278211805556
-metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,6280-cast-iron-low,0.3827633487000717,0.5445654531331262,0.61654632260101
-metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,4130-steel,0.5015277295115486,0.6602903364450079,0.68487548828125
-metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,418-17-4ph-x20,0.39875962016051225,0.49730824511432015,0.7090270027281745
-metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,418-17-4ph-x5,0.6463723283421203,0.7432967457897245,0.9346451822916667
-metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,5884-armor-steel,0.6601257151352576,0.7859431219561253,0.8060050843253967
-metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,6280-cast-iron-high,0.5779982279277813,0.6922390277497688,0.8616292317708334
-metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,6280-cast-iron-low,0.46332291541831394,0.6309160681000813,0.656121764520202
-metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,4130-steel,0.704962856859671,0.8221642557297107,0.8248094346788195
-metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,418-17-4ph-x20,0.46151866352925125,0.5337119354395445,0.8267092427248677
-metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,418-17-4ph-x5,0.8140937758017285,0.8872200965762777,0.9810188802083333
-metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,5884-armor-steel,0.680047764916044,0.7930449845320766,0.8232718977347885
-metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,6280-cast-iron-high,0.5601351830817112,0.6701094792474294,0.8609076605902777
-metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,6280-cast-iron-low,0.4437519108123725,0.6108137803326781,0.638131806344697
-metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,4130-steel,0.2753045614978403,0.38733709471521993,0.5020331488715277
-metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,418-17-4ph-x20,0.3472649321458408,0.4464277213199101,0.628610439401455
-metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,418-17-4ph-x5,0.7664108881635495,0.8496005584177933,0.97787109375
-metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,5884-armor-steel,0.4062395077149934,0.5252986812925141,0.6367006655092593
-metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,6280-cast-iron-high,0.45550401378547256,0.5235603803242801,0.8405897352430556
-metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,6280-cast-iron-low,0.23931611063002753,0.34972104075125093,0.4668264678030303
-metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,4130-steel,0.5666426759088588,0.7176017383517472,0.7270033094618056
-metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,418-17-4ph-x20,0.4507762510048013,0.518329778530841,0.8249085441468254
-metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,418-17-4ph-x5,0.8102799152978644,0.8839808179357002,0.9808951822916667
-metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,5884-armor-steel,0.6969266657882658,0.8177211387348644,0.8342737268518519
-metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,6280-cast-iron-high,0.5696379316637986,0.6876983151211662,0.847683376736111
-metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,6280-cast-iron-low,0.5072201494339322,0.6620492943759221,0.7383576980744949
-metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,4130-steel,0.5674512673934362,0.7198323438023527,0.722890896267361
-metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,418-17-4ph-x20,0.33709677334412164,0.4193037527593682,0.622589595734127
-metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,418-17-4ph-x5,0.809101894389397,0.8832498412339891,0.9802419704861112
-metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,5884-armor-steel,0.6306802973996697,0.7681523807456127,0.782601169808201
-metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,6280-cast-iron-high,0.5586755368197103,0.6945665398915017,0.7895860460069445
-metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,6280-cast-iron-low,0.49065095281847027,0.6507536453331852,0.7053419941603536
-metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,4130-steel,0.6716395098250868,0.7977506952684444,0.8035122341579861
-metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,418-17-4ph-x20,0.46846381729513403,0.5442936464905799,0.8278718171296295
-metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,418-17-4ph-x5,0.7629018706878338,0.8478978380699853,0.9707497829861111
-metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,5884-armor-steel,0.6090546806086616,0.75108271935184,0.7710103029927249
-metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,6280-cast-iron-high,0.5598948095309513,0.6701528069759121,0.8617431640625
-metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,6280-cast-iron-low,0.5719065409354885,0.719141385256547,0.7805225102588385
-metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,4130-steel,0.6857299928596594,0.8095245883002369,0.8130601671006945
-metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,418-17-4ph-x20,0.34080494524878446,0.4493665702084364,0.6017743468915343
-metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,418-17-4ph-x5,0.5682976077241128,0.6594909528324532,0.8986349826388889
-metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,5884-armor-steel,0.6648040788229617,0.7924997215954525,0.810120597718254
-metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,6280-cast-iron-high,0.5813994144378707,0.7114036664766591,0.816311306423611
-metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,6280-cast-iron-low,0.4282631825357287,0.5310411966184009,0.75235016177399
-metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,4130-steel,0.6709067701732268,0.7986271623730549,0.800497097439236
-metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,418-17-4ph-x20,0.3545943917099685,0.4559965814472838,0.6363725611772487
-metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,418-17-4ph-x5,0.7734039863243695,0.8550686404075256,0.9740288628472222
-metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,5884-armor-steel,0.6729701799201614,0.8013497815081673,0.8124341207837301
-metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,6280-cast-iron-high,0.5928519335272476,0.7126915196668728,0.8537977430555556
-metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,6280-cast-iron-low,0.4682139553805616,0.6325808974647061,0.6625113439078283
-metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,4130-steel,0.4718335658868142,0.6393624983403636,0.6446173773871527
-metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,418-17-4ph-x20,0.347679450576643,0.44766564326282077,0.6168438946759259
-metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,418-17-4ph-x5,0.7913617186711467,0.8699819946088797,0.9768576388888889
-metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,5884-armor-steel,0.7348316178201584,0.8435621926804638,0.8554984602347885
-metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,6280-cast-iron-high,0.5906652273639335,0.7065866253545602,0.865182834201389
-metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,6280-cast-iron-low,0.5086846029827862,0.6702489605717269,0.7017982559974748
-metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,4130-steel,0.526853768577954,0.6806172321290006,0.701953125
-metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,418-17-4ph-x20,0.237914809431576,0.35845555480074753,0.4051416790674603
-metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,418-17-4ph-x5,0.7710032411167608,0.8541520642904689,0.9737782118055556
-metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,5884-armor-steel,0.6590347070641714,0.7836194248436583,0.8074815538194444
-metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,6280-cast-iron-high,0.5637055761803393,0.6752014129858286,0.8610432942708334
-metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,6280-cast-iron-low,0.4654495501264634,0.621363425908421,0.708444306344697
-metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,4130-steel,0.7336804951618472,0.8412097030679853,0.8432664659288195
-metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,418-17-4ph-x20,0.34924068361146193,0.4387217432868965,0.629504329943783
-metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,418-17-4ph-x5,0.7718841018080137,0.8556899761376531,0.9725509982638889
-metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,5884-armor-steel,0.5407330122525613,0.6830259001180373,0.7213774181547619
-metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,6280-cast-iron-high,0.568350619065112,0.6787231710024061,0.8663194444444444
-metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,6280-cast-iron-low,0.4629927264370642,0.6271578214272151,0.667544586489899
-metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,4130-steel,0.6232920687580383,0.7616008192260306,0.7700371636284722
-metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,418-17-4ph-x20,0.27863787385142513,0.3700213841341544,0.46107442542989424
-metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,418-17-4ph-x5,0.6423439777565947,0.7436676649316205,0.9235970052083333
-metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,5884-armor-steel,0.699192501619968,0.8186211758332048,0.8353239190641534
-metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,6280-cast-iron-high,0.49855195241655775,0.6500240761609499,0.7086561414930556
-metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,6280-cast-iron-low,0.4490001049681057,0.6124351129782246,0.6754360006313131
-metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,4130-steel,0.35470140079076484,0.5101706759454727,0.5420179578993055
-metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,418-17-4ph-x20,0.32465807574710404,0.38859157731328153,0.6238283833498677
-metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,418-17-4ph-x5,0.6751371762240652,0.7695132151000464,0.9361154513888889
-metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,5884-armor-steel,0.23821155382471254,0.3251978702029404,0.467347160218254
-metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,6280-cast-iron-high,0.4893063775243567,0.6264698588632981,0.7389295789930556
-metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,6280-cast-iron-low,0.40224300877104313,0.5685874115458968,0.6175204190340909
+dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,4130-steel,0.22975760000588136,0.3157018741866039,0.45522325303819444
+dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,418-17-4ph-x20,0.19925362723214285,0.24261553605802805,0.3985072544642857
+dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,418-17-4ph-x5,0.5609050328716806,0.6364271802187329,0.9292947048611111
+dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,5884-armor-steel,0.29756602058528064,0.4169803254627095,0.5215347532242064
+dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,6280-cast-iron-high,0.4078179253472222,0.44922432736627327,0.8156358506944444
+dl_deeplabv3_r34,DeepLabV3 (ResNet34),general,context-atrous,DeepLabV3,resnet34,rgb,6280-cast-iron-low,0.17082598909217775,0.24913152961855045,0.4490732520517677
+dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,4130-steel,0.47805593977922484,0.6339131772147083,0.6582722981770833
+dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,418-17-4ph-x20,0.43529050985708534,0.49857005991374365,0.8112909226190477
+dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,418-17-4ph-x5,0.7611362645248851,0.8463436501996271,0.9716970486111112
+dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,5884-armor-steel,0.634289755270585,0.7698385005211337,0.7930979249338624
+dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,6280-cast-iron-high,0.5214544200522309,0.6391484144461068,0.8136311848958334
+dl_deeplabv3p_effb0,DeepLabV3+ (EfficientNet-B0),general,context-atrous,DeepLabV3Plus,tu-efficientnet_b0,rgb,6280-cast-iron-low,0.43015250203420463,0.5771115439908486,0.6852608112373737
+dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,4130-steel,0.5164841351352261,0.6725218290160927,0.6953023274739583
+dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,418-17-4ph-x20,0.46482685353680336,0.5496144512293998,0.8003937251984128
+dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,418-17-4ph-x5,0.7448474518677485,0.8332356936533521,0.9668543836805555
+dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,5884-armor-steel,0.46173570234239303,0.6035748024626523,0.6736756985780423
+dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,6280-cast-iron-high,0.4513244344509344,0.5250807824817156,0.8253228081597221
+dl_deeplabv3p_r34,DeepLabV3+ (ResNet34),general,context-atrous,DeepLabV3Plus,resnet34,rgb,6280-cast-iron-low,0.24021704700908017,0.3497740207937325,0.5107619160353536
+dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,4130-steel,0.3906176226594419,0.5349302683709964,0.610067409939236
+dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,418-17-4ph-x20,0.3325500902362724,0.4126138435019074,0.6218817170965609
+dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,418-17-4ph-x5,0.6654024363886267,0.7611849347769072,0.9469097222222222
+dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,5884-armor-steel,0.4506389180782589,0.593391455108183,0.6628262958829365
+dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,6280-cast-iron-high,0.34906376898327235,0.5079948432722029,0.5364366319444445
+dl_fpn_r34,FPN (ResNet34),general,pyramid,FPN,resnet34,rgb,6280-cast-iron-low,0.2723320685952855,0.41203265804398215,0.516394412878788
+dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,4130-steel,0.4604953847336034,0.6221723225167746,0.6438774956597222
+dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,418-17-4ph-x20,0.395063797121808,0.4672742633044897,0.745340660135582
+dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,418-17-4ph-x5,0.6990148645079873,0.792804769809495,0.9554741753472222
+dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,5884-armor-steel,0.6810806235260982,0.8064322033798194,0.8189690806878306
+dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,6280-cast-iron-high,0.4078741469812169,0.4493395730193554,0.8156358506944444
+dl_linknet_r34,LinkNet (ResNet34),general,lightweight,Linknet,resnet34,rgb,6280-cast-iron-low,0.27673453965137806,0.41090616796062884,0.5306902028093434
+dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,4130-steel,0.6687884032599543,0.7943133928578643,0.8066521538628472
+dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,418-17-4ph-x20,0.3687174046747778,0.4613650724161912,0.6600387008101852
+dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,418-17-4ph-x5,0.7584839067017154,0.8446244956596037,0.9703624131944444
+dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,5884-armor-steel,0.6334500159541682,0.7685765305504466,0.7826580067791005
+dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,6280-cast-iron-high,0.5658876681120937,0.7009442701858999,0.793484157986111
+dl_manet_r34,MAnet (ResNet34),general,attention,MAnet,resnet34,rgb,6280-cast-iron-low,0.40259638944809384,0.5619995094814088,0.6306867503156566
+dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,4130-steel,0.2995372369378542,0.4028665047138983,0.5517957899305556
+dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,418-17-4ph-x20,0.3123398997626466,0.36766722222913334,0.6170299065806878
+dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,418-17-4ph-x5,0.7415167112289461,0.8282912166990556,0.97185546875
+dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,5884-armor-steel,0.4592837850425927,0.5871979328123784,0.6732817150297619
+dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,6280-cast-iron-high,0.13969208047054993,0.2406543448174055,0.2506293402777778
+dl_pspnet_r34,PSPNet (ResNet34),general,pyramid,PSPNet,resnet34,rgb,6280-cast-iron-low,0.21351122292146443,0.3125464882551017,0.45719154434974746
+dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,4130-steel,0.49062563149343275,0.6519190133734091,0.6682671440972222
+dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,418-17-4ph-x20,0.4371753886260547,0.51001461851401,0.7999971581514551
+dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,418-17-4ph-x5,0.7750414320497744,0.8573387620547405,0.9744498697916667
+dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,5884-armor-steel,0.5978867280199366,0.7359127084835675,0.7626048900462963
+dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,6280-cast-iron-high,0.4627177548045081,0.5422812693175074,0.8299587673611111
+dl_segformer_b0,SegFormer (MiT-B0),general,transformer,Segformer,mit_b0,rgb,6280-cast-iron-low,0.331213200261586,0.4806184382825339,0.5626553622159091
+dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,4130-steel,0.5473261943255364,0.7003316960753752,0.7120388454861111
+dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,418-17-4ph-x20,0.30493890761405607,0.3531484084024581,0.6095261346726191
+dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,418-17-4ph-x5,0.7527050034452833,0.8386314963322395,0.9692274305555556
+dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,5884-armor-steel,0.494936141781795,0.6432072603813415,0.6920392071759259
+dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,6280-cast-iron-high,0.5077334888625815,0.6507892140576235,0.7383924696180555
+dl_segformer_b2,SegFormer (MiT-B2),general,transformer,Segformer,mit_b2,rgb,6280-cast-iron-low,0.4232529071049458,0.5816532941716006,0.6542253590593434
+dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,4130-steel,0.647395981373256,0.7809100750360918,0.7869377983940973
+dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,418-17-4ph-x20,0.44283246897579026,0.5218056542549141,0.7962549603174603
+dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,418-17-4ph-x5,0.7701613769752952,0.853671645785492,0.974189453125
+dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,5884-armor-steel,0.6855949476134464,0.8068103191435192,0.8245300615906085
+dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,6280-cast-iron-high,0.4824870837951855,0.5724535998164726,0.8341281467013889
+dl_unet_effb0,U-Net (EfficientNet-B0),general,encoder-decoder,Unet,tu-efficientnet_b0,rgb,6280-cast-iron-low,0.3955667306063671,0.5408626562033344,0.6635322956123738
+dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,4130-steel,0.634445367100028,0.7705044714141994,0.78134765625
+dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,418-17-4ph-x20,0.400764167013873,0.4918641761025917,0.7145324384093915
+dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,418-17-4ph-x5,0.7593151695959515,0.8448793349967534,0.9716351996527777
+dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,5884-armor-steel,0.6450960746146264,0.7713530075048816,0.7996445105820106
+dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,6280-cast-iron-high,0.4835699806721284,0.5742861270844929,0.8338487413194444
+dl_unet_r34,U-Net (ResNet34),general,encoder-decoder,Unet,resnet34,rgb,6280-cast-iron-low,0.23966786276642574,0.3574870836349964,0.48944769965277773
+dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,4130-steel,0.5891253597278133,0.734665434482111,0.7412421332465278
+dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,418-17-4ph-x20,0.40854596724226333,0.503081421431913,0.7281694361772486
+dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,418-17-4ph-x5,0.7262862873732107,0.8180756834732993,0.962529296875
+dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,5884-armor-steel,0.5107346459352627,0.6498577553336434,0.7076267464451058
+dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,6280-cast-iron-high,0.5075556367744622,0.6471037706000906,0.7470024956597222
+dl_unetpp_r34,U-Net++ (ResNet34),general,encoder-decoder,UnetPlusPlus,resnet34,rgb,6280-cast-iron-low,0.441789250243338,0.5964688860973634,0.6758478338068182
+dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,4130-steel,0.2744511978551402,0.3526114568321678,0.5487820095486111
+dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,418-17-4ph-x20,0.30752427122156945,0.3599629155334689,0.6074477099867724
+dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,418-17-4ph-x5,0.7294119993029752,0.8191886711817226,0.9714420572916667
+dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,5884-armor-steel,0.31334819012932785,0.4074178971271387,0.5577050264550264
+dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,6280-cast-iron-high,0.28597071596590473,0.4332254474078202,0.4527018229166667
+dl_upernet_b0,UPerNet (MiT-B0),general,transformer,UPerNet,mit_b0,rgb,6280-cast-iron-low,0.19912124431092185,0.29375762511347975,0.4618968000315657
+dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,4130-steel,0.3108068267324112,0.4201973387891663,0.557281494140625
+dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,418-17-4ph-x20,0.3959748160185986,0.4919186983050328,0.6990198206018519
+dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,418-17-4ph-x5,0.7642325992831899,0.8486599886195815,0.9738237847222223
+dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,5884-armor-steel,0.5533409797001252,0.6864819936353683,0.7493928778108466
+dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,6280-cast-iron-high,0.4892291868001898,0.6161117021644934,0.7632405598958333
+dl_upernet_b2,UPerNet (MiT-B2),general,transformer,UPerNet,mit_b2,rgb,6280-cast-iron-low,0.17001105138163083,0.24408505523791285,0.45837279040404044
+metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,4130-steel,0.5360439753742126,0.6880235412290239,0.710439724392361
+metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,418-17-4ph-x20,0.24408538166546676,0.32237938651687137,0.43348911830357145
+metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,418-17-4ph-x5,0.7629509374185794,0.8477039548911267,0.9722504340277777
+metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,5884-armor-steel,0.4010890448155286,0.5348250092349018,0.6244380890376984
+metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,6280-cast-iron-high,0.4873478277204157,0.5827865698394409,0.8289632161458333
+metal_deeplabv3p_clahe_r34,Metal-DeepLabV3+ CLAHE (ResNet34),metallography,micrograph-contrast,DeepLabV3Plus,resnet34,clahe_rgb,6280-cast-iron-low,0.4065036664533703,0.5563324257108396,0.6604743726325757
+metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,4130-steel,0.31607468615995404,0.43846029923889346,0.55196533203125
+metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,418-17-4ph-x20,0.3431416011740226,0.47142274250886973,0.5722087880291005
+metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,418-17-4ph-x5,0.6893761248931161,0.7821880014822504,0.9537076822916667
+metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,5884-armor-steel,0.40891504442352444,0.5505546881188184,0.6217912946428571
+metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,6280-cast-iron-high,0.4943458705358596,0.6226400844010574,0.7648518880208334
+metal_fpn_gabor_r34,Metal-FPN Gabor Stack (ResNet34),metallography,texture-aware,FPN,resnet34,gabor3,6280-cast-iron-low,0.26652661284050044,0.4008974206333653,0.5137335266729798
+metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,4130-steel,0.5203146190843533,0.6792360220500608,0.691677517361111
+metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,418-17-4ph-x20,0.3969999065253225,0.5022327350874851,0.6889661354993386
+metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,418-17-4ph-x5,0.7497656090433265,0.8368201380735287,0.9695334201388889
+metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,5884-armor-steel,0.6699397763796878,0.7938972928472975,0.8230639260912699
+metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,6280-cast-iron-high,0.4262730240341198,0.5002346660069106,0.7927381727430556
+metal_linknet_edge4_r34,Metal-LinkNet RGB+Sobel (ResNet34),metallography,edge-aware,Linknet,resnet34,edge4,6280-cast-iron-low,0.28068214701951427,0.4059760842491111,0.5588477548926768
+metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,4130-steel,0.6664838228933815,0.7939753797475257,0.8010240342881945
+metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,418-17-4ph-x20,0.45995302146117467,0.5465994968786928,0.8055116360780423
+metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,418-17-4ph-x5,0.7669400434507218,0.8510455116647073,0.9727864583333333
+metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,5884-armor-steel,0.6749200183724943,0.8009615098542123,0.8193927744708995
+metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,6280-cast-iron-high,0.5072771738996334,0.6105846316853778,0.8326904296875
+metal_manet_edge4_effb0,Metal-MAnet RGB+Sobel (EfficientNet-B0),metallography,edge-aware,MAnet,tu-efficientnet_b0,edge4,6280-cast-iron-low,0.36912221039993826,0.525680001855324,0.5958584872159091
+metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,4130-steel,0.38163814591066203,0.5212925689318504,0.5921732584635417
+metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,418-17-4ph-x20,0.2534786008598629,0.33874045339425785,0.48275514632936506
+metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,418-17-4ph-x5,0.5679355531841584,0.6699994963867593,0.8684450954861112
+metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,5884-armor-steel,0.612907731573832,0.7494666204826187,0.7719649057539681
+metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,6280-cast-iron-high,0.4882163699722531,0.583371129981367,0.8302788628472222
+metal_mlography_unet_vgg16_gray,MLography U-Net (2022-style),metallography,metallography-original,Unet,vgg16,gray,6280-cast-iron-low,0.2861097704678627,0.4250448846158832,0.5254917337436869
+metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,4130-steel,0.47387853535598534,0.6220385828946456,0.6761250813802083
+metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,418-17-4ph-x20,0.4089409584642886,0.5029528466261595,0.7297014508928571
+metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,418-17-4ph-x5,0.771002562130752,0.8538983405347185,0.9739322916666667
+metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,5884-armor-steel,0.6475046464898004,0.7790905760266785,0.8016686817956349
+metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,6280-cast-iron-high,0.4823910389046245,0.6339691466247899,0.696750217013889
+metal_segformer_clahe_b0,Metal-SegFormer CLAHE (MiT-B0),metallography,micrograph-contrast,Segformer,mit_b0,clahe_rgb,6280-cast-iron-low,0.42482598848016123,0.57033093912687,0.6853791824494949
+metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,4130-steel,0.36741790744740255,0.5109272003558208,0.5696438259548611
+metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,418-17-4ph-x20,0.3044420560572767,0.35275401999517075,0.6085250289351852
+metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,418-17-4ph-x5,0.746897989127626,0.8343685972631757,0.9679318576388889
+metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,5884-armor-steel,0.4515836709723693,0.5942946176986246,0.6642601376488095
+metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,6280-cast-iron-high,0.49511987063343943,0.5959166116074716,0.8264784071180555
+metal_segformer_gray_b2,Metal-SegFormer Gray (MiT-B2),metallography,micrograph-contrast,Segformer,mit_b2,gray,6280-cast-iron-low,0.37337684918373487,0.5225306761988633,0.6292169744318182
+metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,4130-steel,0.5809420319323111,0.7306716219333633,0.73460693359375
+metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,418-17-4ph-x20,0.45369322401959333,0.5374384014454547,0.8009595114087301
+metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,418-17-4ph-x5,0.7495099388180748,0.8372413847199482,0.9683799913194444
+metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,5884-armor-steel,0.6494113907315409,0.7830539357403359,0.7950148809523809
+metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,6280-cast-iron-high,0.48160474701615125,0.5712488655858691,0.8336859809027779
+metal_unet_clahe_r34,Metal-U-Net CLAHE (ResNet34),metallography,micrograph-contrast,Unet,resnet34,clahe_rgb,6280-cast-iron-low,0.36712294011659874,0.5164598184530163,0.6225413312815656
+metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,4130-steel,0.5901821459900194,0.7316350346887559,0.7520989312065972
+metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,418-17-4ph-x20,0.44556709174100806,0.5253776534421196,0.8015188388723546
+metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,418-17-4ph-x5,0.7624117861550264,0.8474906950364997,0.9711089409722221
+metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,5884-armor-steel,0.6481144640813687,0.7762529304873199,0.7978980654761905
+metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,6280-cast-iron-high,0.4898552822979105,0.5933381641344793,0.8152669270833334
+metal_unet_edge4_r34,Metal-U-Net RGB+Sobel (ResNet34),metallography,edge-aware,Unet,resnet34,edge4,6280-cast-iron-low,0.42685694965968524,0.5760394074378531,0.6743731257891414
+metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,4130-steel,0.6297515962116629,0.7652101422975924,0.7681728786892361
+metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,418-17-4ph-x20,0.3251235827622783,0.3928199738629307,0.6185244605654762
+metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,418-17-4ph-x5,0.7506250745775194,0.8369587379189193,0.9692241753472223
+metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,5884-armor-steel,0.6821267355169305,0.8071215226417321,0.8178995122354497
+metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,6280-cast-iron-high,0.5257617444560292,0.6340544519321175,0.8393690321180556
+metal_unet_gabor_r34,Metal-U-Net Gabor Stack (ResNet34),metallography,texture-aware,Unet,resnet34,gabor3,6280-cast-iron-low,0.45430462238901836,0.6001757617568159,0.7060078322285354
+metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,4130-steel,0.5906139670773752,0.7383099120722267,0.7475762261284722
+metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,418-17-4ph-x20,0.24017369265204805,0.3455466174732285,0.44300801917989424
+metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,418-17-4ph-x5,0.7641819524121581,0.8476024650120381,0.9751280381944444
+metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,5884-armor-steel,0.6446077472585234,0.777038337138069,0.793763175843254
+metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,6280-cast-iron-high,0.3292632550702853,0.4865019042944495,0.5114013671875
+metal_unet_gray_r34,Metal-U-Net Gray (ResNet34),metallography,micrograph-contrast,Unet,resnet34,gray,6280-cast-iron-low,0.15412798065348113,0.2655692592292864,0.2618667140151515
+metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,4130-steel,0.5778246781829266,0.7273201205567215,0.7417100694444445
+metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,418-17-4ph-x20,0.24740472365071994,0.35703288312082143,0.422617755869709
+metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,418-17-4ph-x5,0.5819308725096753,0.6497377793232201,0.9580946180555556
+metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,5884-armor-steel,0.6795146920033973,0.8050452895162233,0.8169281167328043
+metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,6280-cast-iron-high,0.4666984728655835,0.5497844097504416,0.8286458333333334
+metal_unet_lbp_r34,Metal-U-Net LBP Stack (ResNet34),metallography,texture-aware,Unet,resnet34,lbp3,6280-cast-iron-low,0.3236962984592309,0.4711707061655041,0.5736663510101011
+metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,4130-steel,0.6879591079347369,0.8087072332888882,0.81536865234375
+metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,418-17-4ph-x20,0.4509480487327953,0.5384082840270198,0.7923383763227514
+metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,418-17-4ph-x5,0.7285246365375971,0.8199185196271236,0.9633756510416667
+metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,5884-armor-steel,0.5794866377807942,0.7159276568747872,0.7514700107473545
+metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,6280-cast-iron-high,0.5591840866431705,0.6762466308808772,0.8414957682291666
+metal_unetpp_clahe_effb0,Metal-U-Net++ CLAHE (EfficientNet-B0),metallography,micrograph-contrast,UnetPlusPlus,tu-efficientnet_b0,clahe_rgb,6280-cast-iron-low,0.4942365301253707,0.6376501775371836,0.7299212831439394
+metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,4130-steel,0.35500496874750814,0.49714231022919436,0.5660244411892361
+metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,418-17-4ph-x20,0.29327672581457964,0.39149154934614977,0.5353538876488095
+metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,418-17-4ph-x5,0.7376783145912426,0.8275687248633727,0.9675716145833333
+metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,5884-armor-steel,0.5781837709874762,0.7168817844243657,0.7582852802579365
+metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,6280-cast-iron-high,0.41567547850540754,0.46546163325141493,0.8150661892361111
+metal_unetpp_gray_r34,Metal-U-Net++ Gray (ResNet34),metallography,micrograph-contrast,UnetPlusPlus,resnet34,gray,6280-cast-iron-low,0.23017040695572852,0.3447338861961329,0.48143298216540403
+metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,4130-steel,0.2934301339153869,0.38881986160969023,0.5569078233506944
+metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,418-17-4ph-x20,0.3080504368803246,0.3591932930138869,0.611795738260582
+metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,418-17-4ph-x5,0.5796049714005372,0.6816978865230253,0.8313671875
+metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,5884-armor-steel,0.2954887837349794,0.4123944344379185,0.5257419808201058
+metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,6280-cast-iron-high,0.4189999026018322,0.5712454785247176,0.635403103298611
+metal_upernet_clahe_b2,Metal-UPerNet CLAHE (MiT-B2),metallography,micrograph-contrast,UPerNet,mit_b2,clahe_rgb,6280-cast-iron-low,0.2392609064697826,0.36533663276377903,0.41190469144570707
