@@ -2,18 +2,18 @@
 
 | Rank | Model | Category | mIoU | Dice | Pixel Acc | Params (M) | Train min |
 |---:|---|---|---:|---:|---:|---:|---:|
-| 1 | Metal-U-Net++ CLAHE (EfficientNet-B0) | micrograph-contrast | 0.5834 | 0.6995 | 0.8157 | 6.07 | 0.1 |
-| 2 | Metal-MAnet RGB+Sobel (EfficientNet-B0) | edge-aware | 0.5741 | 0.6881 | 0.8045 | 8.67 | 0.1 |
-| 3 | Metal-U-Net Gabor Stack (ResNet34) | texture-aware | 0.5613 | 0.6727 | 0.7865 | 24.44 | 0.2 |
-| 4 | Metal-U-Net RGB+Sobel (ResNet34) | edge-aware | 0.5605 | 0.6750 | 0.8020 | 24.44 | 0.1 |
-| 5 | Metal-U-Net CLAHE (ResNet34) | micrograph-contrast | 0.5470 | 0.6627 | 0.7925 | 24.44 | 0.1 |
-| 6 | Metal-SegFormer CLAHE (MiT-B0) | micrograph-contrast | 0.5348 | 0.6604 | 0.7606 | 3.72 | 0.1 |
-| 7 | Metal-LinkNet RGB+Sobel (ResNet34) | edge-aware | 0.5073 | 0.6197 | 0.7541 | 21.78 | 0.1 |
-| 8 | Metal-U-Net LBP Stack (ResNet34) | texture-aware | 0.4795 | 0.5933 | 0.7236 | 24.44 | 0.1 |
-| 9 | Metal-DeepLabV3+ CLAHE (ResNet34) | micrograph-contrast | 0.4730 | 0.5887 | 0.7050 | 22.44 | 0.1 |
-| 10 | Metal-SegFormer Gray (MiT-B2) | micrograph-contrast | 0.4565 | 0.5685 | 0.7110 | 24.72 | 0.1 |
-| 11 | Metal-U-Net Gray (ResNet34) | micrograph-contrast | 0.4538 | 0.5768 | 0.6221 | 24.43 | 0.1 |
-| 12 | Metal-U-Net++ Gray (ResNet34) | micrograph-contrast | 0.4350 | 0.5405 | 0.6873 | 26.07 | 0.2 |
-| 13 | MLography U-Net (2022-style) | metallography-original | 0.4317 | 0.5480 | 0.6785 | 23.75 | 0.2 |
-| 14 | Metal-FPN Gabor Stack (ResNet34) | texture-aware | 0.4197 | 0.5444 | 0.6630 | 23.16 | 0.1 |
-| 15 | Metal-UPerNet CLAHE (MiT-B2) | micrograph-contrast | 0.3558 | 0.4631 | 0.5955 | 32.53 | 0.2 |
+| 1 | Metal-U-Net++ CLAHE (EfficientNet-B0) | micrograph-contrast | 0.5796 | 0.6962 | 0.8126 | 6.07 | 0.1 |
+| 2 | Metal-MAnet RGB+Sobel (EfficientNet-B0) | edge-aware | 0.5782 | 0.6937 | 0.8079 | 8.67 | 0.1 |
+| 3 | Metal-U-Net Gabor Stack (ResNet34) | texture-aware | 0.5410 | 0.6601 | 0.7543 | 24.44 | 0.2 |
+| 4 | Metal-DeepLabV3+ CLAHE (ResNet34) | micrograph-contrast | 0.5320 | 0.6524 | 0.7795 | 22.44 | 0.1 |
+| 5 | Metal-SegFormer Gray (MiT-B2) | micrograph-contrast | 0.5185 | 0.6303 | 0.7555 | 24.72 | 0.1 |
+| 6 | Metal-U-Net CLAHE (ResNet34) | micrograph-contrast | 0.5165 | 0.6376 | 0.7716 | 24.44 | 0.1 |
+| 7 | Metal-U-Net Gray (ResNet34) | micrograph-contrast | 0.5102 | 0.6378 | 0.7099 | 24.43 | 0.1 |
+| 8 | Metal-SegFormer CLAHE (MiT-B0) | micrograph-contrast | 0.5008 | 0.6192 | 0.7473 | 3.72 | 0.1 |
+| 9 | Metal-UPerNet CLAHE (MiT-B2) | micrograph-contrast | 0.4939 | 0.6082 | 0.7533 | 32.53 | 0.1 |
+| 10 | Metal-U-Net RGB+Sobel (ResNet34) | edge-aware | 0.4918 | 0.6147 | 0.7020 | 24.44 | 0.1 |
+| 11 | Metal-LinkNet RGB+Sobel (ResNet34) | edge-aware | 0.4891 | 0.5964 | 0.7467 | 21.78 | 0.1 |
+| 12 | Metal-U-Net++ Gray (ResNet34) | micrograph-contrast | 0.4727 | 0.5826 | 0.7298 | 26.07 | 0.2 |
+| 13 | Metal-U-Net LBP Stack (ResNet34) | texture-aware | 0.4674 | 0.5775 | 0.6990 | 24.44 | 0.1 |
+| 14 | Metal-FPN Gabor Stack (ResNet34) | texture-aware | 0.4577 | 0.5811 | 0.6880 | 23.16 | 0.1 |
+| 15 | MLography U-Net (2022-style) | metallography-original | 0.4322 | 0.5548 | 0.6800 | 23.75 | 0.2 |
