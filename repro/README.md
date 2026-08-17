@@ -55,9 +55,14 @@ REPRO_DRY_RUN=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
 
 Live output is written to `repro/run_all_repro.log` and can be followed with
-`tail -f repro/run_all_repro.log`. Use `RESUME=1` only to continue completed
-per-model rows from an interrupted run; a normal run recomputes every method,
-including five complete deep sweeps.
+`tail -f repro/run_all_repro.log`. A normal run recomputes every method,
+including five complete deep sweeps. With `RESUME=1`, the runner reuses only
+deep seed directories that already contain a complete clean 29-model sweep
+under the current release configuration and protocol. An incomplete,
+previously resumed, reordered, malformed, or protocol-mismatched deep seed
+restarts from the beginning with `--no-resume`; this preserves the normal
+model-order random-number consumption. Completed classical and foundation/edge
+rows retain their existing resume behavior.
 
 For a script-by-script execution map (exact model families, outputs, and protocol files), see:
 

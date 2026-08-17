@@ -21,6 +21,11 @@ from typing import Dict, Iterable, List, Set
 
 import pandas as pd
 
+from benchmark_contract import (
+    CANONICAL_DEEP_PREDICTION_MODELS,
+    EXPECTED_DEEP_MODEL_IDS as EXPECTED_DEEP,
+    EXPECTED_PAIRS,
+)
 from canonical_predictions import load_canonical_manifest
 from gt_mask_decoder import ground_truth_protocol_metadata
 from segmentation_metrics import segmentation_metric_protocol_metadata
@@ -91,43 +96,6 @@ EXPECTED_FOUNDATION = {
     "pidi_watershed",
 }
 
-EXPECTED_DEEP = {
-    "dl_unet_r34",
-    "dl_unetpp_r34",
-    "dl_deeplabv3_r34",
-    "dl_deeplabv3p_r34",
-    "dl_fpn_r34",
-    "dl_pspnet_r34",
-    "dl_linknet_r34",
-    "dl_manet_r34",
-    "dl_segformer_b0",
-    "dl_upernet_b0",
-    "dl_segformer_b2",
-    "dl_upernet_b2",
-    "dl_unet_effb0",
-    "dl_deeplabv3p_effb0",
-    "metal_unet_gray_r34",
-    "metal_unet_clahe_r34",
-    "metal_unet_edge4_r34",
-    "metal_unet_gabor_r34",
-    "metal_unet_lbp_r34",
-    "metal_unetpp_gray_r34",
-    "metal_deeplabv3p_clahe_r34",
-    "metal_fpn_gabor_r34",
-    "metal_linknet_edge4_r34",
-    "metal_segformer_clahe_b0",
-    "metal_upernet_clahe_b2",
-    "metal_segformer_gray_b2",
-    "metal_manet_edge4_effb0",
-    "metal_unetpp_clahe_effb0",
-    "metal_mlography_unet_vgg16_gray",
-}
-
-EXPECTED_PAIRS = 128
-CANONICAL_DEEP_PREDICTION_MODELS = {
-    "dl_unet_effb0",
-    "metal_unetpp_clahe_effb0",
-}
 CANONICAL_CLASSICAL_PREDICTION_MODELS = {"rf_pixel"}
 REPRESENTATIVE_IMAGES = {
     ("4130-steel", "4130 x 10 (1).jpg"),

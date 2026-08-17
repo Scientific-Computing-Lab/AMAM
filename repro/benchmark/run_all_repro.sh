@@ -14,6 +14,8 @@ fi
 DEVICE="${DEVICE:-auto}"
 IMG_SIZE="${IMG_SIZE:-192}"
 RUN_LOG="${RUN_LOG:-repro/run_all_repro.log}"
+STATUS_PYTHON_BIN="${STATUS_PYTHON_BIN:-$PYTHON_BIN}"
+REPRO_RESULTS_DIR="${REPRO_RESULTS_DIR:-repro/results}"
 
 # The model scripts resume from existing per-model rows by default, so a rerun
 # would re-emit cached results instead of recomputing them -- and the audit in
@@ -28,7 +30,7 @@ DEEP_PREDICTION_ARGS=(
 if [[ "${RESUME:-0}" == "1" ]]; then
   RESUME_ARGS=()
   CLASSICAL_PREDICTION_ARGS=()
-  echo "[info] RESUME=1 -> reusing completed models from a previous run"
+  echo "[info] RESUME=1 -> reusing complete clean deep seeds; incomplete seeds restart cleanly"
 fi
 
 run_cmd() {
@@ -69,25 +71,32 @@ run_cmd "$PYTHON_BIN" -u repro/benchmark/run_benchmark.py \
 if [[ "${SKIP_DEEP:-0}" != "1" ]]; then
   echo "[2/10] Deep supervised survey (29 models x seeds 17-21)"
   for seed in 17 18 19 20 21; do
-    seed_resume_args=("${RESUME_ARGS[@]}")
+    seed_dir="${REPRO_RESULTS_DIR}/deep_survey_seed${seed}"
+    seed_resume_args=(--no-resume)
     seed_prediction_args=()
     if [[ "$seed" == "17" ]]; then
       seed_prediction_args=("${DEEP_PREDICTION_ARGS[@]}")
     fi
 
     if [[ "${RESUME:-0}" == "1" ]]; then
-      seed_resume_args=()
-      seed_prediction_args=()
-      if [[ "$seed" == "17" && ! -f "repro/results/deep_survey_seed17/canonical_predictions/manifest.json" ]]; then
-        echo "[info] seed-17 canonical manifest missing -> clean seed-17 rerun"
-        seed_resume_args=(--no-resume)
-        seed_prediction_args=("${DEEP_PREDICTION_ARGS[@]}")
+      status_args=(
+        --seed-dir "$seed_dir"
+        --seed "$seed"
+        --expected-img-size "$IMG_SIZE"
+      )
+      if [[ "$seed" == "17" ]]; then
+        status_args+=(--require-canonical-manifest)
       fi
+      if "$STATUS_PYTHON_BIN" -u repro/benchmark/deep_seed_status.py "${status_args[@]}"; then
+        echo "[info] seed $seed complete and clean -> reusing"
+        continue
+      fi
+      echo "[info] seed $seed incomplete or non-clean -> restarting with --no-resume"
     fi
 
     run_cmd "$PYTHON_BIN" -u repro/benchmark/run_deep_survey.py \
       --img-size "$IMG_SIZE" --epochs 5 --batch-size 4 --device "$DEVICE" \
-      --seed "$seed" --out-dir "repro/results/deep_survey_seed${seed}" \
+      --seed "$seed" --out-dir "$seed_dir" \
       "${seed_resume_args[@]}" "${seed_prediction_args[@]}"
   done
 else

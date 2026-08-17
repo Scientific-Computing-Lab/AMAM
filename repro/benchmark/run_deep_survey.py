@@ -35,8 +35,9 @@ from skimage import feature, filters
 from skimage.filters import gabor
 from torch.utils.data import DataLoader, Dataset
 
-from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
+from benchmark_contract import EXPECTED_DEEP_MODEL_ORDER
 from canonical_predictions import CanonicalPredictionWriter
+from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
 from segmentation_metrics import segmentation_metric_protocol_metadata, segmentation_metrics
 
 warnings.filterwarnings(
@@ -836,6 +837,9 @@ def main() -> None:
     print(f"[info] pairs={len(records)} train={len(train_indices)} test={len(test_indices)} num_classes={num_classes}")
 
     all_specs = build_model_specs()
+    actual_model_order = tuple(spec.model_id for spec in all_specs)
+    if actual_model_order != EXPECTED_DEEP_MODEL_ORDER:
+        raise RuntimeError("Deep model specifications do not match the release contract")
     specs = list(all_specs)
     if args.models.strip():
         wanted = {m.strip() for m in args.models.split(",") if m.strip()}
