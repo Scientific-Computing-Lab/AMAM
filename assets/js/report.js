@@ -346,8 +346,6 @@
       return acc;
     }, {});
 
-    const topOverall = [...rows].sort((a, b) => (b.miou || 0) - (a.miou || 0))[0];
-
     els.resultsSummary.innerHTML = `
       <article class="metric-tile result-metric">
         <span class="metric-value">${rows.length}</span>
@@ -364,10 +362,6 @@
       <article class="metric-tile result-metric">
         <span class="metric-value">${counts.foundation_edge || 0}</span>
         <span class="metric-label">Foundation/edge add-ons</span>
-      </article>
-      <article class="metric-tile result-metric result-metric-wide">
-        <span class="metric-value">${topOverall ? topOverall.miou.toFixed(4) : "—"}</span>
-        <span class="metric-label">Highest displayed mIoU center: ${topOverall ? escapeHtml(topOverall.model) : "N/A"}</span>
       </article>
     `;
   }
@@ -412,7 +406,7 @@
     els.resultsTableBody.innerHTML = rows
       .map(
         (row, idx) => `
-          <tr class="${idx < 3 ? "top-row" : ""}">
+          <tr>
             <td>${idx + 1}</td>
             <td>${escapeHtml(row.model)}</td>
             <td>${escapeHtml(row.groupLabel)}</td>

@@ -37,6 +37,16 @@ python3 -m venv .venv
 bash repro/benchmark/run_all_repro.sh
 ```
 
+This full workflow runs the complete deep survey five times with explicit
+seeds 17--21, writes one result directory per seed, aggregates the five runs,
+and promotes the validated seed-17 detail files for compatibility consumers.
+Inspect the complete command plan without running models or changing result
+artifacts with:
+
+```bash
+REPRO_DRY_RUN=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
+```
+
 The complete 45-method run also needs TextureSAM, which is not tracked in this
 repository. The runner validates it before any model stage, so set it up first:
 

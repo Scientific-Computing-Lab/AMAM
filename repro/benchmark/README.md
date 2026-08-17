@@ -10,8 +10,10 @@ All model testing is executed locally from these scripts (not via a hosted infer
 - `run_deep_survey.py`: 29 supervised deep methods.
 - `aggregate_deep_multiseed.py`: combines the five isolated deep runs and
   reproduces their per-seed and aggregate CSV artifacts.
+- `promote_deep_seed.py`: validates the completed seed-17 bundle and promotes
+  its detail files to the legacy `deep_survey/` compatibility location.
 - `run_foundation_edge_addons.py`: 6 foundation/edge add-ons (including the required TextureSAM model).
-- `plot_benchmark_gap_figure.py`: main benchmark-gap figure.
+- `plot_benchmark_gap_figure.py`: track-specific reported-score figure.
 - `build_appendix_representative_assets.py`: appendix visual audit assets,
   loaded only from validated canonical prediction masks (no retraining).
 - `publish_results_to_site.py`: syncs reproducibility outputs into website CSV artifacts.
@@ -26,6 +28,19 @@ bash repro/benchmark/run_all_repro.sh
 
 # equivalent explicit GPU selection
 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
+```
+
+The runner writes authoritative deep outputs to
+`repro/results/deep_survey_seed17/` through
+`repro/results/deep_survey_seed21/`. After aggregation, it validates seed 17
+and promotes only its nine detail files into `repro/results/deep_survey/` for
+legacy consumers; canonical prediction masks remain in the seed-17 directory.
+
+Inspect every command in the expensive workflow without starting models or
+mutating result artifacts:
+
+```bash
+REPRO_DRY_RUN=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
 
 The runner writes live output to `repro/run_all_repro.log`. Follow it from a
@@ -55,13 +70,15 @@ PREFLIGHT_ONLY=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 Pipeline order:
 
 1. Classical benchmark (`run_benchmark.py`)
-2. Deep benchmark (`run_deep_survey.py`)
-3. Foundation/edge benchmark (`run_foundation_edge_addons.py`)
-4. Gap figure generation
-5. Representative appendix assets generation
-6. Publish CSVs to `assets/data/results/`
-7. Build `repro/results/model_provenance_manifest.csv` and `.md`
-8. Build `repro/results/reproducibility_audit_45_models.json` and `.md`
+2. Five deep benchmarks for seeds 17--21 (`run_deep_survey.py`)
+3. Aggregate the five deep runs (`aggregate_deep_multiseed.py`)
+4. Promote validated seed-17 details (`promote_deep_seed.py`)
+5. Foundation/edge benchmark (`run_foundation_edge_addons.py`)
+6. Track-specific reported-score figure generation
+7. Representative appendix assets generation
+8. Publish CSVs to `assets/data/results/`
+9. Build `repro/results/model_provenance_manifest.csv` and `.md`
+10. Build `repro/results/reproducibility_audit_45_models.json` and `.md`
 
 ## Run Families Separately
 
@@ -81,6 +98,9 @@ python3 repro/benchmark/run_foundation_edge_addons.py --img-size 192 --device au
 - Pair-only inclusion from `assets/data/amam-dataset.json`.
 - Default reporting seed: `17` for randomized internals.
 - Evaluation mode: `fullset_no_holdout` (all 128 paired tuples are used for per-model inference/evaluation).
+- At evaluation time, subset identity and its valid class set are assumed known;
+  this preserves subset-native semantics rather than merging incompatible
+  taxonomies.
 - Subset-aware macro metrics: mIoU, Dice, Pixel Accuracy.
 - Per-image mIoU and Dice exclude any class absent from both ground truth and
   prediction; present-class scores are averaged per image, then per subset.
@@ -150,8 +170,10 @@ done
 .venv/bin/python repro/benchmark/aggregate_deep_multiseed.py
 ```
 
-Use the multi-seed summary for deep mIoU, Dice, and Pixel Accuracy. The
-`deep_macro_over_subsets.csv` file remains the canonical seed-17 result.
+Use the multi-seed summary for deep mIoU, Dice, and Pixel Accuracy. The five
+explicit seed directories are authoritative. The runner promotes the validated
+seed-17 `deep_macro_over_subsets.csv` and eight other detail files into
+`repro/results/deep_survey/` for legacy consumers.
 
 ## Where Outputs Are Written
 
@@ -171,6 +193,8 @@ same canonical label assignment and immediately before metric calculation.
 
 ### Supervised Deep (29)
 
+- `repro/results/deep_survey_seed17/` through
+  `repro/results/deep_survey_seed21/` (authoritative per-seed outputs)
 - `repro/results/deep_survey/deep_general_summary.csv`
 - `repro/results/deep_survey/deep_metallography_summary.csv`
 - `repro/results/deep_survey/deep_macro_over_subsets.csv`
