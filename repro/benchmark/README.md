@@ -59,15 +59,20 @@ second terminal with:
 tail -f repro/run_all_repro.log
 ```
 
-A fresh run recomputes every model. To continue a genuinely interrupted run
-from its completed per-model checkpoints, use:
+A fresh run recomputes every model. After a genuine interruption, use:
 
 ```bash
 RESUME=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
 
-Do not use `RESUME=1` for the first run after a ground-truth decoder or metric
-policy change; cached per-image rows were computed under the previous protocol.
+For deep runs, this does not continue partial per-model rows. The runner reuses
+a seed only when its directory records a complete clean 29-model sweep under
+the current release configuration and GT/metric protocol (and seed 17 has a
+fully validated canonical prediction bundle). Any incomplete, previously
+resumed, reordered, malformed, or incompatible deep seed restarts from the
+beginning with `--no-resume`, preserving the RNG sequence associated with
+normal model order. Completed classical and foundation/edge rows retain their
+existing resume behavior.
 
 To validate Python, GPU selection, and TextureSAM assets without starting any
 model run:

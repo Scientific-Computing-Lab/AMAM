@@ -47,6 +47,12 @@ artifacts with:
 REPRO_DRY_RUN=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
 
+After an interruption, `RESUME=1` reuses only deep seed directories that
+already contain a complete clean 29-model sweep using the current release
+configuration. Any incomplete, resumed, reordered, or protocol-mismatched deep
+seed restarts from the beginning with `--no-resume` so model-order
+random-number consumption remains canonical.
+
 The complete 45-method run also needs TextureSAM, which is not tracked in this
 repository. The runner validates it before any model stage, so set it up first:
 

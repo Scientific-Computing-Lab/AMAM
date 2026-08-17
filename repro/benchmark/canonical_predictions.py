@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections import Counter
 from pathlib import Path
 from typing import Iterable, Mapping
 
@@ -137,6 +138,8 @@ def load_canonical_manifest(
     expected_models: Iterable[str],
     expected_protocol: Mapping[str, object],
     expected_count: int,
+    expected_image_size: tuple[int, int] | list[int] | None = None,
+    expected_split_mode: str | None = None,
 ) -> dict[str, object]:
     root = Path(root)
     manifest_path = root / "manifest.json"
@@ -150,10 +153,17 @@ def load_canonical_manifest(
         raise ValueError("Canonical prediction manifest track mismatch")
     if int(manifest.get("seed", -1)) != int(expected_seed):
         raise ValueError("Canonical prediction manifest seed mismatch")
-    if set(manifest.get("model_ids", [])) != {str(value) for value in expected_models}:
+    expected_model_ids = {str(value) for value in expected_models}
+    if set(manifest.get("model_ids", [])) != expected_model_ids:
         raise ValueError("Canonical prediction manifest model set mismatch")
     if manifest.get("protocol_metadata") != dict(expected_protocol):
         raise ValueError("Canonical prediction manifest protocol metadata mismatch")
+    if expected_image_size is not None and manifest.get("image_size") != [
+        int(value) for value in expected_image_size
+    ]:
+        raise ValueError("Canonical prediction manifest image size mismatch")
+    if expected_split_mode is not None and manifest.get("split_mode") != expected_split_mode:
+        raise ValueError("Canonical prediction manifest split mode mismatch")
 
     entries = manifest.get("files")
     if not isinstance(entries, list):
@@ -165,6 +175,7 @@ def load_canonical_manifest(
 
     keys: set[tuple[str, str, str]] = set()
     paths: set[str] = set()
+    model_counts: Counter[str] = Counter()
     for entry in entries:
         if not isinstance(entry, dict):
             raise ValueError("Canonical prediction manifest file entry must be an object")
@@ -176,6 +187,11 @@ def load_canonical_manifest(
         if key in keys:
             raise ValueError(f"Canonical prediction manifest contains duplicate key: {key}")
         keys.add(key)
+        if key[0] not in expected_model_ids:
+            raise ValueError(
+                f"Canonical prediction manifest contains unexpected model: {key[0]!r}"
+            )
+        model_counts[key[0]] += 1
         relative = str(entry.get("path", ""))
         if not relative or relative in paths:
             raise ValueError(f"Canonical prediction manifest contains duplicate or empty path: {relative!r}")
@@ -185,6 +201,13 @@ def load_canonical_manifest(
             raise FileNotFoundError(f"Missing canonical prediction: {prediction_path}")
         if sha256_file(prediction_path) != entry.get("sha256"):
             raise ValueError(f"Canonical prediction SHA-256 mismatch: {prediction_path}")
+
+    if expected_model_ids:
+        expected_per_model, remainder = divmod(int(expected_count), len(expected_model_ids))
+        if remainder or any(
+            model_counts[model_id] != expected_per_model for model_id in expected_model_ids
+        ):
+            raise ValueError("Canonical prediction manifest per-model file count mismatch")
 
     return manifest
 
