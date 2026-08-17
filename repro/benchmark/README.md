@@ -123,8 +123,8 @@ uncertainty and are not pairwise significance tests.
 The auditable per-seed values and their aggregate are:
 
 - `repro/results/deep_survey_multiseed_runs.csv` (145 rows: 29 models x 5 seeds)
-- `repro/results/deep_survey_multiseed_summary.csv` (mean, sample SD, range,
-  and rank range per model)
+- `repro/results/deep_survey_multiseed_summary.csv` (mIoU, Dice, and Pixel
+  Accuracy mean/sample SD/range, plus mIoU rank range per model)
 
 Each rank range is the model's best-to-worst position among the 29 supervised
 deep configurations in the five seed-specific runs. It is not a rank among all
@@ -141,8 +141,8 @@ done
 .venv/bin/python repro/benchmark/aggregate_deep_multiseed.py
 ```
 
-Use the multi-seed summary for deep mIoU. The Dice and Pixel Accuracy fields in
-`deep_macro_over_subsets.csv` remain seed-17 point estimates.
+Use the multi-seed summary for deep mIoU, Dice, and Pixel Accuracy. The
+`deep_macro_over_subsets.csv` file remains the canonical seed-17 result.
 
 ## Where Outputs Are Written
 

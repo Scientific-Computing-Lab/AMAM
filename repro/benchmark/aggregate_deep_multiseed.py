@@ -43,7 +43,7 @@ def parse_args() -> argparse.Namespace:
         "--summary-output",
         type=Path,
         default=DEFAULT_SUMMARY_OUTPUT,
-        help="Output CSV containing per-model mIoU summary statistics.",
+        help="Output CSV containing per-model mIoU, Dice, and Pixel Accuracy statistics.",
     )
     return parser.parse_args()
 
@@ -118,6 +118,14 @@ def aggregate(runs: pd.DataFrame, n_seeds: int) -> pd.DataFrame:
             miou_std=("miou", "std"),
             miou_min=("miou", "min"),
             miou_max=("miou", "max"),
+            dice_mean=("dice", "mean"),
+            dice_std=("dice", "std"),
+            dice_min=("dice", "min"),
+            dice_max=("dice", "max"),
+            pixel_acc_mean=("pixel_acc", "mean"),
+            pixel_acc_std=("pixel_acc", "std"),
+            pixel_acc_min=("pixel_acc", "min"),
+            pixel_acc_max=("pixel_acc", "max"),
             n_seeds=("seed", "nunique"),
             rank_best=("rank", "min"),
             rank_worst=("rank", "max"),
@@ -127,8 +135,10 @@ def aggregate(runs: pd.DataFrame, n_seeds: int) -> pd.DataFrame:
     )
     if not (summary["n_seeds"] == n_seeds).all():
         raise ValueError("At least one model is missing a seed result")
-    for column in ["miou_mean", "miou_std", "miou_min", "miou_max"]:
-        summary[column] = summary[column].round(6)
+    for metric in ("miou", "dice", "pixel_acc"):
+        for statistic in ("mean", "std", "min", "max"):
+            column = f"{metric}_{statistic}"
+            summary[column] = summary[column].round(6)
     return summary
 
 
@@ -149,13 +159,17 @@ def main() -> None:
 
     ranked = summary.sort_values("miou_mean", ascending=False)
     adjacent_gaps = ranked["miou_mean"].diff().abs().dropna()
-    median_std = float(summary["miou_std"].median())
+    median_miou_std = float(summary["miou_std"].median())
+    median_dice_std = float(summary["dice_std"].median())
+    median_pixel_acc_std = float(summary["pixel_acc_std"].median())
     median_gap = float(adjacent_gaps.median())
 
     print(f"[saved] {display_path(args.runs_output)}")
     print(f"[saved] {display_path(args.summary_output)}")
     print(f"[summary] models={len(summary)} seeds={len(args.seeds)}")
-    print(f"[summary] median model SD={median_std:.6f}")
+    print(f"[summary] median mIoU SD={median_miou_std:.6f}")
+    print(f"[summary] median Dice SD={median_dice_std:.6f}")
+    print(f"[summary] median Pixel Accuracy SD={median_pixel_acc_std:.6f}")
     print(f"[summary] median adjacent mean gap={median_gap:.6f}")
 
 
