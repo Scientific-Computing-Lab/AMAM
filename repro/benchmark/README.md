@@ -30,11 +30,16 @@ bash repro/benchmark/run_all_repro.sh
 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
 
-The runner writes authoritative deep outputs to
+The runner generates local per-seed deep outputs in
 `repro/results/deep_survey_seed17/` through
-`repro/results/deep_survey_seed21/`. After aggregation, it validates seed 17
-and promotes only its nine detail files into `repro/results/deep_survey/` for
-legacy consumers; canonical prediction masks remain in the seed-17 directory.
+`repro/results/deep_survey_seed21/`. These directories are authoritative inputs
+for local aggregation but are intentionally Git-ignored. GitHub tracks only
+`repro/results/deep_survey_seed17/canonical_predictions/` from them because
+those masks are used by the qualitative panels. The public numerical record
+for all five seeds is `repro/results/deep_survey_multiseed_runs.csv`, while
+`deep_survey_multiseed_summary.csv` contains five-seed mean/sample-SD values.
+After aggregation, the runner validates seed 17 and promotes only its nine
+detail files into `repro/results/deep_survey/` for legacy consumers.
 
 Inspect every command in the expensive workflow without starting models or
 mutating result artifacts:
@@ -42,6 +47,10 @@ mutating result artifacts:
 ```bash
 REPRO_DRY_RUN=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
+
+`SKIP_DEEP=1` skips training but still aggregates and validates the five
+explicit seed directories, so all five generated directories must already
+exist locally.
 
 The runner writes live output to `repro/run_all_repro.log`. Follow it from a
 second terminal with:
@@ -171,8 +180,10 @@ done
 ```
 
 Use the multi-seed summary for deep mIoU, Dice, and Pixel Accuracy. The five
-explicit seed directories are authoritative. The runner promotes the validated
-seed-17 `deep_macro_over_subsets.csv` and eight other detail files into
+explicit seed directories are authoritative generated local inputs and are not
+version-controlled. The tracked per-seed numerical record is
+`deep_survey_multiseed_runs.csv`. The runner promotes the validated seed-17
+`deep_macro_over_subsets.csv` and eight other detail files into
 `repro/results/deep_survey/` for legacy consumers.
 
 ## Where Outputs Are Written
@@ -194,7 +205,8 @@ same canonical label assignment and immediately before metric calculation.
 ### Supervised Deep (29)
 
 - `repro/results/deep_survey_seed17/` through
-  `repro/results/deep_survey_seed21/` (authoritative per-seed outputs)
+  `repro/results/deep_survey_seed21/` (generated local per-seed outputs;
+  intentionally Git-ignored except for seed-17 canonical predictions)
 - `repro/results/deep_survey/deep_general_summary.csv`
 - `repro/results/deep_survey/deep_metallography_summary.csv`
 - `repro/results/deep_survey/deep_macro_over_subsets.csv`

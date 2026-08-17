@@ -35,11 +35,17 @@ bash repro/benchmark/run_all_repro.sh
 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
 
-The runner writes authoritative deep outputs to
+The runner generates local per-seed deep outputs in
 `repro/results/deep_survey_seed17/` through
-`repro/results/deep_survey_seed21/`, aggregates seeds 17--21, and promotes the
-validated seed-17 detail files into `repro/results/deep_survey/` for legacy
-consumers. Canonical deep prediction masks remain under the seed-17 directory.
+`repro/results/deep_survey_seed21/`. These directories are the authoritative
+inputs for local aggregation but are intentionally excluded from version
+control. From them, GitHub tracks only
+`repro/results/deep_survey_seed17/canonical_predictions/`, which contains the
+qualitative masks used by the representative panels. The published numerical
+record for all five seeds is `repro/results/deep_survey_multiseed_runs.csv`
+(145 rows), and `deep_survey_multiseed_summary.csv` contains five-seed
+mean/sample-SD values. After aggregation, the runner promotes the validated
+seed-17 detail files into `repro/results/deep_survey/` for legacy consumers.
 
 Inspect the complete command plan without starting models or mutating result
 artifacts:
@@ -80,8 +86,9 @@ SKIP_FOUNDATION=1 bash repro/benchmark/run_all_repro.sh
 ```
 
 `SKIP_DEEP=1` skips deep training but still aggregates and validates the five
-existing explicit seed directories. `SKIP_FOUNDATION=1` skips the
-foundation/edge preflight and model stage.
+explicit seed directories, so all five generated directories must already
+exist locally. `SKIP_FOUNDATION=1` skips the foundation/edge preflight and
+model stage.
 
 ## External TextureSAM Dependency
 
