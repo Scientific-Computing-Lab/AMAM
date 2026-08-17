@@ -29,15 +29,15 @@ import torch
 from PIL import Image
 from scipy.ndimage import distance_transform_edt
 from scipy.optimize import linear_sum_assignment
-from scipy.spatial.distance import cdist
 from skimage import segmentation
 from sklearn.cluster import KMeans
 from transformers import pipeline
 from controlnet_aux import HEDdetector, PidiNetDetector
 
+from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
+
 SEED = 17
 SPLIT_MODE = "fullset_no_holdout"
-MAX_PIXELS_PER_MASK = 20_000
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REPRO_ROOT = REPO_ROOT / "repro"
@@ -137,32 +137,6 @@ def read_image(path: Path, img_size: int, mode: str = "RGB", nearest: bool = Fal
     resample = Image.Resampling.NEAREST if nearest else Image.Resampling.BILINEAR
     arr = Image.open(path).convert(mode).resize((img_size, img_size), resample)
     return np.array(arr)
-
-
-def estimate_mask_centroids(split: Dict[str, SplitData], k_by_subset: Dict[str, int], img_size: int) -> Dict[str, np.ndarray]:
-    centers = {}
-    for subset_id, sdata in split.items():
-        k = k_by_subset[subset_id]
-        px = []
-        for sample in sdata.train:
-            m = read_image(sample.mask_path, img_size, mode="RGB").reshape(-1, 3).astype(np.float64)
-            if len(m) > MAX_PIXELS_PER_MASK:
-                idx = np.random.choice(len(m), MAX_PIXELS_PER_MASK, replace=False)
-                m = m[idx]
-            px.append(m)
-        all_px = np.concatenate(px, axis=0)
-        all_px = np.nan_to_num(all_px, nan=0.0, posinf=0.0, neginf=0.0)
-        km = KMeans(n_clusters=k, n_init=10, random_state=SEED)
-        km.fit(all_px)
-        centers[subset_id] = km.cluster_centers_
-    return centers
-
-
-def mask_to_labels(mask_rgb: np.ndarray, centers: np.ndarray) -> np.ndarray:
-    flat = mask_rgb.reshape(-1, 3).astype(np.float32)
-    d = cdist(flat, centers.astype(np.float32))
-    labels = np.argmin(d, axis=1)
-    return labels.reshape(mask_rgb.shape[:2]).astype(np.int64)
 
 
 def hu_map(pred: np.ndarray, gt: np.ndarray, k: int) -> np.ndarray:
@@ -422,7 +396,6 @@ def main() -> None:
 
     pairs, k_by_subset, subset_meta = load_dataset_pairs()
     split = deterministic_split(pairs)
-    centers = estimate_mask_centroids(split, k_by_subset, img_size=args.img_size)
 
     test_samples = [s for sp in split.values() for s in sp.test]
     print(f"[info] test samples: {len(test_samples)}")
@@ -478,8 +451,12 @@ def main() -> None:
         print(f"[run] {model_id}")
         for idx, sample in enumerate(test_samples, start=1):
             img = read_image(sample.original_path, img_size=args.img_size, mode="RGB")
-            mask = read_image(sample.mask_path, img_size=args.img_size, mode="RGB")
-            gt = mask_to_labels(mask, centers[sample.subset_id])
+            gt = decode_ground_truth(
+                sample.mask_path,
+                subset_id=sample.subset_id,
+                output_size=(args.img_size, args.img_size),
+                expected_phase_count=sample.phase_count,
+            )
             k = sample.phase_count
             pred = fn(img, k)
             pred = hu_map(pred, gt, k)
@@ -540,6 +517,7 @@ def main() -> None:
         "img_size": args.img_size,
         "device": str(device),
         "split_mode": SPLIT_MODE,
+        **ground_truth_protocol_metadata(),
         "n_pairs": len(pairs),
         "train_images": int(sum(len(v.train) for v in split.values())),
         "test_images": len(test_samples),

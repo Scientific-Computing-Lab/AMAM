@@ -78,6 +78,9 @@ python3 repro/benchmark/run_foundation_edge_addons.py --img-size 192 --device au
 - Default reporting seed: `17` for randomized internals.
 - Evaluation mode: `fullset_no_holdout` (all 128 paired tuples are used for per-model inference/evaluation).
 - Subset-aware macro metrics: mIoU, Dice, Pixel Accuracy.
+- Ground-truth RGB masks are decoded at source resolution using the frozen
+  per-subset prototypes in `gt_mask_palettes.json`; only the resulting class-ID
+  maps are resized, using nearest-neighbor interpolation.
 - Output protocol manifests:
   - `repro/results/classical/benchmark_protocol.json`
   - `repro/results/deep_survey/deep_protocol.json`
@@ -88,19 +91,21 @@ python3 repro/benchmark/run_foundation_edge_addons.py --img-size 192 --device au
 Seed `17` is set, but seeding alone does not make GPU training reproducible.
 
 - **Classical (10 methods)**: the published table reports seed-17 point
-  estimates. The pipelines include seeded label decoding, sampling, and/or
-  clustering, so the release makes no cross-seed uncertainty claim for them.
+  estimates. The seed affects sampling and randomized estimators; ground-truth
+  decoding is fixed. The release makes no cross-seed uncertainty claim for
+  these methods.
 - **Foundation/edge (6 methods)**: pretrained network weights are not updated
-  from AMAM labels, but downstream clustering and post-processing are
-  data-adaptive. The published table reports seed-17 point estimates. The
-  runner requires `transformers` 4.x; on 5.x the SAM mask-generation pipeline
-  returns a whole-image mask as its top-scoring proposal, which collapses all
-  three SAM variants to the same degenerate prediction.
+  from AMAM labels, but seeded model-side downstream clustering and
+  post-processing are data-adaptive; ground-truth decoding is fixed. The
+  published table reports seed-17 point estimates. The runner requires
+  `transformers` 4.x; on 5.x the SAM mask-generation pipeline returns a
+  whole-image mask as its top-scoring proposal, which collapses all three SAM
+  variants to the same degenerate prediction.
 - **Deep survey (29 configurations)**: five clean, non-resumed end-to-end runs
   using seeds 17--21 provide the reported mIoU means and sample standard
-  deviations. The seed changes both model-side stochasticity and seeded
-  ground-truth label decoding, so the spread is end-to-end run variability,
-  not pure training noise.
+  deviations. The five seeds vary model initialization and batch order while
+  ground-truth decoding is fixed, so the spread reflects training-run
+  variability rather than label-decoding variability.
 
 Across the 29 deep configurations, the median sample standard deviation is
 `0.031784` macro mIoU (range `0.006102`--`0.059538`). After sorting models by

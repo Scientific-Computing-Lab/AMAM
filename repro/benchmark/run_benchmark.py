@@ -26,7 +26,6 @@ import pandas as pd
 from PIL import Image
 from scipy.optimize import linear_sum_assignment
 from scipy.ndimage import distance_transform_edt
-from scipy.spatial.distance import cdist
 from skimage import color, filters, feature, segmentation
 from skimage.filters import gabor
 from skimage.morphology import binary_opening, disk
@@ -36,6 +35,8 @@ from sklearn.mixture import GaussianMixture
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVC
+
+from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
 
 SEED = 17
 RNG = np.random.default_rng(SEED)
@@ -172,31 +173,6 @@ def sanitize_features(features: np.ndarray, clip: float = 8.0) -> np.ndarray:
     return x.astype(np.float64, copy=False)
 
 
-def estimate_mask_centroids(split: Dict[str, SplitData], k_by_subset: Dict[str, int]) -> Dict[str, np.ndarray]:
-    centroids = {}
-    for subset_id, sdata in split.items():
-        k = k_by_subset[subset_id]
-        px = []
-        for sample in sdata.train:
-            m = read_image(sample.mask_path, mode="RGB").reshape(-1, 3)
-            if len(m) > 15000:
-                idx = RNG.choice(len(m), 15000, replace=False)
-                m = m[idx]
-            px.append(m)
-        all_px = np.concatenate(px, axis=0).astype(np.float64, copy=False)
-        km = KMeans(n_clusters=k, n_init=5, random_state=SEED)
-        km.fit(all_px)
-        centroids[subset_id] = km.cluster_centers_
-    return centroids
-
-
-def mask_to_labels(mask_rgb: np.ndarray, centers: np.ndarray) -> np.ndarray:
-    flat = mask_rgb.reshape(-1, 3).astype(np.float32)
-    d = cdist(flat, centers.astype(np.float32))
-    labels = np.argmin(d, axis=1)
-    return labels.reshape(mask_rgb.shape[:2])
-
-
 def hu_map(pred: np.ndarray, gt: np.ndarray, k: int) -> np.ndarray:
     conf = np.zeros((k, k), dtype=np.int64)
     for i in range(k):
@@ -325,15 +301,19 @@ def felzenszwalb_cluster(img_rgb: np.ndarray, k: int) -> np.ndarray:
     return seg_labels[seg]
 
 
-def train_pixel_model(split: Dict[str, SplitData], centers: Dict[str, np.ndarray], mode: str):
+def train_pixel_model(split: Dict[str, SplitData], mode: str):
     models = {}
     for subset_id, sdata in split.items():
         Xs = []
         ys = []
         for sample in sdata.train:
             img = read_image(sample.original_path, mode="RGB")
-            mask = read_image(sample.mask_path, mode="RGB")
-            y = mask_to_labels(mask, centers[subset_id]).reshape(-1)
+            y = decode_ground_truth(
+                sample.mask_path,
+                subset_id=sample.subset_id,
+                output_size=IMG_SIZE,
+                expected_phase_count=sample.phase_count,
+            ).reshape(-1)
             f = feat_rgb_grad(img)
             # sample pixels
             n = len(y)
@@ -445,6 +425,7 @@ def write_outputs(
         "seed": SEED,
         "img_size": IMG_SIZE,
         "split_mode": SPLIT_MODE,
+        **ground_truth_protocol_metadata(),
         "n_pairs": len(pairs),
         "train_images": int(sum(len(v.train) for v in split.values())),
         "test_images": int(sum(len(v.test) for v in split.values())),
@@ -477,7 +458,6 @@ def parse_args() -> argparse.Namespace:
 def run(method_filter: List[str] | None = None, no_resume: bool = False):
     pairs, k_by_subset, subset_meta = load_dataset_pairs()
     split = deterministic_split(pairs)
-    centers = estimate_mask_centroids(split, k_by_subset)
 
     methods = list(ALL_METHODS)
     if method_filter:
@@ -502,9 +482,9 @@ def run(method_filter: List[str] | None = None, no_resume: bool = False):
 
     trained_models = {}
     if "rf_pixel" in pending:
-        trained_models["rf_pixel"] = train_pixel_model(split, centers, "rf")
+        trained_models["rf_pixel"] = train_pixel_model(split, "rf")
     if "svm_pixel" in pending:
-        trained_models["svm_pixel"] = train_pixel_model(split, centers, "svm")
+        trained_models["svm_pixel"] = train_pixel_model(split, "svm")
 
     for method, category in methods:
         if method in done_methods:
@@ -516,8 +496,12 @@ def run(method_filter: List[str] | None = None, no_resume: bool = False):
             k = k_by_subset[subset_id]
             for sample in sdata.test:
                 img = read_image(sample.original_path, mode="RGB")
-                mask = read_image(sample.mask_path, mode="RGB")
-                gt = mask_to_labels(mask, centers[subset_id])
+                gt = decode_ground_truth(
+                    sample.mask_path,
+                    subset_id=sample.subset_id,
+                    output_size=IMG_SIZE,
+                    expected_phase_count=sample.phase_count,
+                )
                 pred = predict_method(
                     method,
                     img,
