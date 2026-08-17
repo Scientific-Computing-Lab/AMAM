@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "git_commit": "fe4e527385e216ce809f5b4439ebb0c1d45e178d",
+  "git_commit": "538036de06d019094c15471103329ad5e1e77478",
   "counts": {
     "classical": 10,
     "deep_general": 14,
@@ -41,7 +41,7 @@
     "assets/data/amam-dataset.json": "7ea757a15626a00ecd03faac727a98deea836390ffd499ea78c910f65329c2cd",
     "repro/benchmark/run_deep_survey.py": "cc31989c366441b4630ccdc191f876e97e470f373ac528826a96fa2e7060d961",
     "repro/benchmark/aggregate_deep_multiseed.py": "d042896d426d00a6f0bfd7925b6b34d7d2aca19adc2c0396d9348e8acff846f4",
-    "repro/benchmark/plot_benchmark_gap_figure.py": "30a6f7c1e1885267de03662879373aea3b8ca465b963572dd6843311af49d773",
+    "repro/benchmark/plot_benchmark_gap_figure.py": "f75f5669f4c0d0793cba9dce19db78737d003b4296310ba9b30b4818c3ce1575",
     "repro/benchmark/canonical_predictions.py": "f5877be8218a51f09c593f3523fe451d48e56bbafe74066a572e25019d874c25",
     "repro/benchmark/build_appendix_representative_assets.py": "b7fca125f5dda5062fe48a237a43312ffa8f4b8acf12bb2d391e472d627a8109",
     "repro/requirements.txt": "395286726e8046f58cd63a06ea87e2fce8199153ef9da7b57dde5eab9d7e699a",
