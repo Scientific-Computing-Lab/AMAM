@@ -12,6 +12,9 @@ This folder contains the full code and outputs used to build the benchmark resul
 For classical methods, `repro/results/classical/benchmark_summary.csv` is the canonical subset-macro table used by the paper/site, and `benchmark_micro_over_images.csv` is also exported for image-level reference.
 
 Protocol note: current benchmark execution uses `fullset_no_holdout` mode, so each of the 45 models is evaluated on all 128 paired images.
+At evaluation time, subset identity and its valid class set are assumed known;
+this preserves subset-native semantics rather than merging incompatible
+taxonomies.
 
 ## Quick Start
 
@@ -32,10 +35,23 @@ bash repro/benchmark/run_all_repro.sh
 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
 
+The runner writes authoritative deep outputs to
+`repro/results/deep_survey_seed17/` through
+`repro/results/deep_survey_seed21/`, aggregates seeds 17--21, and promotes the
+validated seed-17 detail files into `repro/results/deep_survey/` for legacy
+consumers. Canonical deep prediction masks remain under the seed-17 directory.
+
+Inspect the complete command plan without starting models or mutating result
+artifacts:
+
+```bash
+REPRO_DRY_RUN=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
+```
+
 Live output is written to `repro/run_all_repro.log` and can be followed with
 `tail -f repro/run_all_repro.log`. Use `RESUME=1` only to continue completed
-per-model checkpoints from an interrupted run; a normal run recomputes all 45
-models.
+per-model rows from an interrupted run; a normal run recomputes every method,
+including five complete deep sweeps.
 
 For a script-by-script execution map (exact model families, outputs, and protocol files), see:
 
@@ -43,14 +59,16 @@ For a script-by-script execution map (exact model families, outputs, and protoco
 
 This executes:
 
-1. `run_benchmark.py` (10 classical methods)
-2. `run_deep_survey.py` (general + metallography-oriented supervised deep models)
-3. `run_foundation_edge_addons.py` (SAM/SlimSAM + edge add-ons)
-4. `plot_benchmark_gap_figure.py`
-5. `build_appendix_representative_assets.py`
-6. `publish_results_to_site.py` (syncs report CSVs into `assets/data/results/`)
-7. `build_model_provenance_manifest.py` (writes per-model checkpoint/source manifest)
-8. `verify_45_model_repro.py` (hard consistency audit for all 45 model rows)
+1. Classical benchmark (`run_benchmark.py`)
+2. Five deep benchmarks for seeds 17--21 (`run_deep_survey.py`)
+3. Aggregate the five deep runs (`aggregate_deep_multiseed.py`)
+4. Promote validated seed-17 details (`promote_deep_seed.py`)
+5. Foundation/edge benchmark (`run_foundation_edge_addons.py`)
+6. Track-specific reported-score figure generation (`plot_benchmark_gap_figure.py`)
+7. Representative appendix assets (`build_appendix_representative_assets.py`)
+8. Publish website CSVs (`publish_results_to_site.py`)
+9. Build the provenance manifest (`build_model_provenance_manifest.py`)
+10. Build the 45-method audit (`verify_45_model_repro.py`)
 
 ## Optional Fast Modes
 
@@ -60,6 +78,10 @@ Skip expensive stages:
 SKIP_DEEP=1 bash repro/benchmark/run_all_repro.sh
 SKIP_FOUNDATION=1 bash repro/benchmark/run_all_repro.sh
 ```
+
+`SKIP_DEEP=1` skips deep training but still aggregates and validates the five
+existing explicit seed directories. `SKIP_FOUNDATION=1` skips the
+foundation/edge preflight and model stage.
 
 ## External TextureSAM Dependency
 
