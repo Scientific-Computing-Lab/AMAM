@@ -7,7 +7,7 @@ Checks:
 2) Model-id set consistency across summary/per-image/per-subset CSVs.
 3) Manifest consistency (same 45 ids + checkpoint/source fields present).
 4) Script/file existence for every manifest row.
-5) Completeness and aggregate consistency of the five-run deep mIoU artifacts.
+5) Completeness, protocol identity, and aggregate consistency of all five-run deep metrics.
 6) Writes an auditable report with SHA256 hashes of key artifacts.
 """
 
@@ -204,7 +204,7 @@ def main() -> None:
 
     deep_runs = pd.read_csv(DEEP_MULTISEED_RUNS)
     deep_multiseed = pd.read_csv(DEEP_MULTISEED_SUMMARY)
-    required_run_cols = {"seed", "model_id", "miou", "rank"}
+    required_run_cols = {"seed", "model_id", "miou", "dice", "pixel_acc", "rank"}
     if not required_run_cols.issubset(deep_runs.columns):
         raise RuntimeError(
             f"deep multi-seed runs missing columns: {sorted(required_run_cols - set(deep_runs.columns))}"
@@ -230,6 +230,14 @@ def main() -> None:
             miou_std=("miou", "std"),
             miou_min=("miou", "min"),
             miou_max=("miou", "max"),
+            dice_mean=("dice", "mean"),
+            dice_std=("dice", "std"),
+            dice_min=("dice", "min"),
+            dice_max=("dice", "max"),
+            pixel_acc_mean=("pixel_acc", "mean"),
+            pixel_acc_std=("pixel_acc", "std"),
+            pixel_acc_min=("pixel_acc", "min"),
+            pixel_acc_max=("pixel_acc", "max"),
             n_seeds=("seed", "nunique"),
             rank_best=("rank", "min"),
             rank_worst=("rank", "max"),
@@ -238,13 +246,39 @@ def main() -> None:
         .reset_index(drop=True)
     )
     published = deep_multiseed.sort_values("model_id").reset_index(drop=True)
-    for column in ["miou_mean", "miou_std", "miou_min", "miou_max"]:
-        difference = (recomputed[column] - published[column]).abs()
-        if (difference > 1e-6).any():
-            raise RuntimeError(f"deep multi-seed summary column `{column}` does not match per-seed values")
+    for metric in ("miou", "dice", "pixel_acc"):
+        for statistic in ("mean", "std", "min", "max"):
+            column = f"{metric}_{statistic}"
+            if column not in published.columns:
+                raise RuntimeError(f"deep multi-seed summary missing column `{column}`")
+            difference = (recomputed[column] - published[column]).abs()
+            if (difference > 1e-6).any():
+                raise RuntimeError(f"deep multi-seed summary column `{column}` does not match per-seed values")
     for column in ["n_seeds", "rank_best", "rank_worst"]:
         if not (recomputed[column].astype(int) == published[column].astype(int)).all():
             raise RuntimeError(f"deep multi-seed summary column `{column}` does not match per-seed values")
+
+    canonical_deep_protocol = json.loads(DEEP_PROTOCOL.read_text())
+    protocol_identity_fields = (
+        "gt_decoder_version",
+        "gt_palette_sha256",
+        "gt_decode_order",
+        "segmentation_metric_version",
+        "absent_class_policy",
+        "metric_aggregation",
+    )
+    for seed in (17, 18, 19, 20, 21):
+        protocol_path = RESULTS / f"deep_survey_seed{seed}/deep_protocol.json"
+        if not protocol_path.exists():
+            raise RuntimeError(f"missing deep seed-{seed} protocol: {protocol_path}")
+        protocol = json.loads(protocol_path.read_text())
+        if int(protocol.get("seed", -1)) != seed:
+            raise RuntimeError(f"deep seed-{seed} protocol records the wrong seed")
+        if protocol.get("resume_enabled") is not False:
+            raise RuntimeError(f"deep seed-{seed} must be a clean non-resumed run")
+        for field in protocol_identity_fields:
+            if protocol.get(field) != canonical_deep_protocol.get(field):
+                raise RuntimeError(f"deep seed-{seed} protocol field `{field}` differs from canonical")
 
     # Full-set protocol checks: each model must have 128 per-image rows.
     c_img_df = pd.read_csv(CLASSICAL_PER_IMAGE)

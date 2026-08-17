@@ -57,10 +57,10 @@ PREFLIGHT_ONLY=1 bash repro/benchmark/run_all_repro.sh
 
 Use `SKIP_FOUNDATION=1` to run without TextureSAM.
 
-The website reports the 29 supervised deep configurations using five-run mean
-mIoU and sample standard deviation over seeds 17--21. Classical and
-foundation/edge values, plus deep Dice and Pixel Accuracy, are seed-17 point
-estimates without a published cross-seed uncertainty estimate. See "Scope of
+The website reports the 29 supervised deep configurations using five-run means
+and sample standard deviations for mIoU, Dice, and Pixel Accuracy over seeds
+17--21. Classical and foundation/edge values are seed-17 point estimates
+without a published cross-seed uncertainty estimate. See "Scope of
 reproducibility" in `repro/benchmark/README.md` before comparing results.
 
 Detailed instructions are in `repro/README.md`.

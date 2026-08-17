@@ -107,8 +107,14 @@
     return Number.isFinite(n) ? n : NaN;
   }
 
-  function formatMetric(value) {
-    return Number.isFinite(value) ? value.toFixed(4) : "—";
+  function formatMetric(value, standardDeviation) {
+    if (!Number.isFinite(value)) {
+      return "—";
+    }
+    if (Number.isFinite(standardDeviation)) {
+      return `${value.toFixed(4)} &plusmn; ${standardDeviation.toFixed(4)}`;
+    }
+    return value.toFixed(4);
   }
 
   function formatGroupLabel(groupKey) {
@@ -411,9 +417,9 @@
             <td>${escapeHtml(row.model)}</td>
             <td>${escapeHtml(row.groupLabel)}</td>
             <td>${escapeHtml(row.category)}</td>
-            <td>${formatMetric(row.miou)}</td>
-            <td>${formatMetric(row.dice)}</td>
-            <td>${formatMetric(row.pixelAcc)}</td>
+            <td>${formatMetric(row.miou, row.miouStd)}</td>
+            <td>${formatMetric(row.dice, row.diceStd)}</td>
+            <td>${formatMetric(row.pixelAcc, row.pixelAccStd)}</td>
             <td>${formatSpread(row)}</td>
             <td>${formatDeepRankRange(row)}</td>
           </tr>
@@ -458,8 +464,8 @@
       })
     ]);
 
-    // Five-run deep mIoU centers and spread. The seed-17 deep table remains the
-    // source of display names, categories, Dice, and Pixel Accuracy.
+    // Five-run deep centers and spreads for every reported metric. The canonical
+    // deep table remains the source of display names and categories.
     const multiseedByModel = await fetch("assets/data/results/deep_survey_multiseed_summary.csv")
       .then(response => {
         if (!response.ok) {
@@ -473,6 +479,10 @@
           byModel[row.model_id] = {
             miouMean: toNumber(row.miou_mean),
             miouStd: toNumber(row.miou_std),
+            diceMean: toNumber(row.dice_mean),
+            diceStd: toNumber(row.dice_std),
+            pixelAccMean: toNumber(row.pixel_acc_mean),
+            pixelAccStd: toNumber(row.pixel_acc_std),
             nSeeds: toNumber(row.n_seeds),
             rankBest: toNumber(row.rank_best),
             rankWorst: toNumber(row.rank_worst)
@@ -494,7 +504,14 @@
     const deepRows = parseCsv(deepCsv).map(row => {
       const groupKey = row.group === "metallography" ? "deep_metallography" : "deep_general";
       const spread = multiseedByModel[row.model_id] || {};
-      if (!Number.isFinite(spread.miouMean) || !Number.isFinite(spread.miouStd)) {
+      if (
+        !Number.isFinite(spread.miouMean) ||
+        !Number.isFinite(spread.miouStd) ||
+        !Number.isFinite(spread.diceMean) ||
+        !Number.isFinite(spread.diceStd) ||
+        !Number.isFinite(spread.pixelAccMean) ||
+        !Number.isFinite(spread.pixelAccStd)
+      ) {
         throw new Error(`Missing five-run deep result for ${row.model_id}`);
       }
       return {
@@ -503,9 +520,11 @@
         groupLabel: formatGroupLabel(groupKey),
         category: humanizeToken(row.category),
         miou: spread.miouMean,
-        dice: toNumber(row.dice),
-        pixelAcc: toNumber(row.pixel_acc),
+        dice: spread.diceMean,
+        pixelAcc: spread.pixelAccMean,
         miouStd: spread.miouStd,
+        diceStd: spread.diceStd,
+        pixelAccStd: spread.pixelAccStd,
         nSeeds: spread.nSeeds,
         rankBest: spread.rankBest,
         rankWorst: spread.rankWorst
