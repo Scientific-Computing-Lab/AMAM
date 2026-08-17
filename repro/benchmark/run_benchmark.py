@@ -37,6 +37,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVC
 
 from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
+from canonical_predictions import CanonicalPredictionWriter
 from segmentation_metrics import segmentation_metric_protocol_metadata, segmentation_metrics
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -367,6 +368,7 @@ def write_outputs(
     split: Dict[str, SplitData],
     pairs: List[PairSample],
     subset_meta: Dict[str, dict],
+    canonical_prediction_models: List[str] | None = None,
 ) -> None:
     if df.empty:
         return
@@ -419,6 +421,8 @@ def write_outputs(
         "methods": sorted(df["method"].unique().tolist()),
         "subset_test_counts": {k: len(v.test) for k, v in split.items()},
         "subset_metadata_source": "assets/data/amam-dataset.json",
+        "canonical_prediction_export_enabled": bool(canonical_prediction_models),
+        "canonical_prediction_models": sorted(canonical_prediction_models or []),
     }
     (RESULT_DIR / "benchmark_protocol.json").write_text(json.dumps(protocol, indent=2))
 
@@ -451,6 +455,17 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Ignore existing per-image CSV and recompute selected methods.",
     )
+    p.add_argument(
+        "--save-canonical-predictions",
+        action="store_true",
+        help="Save exact metric-input masks for the requested canonical models.",
+    )
+    p.add_argument(
+        "--prediction-models",
+        type=str,
+        default="rf_pixel",
+        help="Comma-separated model ids to export (default: rf_pixel).",
+    )
     return p.parse_args()
 
 
@@ -469,6 +484,8 @@ def run(
     no_resume: bool = False,
     seed: int = DEFAULT_SEED,
     output_dir: Path = DEFAULT_RESULT_DIR,
+    save_canonical_predictions: bool = False,
+    prediction_models: List[str] | None = None,
 ):
     configure_run(seed, output_dir)
     pairs, k_by_subset, subset_meta = load_dataset_pairs()
@@ -480,6 +497,31 @@ def run(
         methods = [m for m in methods if m[0] in wanted]
         if not methods:
             raise ValueError("No matching method ids in --methods.")
+
+    export_models = set(prediction_models or ["rf_pixel"])
+    selected_method_ids = {method for method, _category in methods}
+    prediction_writer = None
+    if save_canonical_predictions:
+        if not no_resume:
+            raise ValueError("Canonical prediction export requires --no-resume")
+        missing_export_models = sorted(export_models - selected_method_ids)
+        if missing_export_models:
+            raise ValueError(
+                f"Canonical prediction models are not in the executed sweep: {missing_export_models}"
+            )
+        protocol_metadata = {
+            **ground_truth_protocol_metadata(),
+            **segmentation_metric_protocol_metadata(),
+        }
+        prediction_writer = CanonicalPredictionWriter(
+            root=RESULT_DIR / "canonical_predictions",
+            track="classical",
+            seed=SEED,
+            image_size=IMG_SIZE,
+            split_mode=SPLIT_MODE,
+            protocol_metadata=protocol_metadata,
+            model_ids=export_models,
+        )
 
     raw_csv = RESULT_DIR / "benchmark_raw_per_image.csv"
     rows: List[dict] = []
@@ -525,6 +567,13 @@ def run(
                     trained=trained_models.get(method),
                 )
                 pred = hu_map(pred, gt, k)
+                if prediction_writer is not None and method in export_models:
+                    prediction_writer.save(
+                        model_id=method,
+                        subset_id=subset_id,
+                        image_name=sample.original_path.name,
+                        labels=pred,
+                    )
                 m = segmentation_metrics(pred, gt, k)
                 method_rows.append(
                     {
@@ -539,7 +588,16 @@ def run(
                     }
                 )
         rows.extend(method_rows)
-        write_outputs(pd.DataFrame(rows), split=split, pairs=pairs, subset_meta=subset_meta)
+        write_outputs(
+            pd.DataFrame(rows),
+            split=split,
+            pairs=pairs,
+            subset_meta=subset_meta,
+            canonical_prediction_models=sorted(export_models) if prediction_writer else None,
+        )
+
+    if prediction_writer is not None:
+        prediction_writer.finalize()
 
 
 if __name__ == "__main__":
@@ -550,4 +608,6 @@ if __name__ == "__main__":
         no_resume=args.no_resume,
         seed=args.seed,
         output_dir=args.output_dir,
+        save_canonical_predictions=args.save_canonical_predictions,
+        prediction_models=[m.strip() for m in args.prediction_models.split(",") if m.strip()],
     )

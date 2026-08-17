@@ -36,6 +36,7 @@ from skimage.filters import gabor
 from torch.utils.data import DataLoader, Dataset
 
 from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
+from canonical_predictions import CanonicalPredictionWriter
 from segmentation_metrics import segmentation_metric_protocol_metadata, segmentation_metrics
 
 warnings.filterwarnings(
@@ -387,6 +388,8 @@ def eval_model(
     feature_cache: ModeFeatureCache,
     input_mode: str,
     device: torch.device,
+    prediction_writer: CanonicalPredictionWriter | None = None,
+    prediction_model_id: str | None = None,
 ) -> List[dict]:
     model.eval()
     rows = []
@@ -403,6 +406,15 @@ def eval_model(
             logits = logits[0].detach().cpu().numpy()
             subset_logits = logits[rec.subset_global_ids, :, :]
             pred_local = np.argmax(subset_logits, axis=0).astype(np.int64)
+            if prediction_writer is not None:
+                if not prediction_model_id:
+                    raise ValueError("prediction_model_id is required when exporting predictions")
+                prediction_writer.save(
+                    model_id=prediction_model_id,
+                    subset_id=rec.subset_id,
+                    image_name=rec.image_name,
+                    labels=pred_local,
+                )
             m = segmentation_metrics(pred_local, rec.gt_local, rec.phase_count)
             rows.append(
                 {
@@ -431,6 +443,7 @@ def train_single_model(
     lr: float,
     weight_decay: float,
     workers: int,
+    prediction_writer: CanonicalPredictionWriter | None = None,
     ) -> Tuple[pd.DataFrame, dict]:
     in_channels = {
         "rgb": 3,
@@ -497,6 +510,8 @@ def train_single_model(
         feature_cache=feature_cache,
         input_mode=spec.input_mode,
         device=device,
+        prediction_writer=prediction_writer,
+        prediction_model_id=spec.model_id if prediction_writer is not None else None,
     )
     df = pd.DataFrame(rows)
 
@@ -778,6 +793,17 @@ def parse_args() -> argparse.Namespace:
             "Use a distinct directory per seed so runs do not overwrite each other."
         ),
     )
+    p.add_argument(
+        "--save-canonical-predictions",
+        action="store_true",
+        help="Save exact metric-input masks for the requested canonical models.",
+    )
+    p.add_argument(
+        "--prediction-models",
+        type=str,
+        default="dl_unet_effb0,metal_unetpp_clahe_effb0",
+        help="Comma-separated model ids to export as canonical predictions.",
+    )
     return p.parse_args()
 
 
@@ -819,6 +845,33 @@ def main() -> None:
     if args.max_models > 0:
         specs = specs[: args.max_models]
 
+    export_models = {
+        model_id.strip() for model_id in args.prediction_models.split(",") if model_id.strip()
+    }
+    prediction_writer = None
+    if args.save_canonical_predictions:
+        if not args.no_resume:
+            raise ValueError("Canonical prediction export requires --no-resume")
+        selected_model_ids = {spec.model_id for spec in specs}
+        missing_export_models = sorted(export_models - selected_model_ids)
+        if missing_export_models:
+            raise ValueError(
+                f"Canonical prediction models are not in the executed sweep: {missing_export_models}"
+            )
+        protocol_metadata = {
+            **ground_truth_protocol_metadata(),
+            **segmentation_metric_protocol_metadata(),
+        }
+        prediction_writer = CanonicalPredictionWriter(
+            root=OUT_DIR / "canonical_predictions",
+            track="deep",
+            seed=SEED,
+            image_size=(args.img_size, args.img_size),
+            split_mode=SPLIT_MODE,
+            protocol_metadata=protocol_metadata,
+            model_ids=export_models,
+        )
+
     used_modes = [s.input_mode for s in specs]
     feature_cache = ModeFeatureCache(records=records, modes=used_modes)
 
@@ -854,6 +907,9 @@ def main() -> None:
                 lr=args.lr,
                 weight_decay=args.weight_decay,
                 workers=args.workers,
+                prediction_writer=(
+                    prediction_writer if prediction_writer is not None and spec.model_id in export_models else None
+                ),
             )
         except RuntimeError as exc:
             if device.type == "mps":
@@ -871,6 +927,11 @@ def main() -> None:
                     lr=args.lr,
                     weight_decay=args.weight_decay,
                     workers=args.workers,
+                    prediction_writer=(
+                        prediction_writer
+                        if prediction_writer is not None and spec.model_id in export_models
+                        else None
+                    ),
                 )
             else:
                 raise
@@ -954,8 +1015,13 @@ def main() -> None:
         "selected_models": [s.model_id for s in specs],
         "completed_models": sorted(per_image["model_id"].unique().tolist()),
         "resume_enabled": (not args.no_resume),
+        "canonical_prediction_export_enabled": prediction_writer is not None,
+        "canonical_prediction_models": sorted(export_models) if prediction_writer else [],
     }
     (OUT_DIR / "deep_protocol.json").write_text(json.dumps(protocol, indent=2))
+
+    if prediction_writer is not None:
+        prediction_writer.finalize()
 
     print("\n[done] saved results to", OUT_DIR)
     print("\n[general top]")

@@ -21,6 +21,10 @@ from typing import Dict, Iterable, List, Set
 
 import pandas as pd
 
+from canonical_predictions import load_canonical_manifest
+from gt_mask_decoder import ground_truth_protocol_metadata
+from segmentation_metrics import segmentation_metric_protocol_metadata
+
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RESULTS = REPO_ROOT / "repro/results"
@@ -43,6 +47,11 @@ FOUNDATION_PER_SUBSET = RESULTS / "foundation_edge/foundation_edge_per_subset.cs
 CLASSICAL_PROTOCOL = RESULTS / "classical/benchmark_protocol.json"
 DEEP_PROTOCOL = RESULTS / "deep_survey/deep_protocol.json"
 FOUNDATION_PROTOCOL = RESULTS / "foundation_edge/foundation_edge_protocol.json"
+CLASSICAL_PREDICTION_ROOT = RESULTS / "classical/canonical_predictions"
+DEEP_PREDICTION_ROOT = RESULTS / "deep_survey_seed17/canonical_predictions"
+CLASSICAL_PREDICTION_MANIFEST = CLASSICAL_PREDICTION_ROOT / "manifest.json"
+DEEP_PREDICTION_MANIFEST = DEEP_PREDICTION_ROOT / "manifest.json"
+PANEL_METADATA = REPO_ROOT / "repro/figures/appendix_preds/panel_metadata.json"
 
 MANIFEST = RESULTS / "model_provenance_manifest.csv"
 DATASET_MANIFEST = REPO_ROOT / "assets/data/amam-dataset.json"
@@ -50,6 +59,8 @@ CODE_ARTIFACTS = [
     REPO_ROOT / "repro/benchmark/run_deep_survey.py",
     REPO_ROOT / "repro/benchmark/aggregate_deep_multiseed.py",
     REPO_ROOT / "repro/benchmark/plot_benchmark_gap_figure.py",
+    REPO_ROOT / "repro/benchmark/canonical_predictions.py",
+    REPO_ROOT / "repro/benchmark/build_appendix_representative_assets.py",
     REPO_ROOT / "repro/requirements.txt",
     REPO_ROOT / "assets/js/report.js",
 ]
@@ -113,6 +124,19 @@ EXPECTED_DEEP = {
 }
 
 EXPECTED_PAIRS = 128
+CANONICAL_DEEP_PREDICTION_MODELS = {
+    "dl_unet_effb0",
+    "metal_unetpp_clahe_effb0",
+}
+CANONICAL_CLASSICAL_PREDICTION_MODELS = {"rf_pixel"}
+REPRESENTATIVE_IMAGES = {
+    ("4130-steel", "4130 x 10 (1).jpg"),
+    ("6280-cast-iron-low", "6280 x 10 (1).jpg"),
+    ("6280-cast-iron-high", "6280 x 20 (1).jpg"),
+    ("5884-armor-steel", "5884 x 5 (3).jpg"),
+    ("418-17-4ph-x5", "x5 (1).jpg"),
+    ("418-17-4ph-x20", "x20 (1).jpg"),
+}
 
 
 def sha256(path: Path) -> str:
@@ -147,6 +171,26 @@ def get_git_commit() -> str:
         return "unknown"
 
 
+def require_representative_predictions(
+    manifest: dict,
+    model_ids: Set[str],
+    representative_images: Set[tuple[str, str]],
+    track: str,
+) -> None:
+    present = {
+        (str(entry["model_id"]), str(entry["subset_id"]), str(entry["image_name"]))
+        for entry in manifest.get("files", [])
+    }
+    required = {
+        (model_id, subset_id, image_name)
+        for model_id in model_ids
+        for subset_id, image_name in representative_images
+    }
+    missing = sorted(required - present)
+    if missing:
+        raise RuntimeError(f"{track} canonical predictions are missing representative entries: {missing}")
+
+
 def main() -> None:
     required_files = [
         CLASSICAL_SUMMARY,
@@ -164,6 +208,9 @@ def main() -> None:
         CLASSICAL_PROTOCOL,
         DEEP_PROTOCOL,
         FOUNDATION_PROTOCOL,
+        CLASSICAL_PREDICTION_MANIFEST,
+        DEEP_PREDICTION_MANIFEST,
+        PANEL_METADATA,
         MANIFEST,
         DATASET_MANIFEST,
         *CODE_ARTIFACTS,
@@ -349,6 +396,39 @@ def main() -> None:
     if f_protocol.get("split_mode") != "fullset_no_holdout":
         raise RuntimeError("foundation protocol split_mode is not fullset_no_holdout")
 
+    canonical_protocol_metadata = {
+        **ground_truth_protocol_metadata(),
+        **segmentation_metric_protocol_metadata(),
+    }
+    classical_prediction_manifest = load_canonical_manifest(
+        root=CLASSICAL_PREDICTION_ROOT,
+        expected_track="classical",
+        expected_seed=17,
+        expected_models=CANONICAL_CLASSICAL_PREDICTION_MODELS,
+        expected_protocol=canonical_protocol_metadata,
+        expected_count=EXPECTED_PAIRS,
+    )
+    deep_prediction_manifest = load_canonical_manifest(
+        root=DEEP_PREDICTION_ROOT,
+        expected_track="deep",
+        expected_seed=17,
+        expected_models=CANONICAL_DEEP_PREDICTION_MODELS,
+        expected_protocol=canonical_protocol_metadata,
+        expected_count=EXPECTED_PAIRS * len(CANONICAL_DEEP_PREDICTION_MODELS),
+    )
+    require_representative_predictions(
+        classical_prediction_manifest,
+        CANONICAL_CLASSICAL_PREDICTION_MODELS,
+        REPRESENTATIVE_IMAGES,
+        "classical",
+    )
+    require_representative_predictions(
+        deep_prediction_manifest,
+        CANONICAL_DEEP_PREDICTION_MODELS,
+        REPRESENTATIVE_IMAGES,
+        "deep",
+    )
+
     audit = {
         "status": "PASS",
         "git_commit": get_git_commit(),
@@ -366,6 +446,8 @@ def main() -> None:
             "manifest_matches_results": m_ids == all_ids,
             "deep_multiseed_complete": len(deep_runs) == 29 * 5,
             "deep_multiseed_summary_matches_runs": True,
+            "canonical_prediction_manifests_valid": True,
+            "representative_panels_use_canonical_predictions": True,
         },
         "artifact_sha256": {str(p.relative_to(REPO_ROOT)): sha256(p) for p in required_files + [MANIFEST]},
     }
@@ -391,6 +473,8 @@ def main() -> None:
         f"- Provenance manifest matches results IDs: `{audit['consistency']['manifest_matches_results']}`",
         f"- Deep five-run values are complete (29 x 5): `{audit['consistency']['deep_multiseed_complete']}`",
         f"- Deep aggregate matches the per-seed values: `{audit['consistency']['deep_multiseed_summary_matches_runs']}`",
+        f"- Canonical prediction manifests and hashes validate: `{audit['consistency']['canonical_prediction_manifests_valid']}`",
+        f"- Representative panels use seed-17 canonical predictions: `{audit['consistency']['representative_panels_use_canonical_predictions']}`",
         "",
         "## Key Artifacts (SHA256)",
     ]
