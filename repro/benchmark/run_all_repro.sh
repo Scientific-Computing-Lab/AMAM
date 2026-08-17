@@ -17,7 +17,7 @@ RUN_LOG="${RUN_LOG:-repro/run_all_repro.log}"
 
 # The model scripts resume from existing per-model rows by default, so a rerun
 # would re-emit cached results instead of recomputing them -- and the audit in
-# step 8 would then verify stale output. A reproduction run must recompute;
+# step 10 would then verify stale output. A reproduction run must recompute;
 # export RESUME=1 to continue a genuinely interrupted run instead.
 RESUME_ARGS=(--no-resume)
 CLASSICAL_PREDICTION_ARGS=(--save-canonical-predictions --prediction-models rf_pixel)
@@ -28,9 +28,18 @@ DEEP_PREDICTION_ARGS=(
 if [[ "${RESUME:-0}" == "1" ]]; then
   RESUME_ARGS=()
   CLASSICAL_PREDICTION_ARGS=()
-  DEEP_PREDICTION_ARGS=()
   echo "[info] RESUME=1 -> reusing completed models from a previous run"
 fi
+
+run_cmd() {
+  if [[ "${REPRO_DRY_RUN:-0}" == "1" ]]; then
+    printf '[dry-run]'
+    printf ' %q' "$@"
+    printf '\n'
+    return 0
+  fi
+  "$@"
+}
 
 mkdir -p "$(dirname "$RUN_LOG")"
 if [[ "${RESUME:-0}" != "1" ]]; then
@@ -44,7 +53,7 @@ echo "[info] live log: $RUN_LOG"
 
 if [[ "${SKIP_FOUNDATION:-0}" != "1" ]]; then
   echo "[preflight] Foundation/edge device and TextureSAM assets"
-  "$PYTHON_BIN" -u repro/benchmark/run_foundation_edge_addons.py \
+  run_cmd "$PYTHON_BIN" -u repro/benchmark/run_foundation_edge_addons.py \
     --img-size "$IMG_SIZE" --device "$DEVICE" --preflight-only
 fi
 
@@ -53,40 +62,65 @@ if [[ "${PREFLIGHT_ONLY:-0}" == "1" ]]; then
   exit 0
 fi
 
-echo "[1/8] Classical benchmark (10 methods)"
-"$PYTHON_BIN" -u repro/benchmark/run_benchmark.py \
+echo "[1/10] Classical benchmark (10 methods)"
+run_cmd "$PYTHON_BIN" -u repro/benchmark/run_benchmark.py \
   "${RESUME_ARGS[@]}" "${CLASSICAL_PREDICTION_ARGS[@]}"
 
 if [[ "${SKIP_DEEP:-0}" != "1" ]]; then
-  echo "[2/8] Deep supervised survey (29 models)"
-  "$PYTHON_BIN" -u repro/benchmark/run_deep_survey.py \
-    --img-size "$IMG_SIZE" --epochs 5 --batch-size 4 --device "$DEVICE" \
-    "${RESUME_ARGS[@]}" "${DEEP_PREDICTION_ARGS[@]}"
+  echo "[2/10] Deep supervised survey (29 models x seeds 17-21)"
+  for seed in 17 18 19 20 21; do
+    seed_resume_args=("${RESUME_ARGS[@]}")
+    seed_prediction_args=()
+    if [[ "$seed" == "17" ]]; then
+      seed_prediction_args=("${DEEP_PREDICTION_ARGS[@]}")
+    fi
+
+    if [[ "${RESUME:-0}" == "1" ]]; then
+      seed_resume_args=()
+      seed_prediction_args=()
+      if [[ "$seed" == "17" && ! -f "repro/results/deep_survey_seed17/canonical_predictions/manifest.json" ]]; then
+        echo "[info] seed-17 canonical manifest missing -> clean seed-17 rerun"
+        seed_resume_args=(--no-resume)
+        seed_prediction_args=("${DEEP_PREDICTION_ARGS[@]}")
+      fi
+    fi
+
+    run_cmd "$PYTHON_BIN" -u repro/benchmark/run_deep_survey.py \
+      --img-size "$IMG_SIZE" --epochs 5 --batch-size 4 --device "$DEVICE" \
+      --seed "$seed" --out-dir "repro/results/deep_survey_seed${seed}" \
+      "${seed_resume_args[@]}" "${seed_prediction_args[@]}"
+  done
 else
-  echo "[2/8] SKIP_DEEP=1 -> skipping deep survey"
+  echo "[2/10] SKIP_DEEP=1 -> using existing seed 17-21 deep results"
 fi
+
+echo "[3/10] Aggregate deep seeds 17-21"
+run_cmd "$PYTHON_BIN" -u repro/benchmark/aggregate_deep_multiseed.py
+
+echo "[4/10] Promote validated seed-17 deep details"
+run_cmd "$PYTHON_BIN" -u repro/benchmark/promote_deep_seed.py
 
 if [[ "${SKIP_FOUNDATION:-0}" != "1" ]]; then
-  echo "[3/8] Foundation/edge survey (6 models incl. TextureSAM)"
-  "$PYTHON_BIN" -u repro/benchmark/run_foundation_edge_addons.py \
+  echo "[5/10] Foundation/edge survey (6 models incl. TextureSAM)"
+  run_cmd "$PYTHON_BIN" -u repro/benchmark/run_foundation_edge_addons.py \
     --img-size "$IMG_SIZE" --device "$DEVICE" "${RESUME_ARGS[@]}"
 else
-  echo "[3/8] SKIP_FOUNDATION=1 -> skipping foundation/edge survey"
+  echo "[5/10] SKIP_FOUNDATION=1 -> skipping foundation/edge survey"
 fi
 
-echo "[4/8] Benchmark gap figure"
-"$PYTHON_BIN" -u repro/benchmark/plot_benchmark_gap_figure.py
+echo "[6/10] Track-specific reported-score figure"
+run_cmd "$PYTHON_BIN" -u repro/benchmark/plot_benchmark_gap_figure.py
 
-echo "[5/8] Representative appendix prediction assets"
-"$PYTHON_BIN" -u repro/benchmark/build_appendix_representative_assets.py
+echo "[7/10] Representative appendix prediction assets"
+run_cmd "$PYTHON_BIN" -u repro/benchmark/build_appendix_representative_assets.py
 
-echo "[6/8] Publish results to website assets"
-"$PYTHON_BIN" -u repro/benchmark/publish_results_to_site.py
+echo "[8/10] Publish results to website assets"
+run_cmd "$PYTHON_BIN" -u repro/benchmark/publish_results_to_site.py
 
-echo "[7/8] Build per-model provenance manifest"
-"$PYTHON_BIN" -u repro/benchmark/build_model_provenance_manifest.py
+echo "[9/10] Build per-model provenance manifest"
+run_cmd "$PYTHON_BIN" -u repro/benchmark/build_model_provenance_manifest.py
 
-echo "[8/8] Artifact consistency audit (45 methods)"
-"$PYTHON_BIN" -u repro/benchmark/verify_45_model_repro.py
+echo "[10/10] Artifact consistency audit (45 methods)"
+run_cmd "$PYTHON_BIN" -u repro/benchmark/verify_45_model_repro.py
 
 echo "[done] Repro pipeline complete."
