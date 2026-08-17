@@ -35,6 +35,7 @@ from transformers import pipeline
 from controlnet_aux import HEDdetector, PidiNetDetector
 
 from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
+from segmentation_metrics import segmentation_metric_protocol_metadata, segmentation_metrics
 
 SEED = 17
 SPLIT_MODE = "fullset_no_holdout"
@@ -149,25 +150,6 @@ def hu_map(pred: np.ndarray, gt: np.ndarray, k: int) -> np.ndarray:
     for r, c in zip(row, col):
         mapped[pred == r] = c
     return mapped
-
-
-def metrics(pred: np.ndarray, gt: np.ndarray, k: int) -> Dict[str, float]:
-    ious, dices = [], []
-    for c in range(k):
-        p = pred == c
-        g = gt == c
-        inter = np.logical_and(p, g).sum()
-        union = np.logical_or(p, g).sum()
-        iou = inter / union if union else 1.0
-        denom = p.sum() + g.sum()
-        dice = (2 * inter) / denom if denom else 1.0
-        ious.append(iou)
-        dices.append(dice)
-    return {
-        "miou": float(np.mean(ious)),
-        "dice": float(np.mean(dices)),
-        "pixel_acc": float((pred == gt).mean()),
-    }
 
 
 def kmeans_rgb(img_rgb: np.ndarray, k: int) -> np.ndarray:
@@ -460,7 +442,7 @@ def main() -> None:
             k = sample.phase_count
             pred = fn(img, k)
             pred = hu_map(pred, gt, k)
-            m = metrics(pred, gt, k)
+            m = segmentation_metrics(pred, gt, k)
             rows.append(
                 {
                     "model_id": model_id,
@@ -518,6 +500,7 @@ def main() -> None:
         "device": str(device),
         "split_mode": SPLIT_MODE,
         **ground_truth_protocol_metadata(),
+        **segmentation_metric_protocol_metadata(),
         "n_pairs": len(pairs),
         "train_images": int(sum(len(v.train) for v in split.values())),
         "test_images": len(test_samples),

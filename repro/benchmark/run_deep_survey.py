@@ -36,6 +36,7 @@ from skimage.filters import gabor
 from torch.utils.data import DataLoader, Dataset
 
 from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
+from segmentation_metrics import segmentation_metric_protocol_metadata, segmentation_metrics
 
 warnings.filterwarnings(
     "ignore",
@@ -375,23 +376,6 @@ def make_model(spec: ModelSpec, num_classes: int, in_channels: int) -> nn.Module
     return model
 
 
-def metrics_local(pred: np.ndarray, gt: np.ndarray, k: int) -> Dict[str, float]:
-    ious = []
-    dices = []
-    for c in range(k):
-        p = pred == c
-        g = gt == c
-        inter = np.logical_and(p, g).sum()
-        union = np.logical_or(p, g).sum()
-        iou = inter / union if union else 1.0
-        denom = p.sum() + g.sum()
-        dice = (2 * inter) / denom if denom else 1.0
-        ious.append(iou)
-        dices.append(dice)
-    acc = (pred == gt).mean()
-    return {"miou": float(np.mean(ious)), "dice": float(np.mean(dices)), "pixel_acc": float(acc)}
-
-
 def count_params_m(model: nn.Module) -> float:
     return float(sum(p.numel() for p in model.parameters()) / 1e6)
 
@@ -419,7 +403,7 @@ def eval_model(
             logits = logits[0].detach().cpu().numpy()
             subset_logits = logits[rec.subset_global_ids, :, :]
             pred_local = np.argmax(subset_logits, axis=0).astype(np.int64)
-            m = metrics_local(pred_local, rec.gt_local, rec.phase_count)
+            m = segmentation_metrics(pred_local, rec.gt_local, rec.phase_count)
             rows.append(
                 {
                     "subset": rec.subset_id,
@@ -961,6 +945,7 @@ def main() -> None:
         "weight_decay": args.weight_decay,
         "split_mode": SPLIT_MODE,
         **ground_truth_protocol_metadata(),
+        **segmentation_metric_protocol_metadata(),
         "n_pairs": len(records),
         "train_images": len(train_indices),
         "test_images": len(test_indices),
