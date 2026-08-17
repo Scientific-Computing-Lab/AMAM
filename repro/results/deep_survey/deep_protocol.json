@@ -109,5 +109,10 @@
     "metal_unetpp_gray_r34",
     "metal_upernet_clahe_b2"
   ],
-  "resume_enabled": false
+  "resume_enabled": false,
+  "canonical_prediction_export_enabled": true,
+  "canonical_prediction_models": [
+    "dl_unet_effb0",
+    "metal_unetpp_clahe_effb0"
+  ]
 }

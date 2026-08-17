@@ -8,7 +8,7 @@
     "encoder": "resnet34",
     "input_mode": "rgb",
     "params_m": 24.438109,
-    "train_seconds": 5.9802398681640625,
+    "train_seconds": 5.749994277954102,
     "device": "cuda:0"
   },
   "dl_unetpp_r34": {
@@ -20,7 +20,7 @@
     "encoder": "resnet34",
     "input_mode": "rgb",
     "params_m": 26.080349,
-    "train_seconds": 9.398961305618286,
+    "train_seconds": 9.4020254611969,
     "device": "cuda:0"
   },
   "dl_deeplabv3_r34": {
@@ -32,7 +32,7 @@
     "encoder": "resnet34",
     "input_mode": "rgb",
     "params_m": 26.010189,
-    "train_seconds": 8.51984453201294,
+    "train_seconds": 8.46510624885559,
     "device": "cuda:0"
   },
   "dl_deeplabv3p_r34": {
@@ -44,7 +44,7 @@
     "encoder": "resnet34",
     "input_mode": "rgb",
     "params_m": 22.440541,
-    "train_seconds": 4.321434736251831,
+    "train_seconds": 4.36090874671936,
     "device": "cuda:0"
   },
   "dl_fpn_r34": {
@@ -56,7 +56,7 @@
     "encoder": "resnet34",
     "input_mode": "rgb",
     "params_m": 23.156941,
-    "train_seconds": 4.500610828399658,
+    "train_seconds": 4.381798505783081,
     "device": "cuda:0"
   },
   "dl_pspnet_r34": {
@@ -68,7 +68,7 @@
     "encoder": "resnet34",
     "input_mode": "rgb",
     "params_m": 21.493293,
-    "train_seconds": 1.4961273670196533,
+    "train_seconds": 2.118518352508545,
     "device": "cuda:0"
   },
   "dl_linknet_r34": {
@@ -80,7 +80,7 @@
     "encoder": "resnet34",
     "input_mode": "rgb",
     "params_m": 21.772333,
-    "train_seconds": 4.3613176345825195,
+    "train_seconds": 4.463703155517578,
     "device": "cuda:0"
   },
   "dl_manet_r34": {
@@ -92,7 +92,7 @@
     "encoder": "resnet34",
     "input_mode": "rgb",
     "params_m": 31.785373,
-    "train_seconds": 6.219134569168091,
+    "train_seconds": 6.252310037612915,
     "device": "cuda:0"
   },
   "dl_segformer_b0": {
@@ -104,7 +104,7 @@
     "encoder": "mit_b0",
     "input_mode": "rgb",
     "params_m": 3.717485,
-    "train_seconds": 5.112878799438477,
+    "train_seconds": 4.491947412490845,
     "device": "cuda:0"
   },
   "dl_upernet_b0": {
@@ -116,7 +116,7 @@
     "encoder": "mit_b0",
     "input_mode": "rgb",
     "params_m": 10.735469,
-    "train_seconds": 5.322267055511475,
+    "train_seconds": 5.375056505203247,
     "device": "cuda:0"
   },
   "dl_segformer_b2": {
@@ -128,7 +128,7 @@
     "encoder": "mit_b2",
     "input_mode": "rgb",
     "params_m": 24.725453,
-    "train_seconds": 7.319450855255127,
+    "train_seconds": 7.707397937774658,
     "device": "cuda:0"
   },
   "dl_upernet_b2": {
@@ -140,7 +140,7 @@
     "encoder": "mit_b2",
     "input_mode": "rgb",
     "params_m": 32.530893,
-    "train_seconds": 8.741045713424683,
+    "train_seconds": 8.837082624435425,
     "device": "cuda:0"
   },
   "dl_unet_effb0": {
@@ -152,7 +152,7 @@
     "encoder": "tu-efficientnet_b0",
     "input_mode": "rgb",
     "params_m": 5.836441,
-    "train_seconds": 3.772817850112915,
+    "train_seconds": 4.189180612564087,
     "device": "cuda:0"
   },
   "dl_deeplabv3p_effb0": {
@@ -164,7 +164,7 @@
     "encoder": "tu-efficientnet_b0",
     "input_mode": "rgb",
     "params_m": 4.498393,
-    "train_seconds": 3.6058316230773926,
+    "train_seconds": 3.7881438732147217,
     "device": "cuda:0"
   },
   "metal_unet_gray_r34": {
@@ -176,7 +176,7 @@
     "encoder": "resnet34",
     "input_mode": "gray",
     "params_m": 24.431837,
-    "train_seconds": 5.319585800170898,
+    "train_seconds": 5.331686496734619,
     "device": "cuda:0"
   },
   "metal_unet_clahe_r34": {
@@ -188,7 +188,7 @@
     "encoder": "resnet34",
     "input_mode": "clahe_rgb",
     "params_m": 24.438109,
-    "train_seconds": 5.621365308761597,
+    "train_seconds": 5.54964804649353,
     "device": "cuda:0"
   },
   "metal_unet_edge4_r34": {
@@ -200,7 +200,7 @@
     "encoder": "resnet34",
     "input_mode": "edge4",
     "params_m": 24.441245,
-    "train_seconds": 5.508267879486084,
+    "train_seconds": 5.51254677772522,
     "device": "cuda:0"
   },
   "metal_unet_gabor_r34": {
@@ -212,7 +212,7 @@
     "encoder": "resnet34",
     "input_mode": "gabor3",
     "params_m": 24.438109,
-    "train_seconds": 10.574939727783203,
+    "train_seconds": 10.555008172988892,
     "device": "cuda:0"
   },
   "metal_unet_lbp_r34": {
@@ -224,7 +224,7 @@
     "encoder": "resnet34",
     "input_mode": "lbp3",
     "params_m": 24.438109,
-    "train_seconds": 6.024663686752319,
+    "train_seconds": 5.81996750831604,
     "device": "cuda:0"
   },
   "metal_unetpp_gray_r34": {
@@ -236,7 +236,7 @@
     "encoder": "resnet34",
     "input_mode": "gray",
     "params_m": 26.074077,
-    "train_seconds": 9.614816427230835,
+    "train_seconds": 9.445493698120117,
     "device": "cuda:0"
   },
   "metal_deeplabv3p_clahe_r34": {
@@ -248,7 +248,7 @@
     "encoder": "resnet34",
     "input_mode": "clahe_rgb",
     "params_m": 22.440541,
-    "train_seconds": 4.5651326179504395,
+    "train_seconds": 4.272280931472778,
     "device": "cuda:0"
   },
   "metal_fpn_gabor_r34": {
@@ -260,7 +260,7 @@
     "encoder": "resnet34",
     "input_mode": "gabor3",
     "params_m": 23.156941,
-    "train_seconds": 4.562272071838379,
+    "train_seconds": 4.338395595550537,
     "device": "cuda:0"
   },
   "metal_linknet_edge4_r34": {
@@ -272,7 +272,7 @@
     "encoder": "resnet34",
     "input_mode": "edge4",
     "params_m": 21.775469,
-    "train_seconds": 4.402167558670044,
+    "train_seconds": 4.302505731582642,
     "device": "cuda:0"
   },
   "metal_segformer_clahe_b0": {
@@ -284,7 +284,7 @@
     "encoder": "mit_b0",
     "input_mode": "clahe_rgb",
     "params_m": 3.717485,
-    "train_seconds": 4.06472110748291,
+    "train_seconds": 4.260363340377808,
     "device": "cuda:0"
   },
   "metal_upernet_clahe_b2": {
@@ -296,7 +296,7 @@
     "encoder": "mit_b2",
     "input_mode": "clahe_rgb",
     "params_m": 32.530893,
-    "train_seconds": 9.057300567626953,
+    "train_seconds": 8.852959632873535,
     "device": "cuda:0"
   },
   "metal_segformer_gray_b2": {
@@ -308,7 +308,7 @@
     "encoder": "mit_b2",
     "input_mode": "gray",
     "params_m": 24.719181,
-    "train_seconds": 6.478973150253296,
+    "train_seconds": 6.429521799087524,
     "device": "cuda:0"
   },
   "metal_manet_edge4_effb0": {
@@ -320,7 +320,7 @@
     "encoder": "tu-efficientnet_b0",
     "input_mode": "edge4",
     "params_m": 8.671727,
-    "train_seconds": 5.6778271198272705,
+    "train_seconds": 5.004312753677368,
     "device": "cuda:0"
   },
   "metal_unetpp_clahe_effb0": {
@@ -332,7 +332,7 @@
     "encoder": "tu-efficientnet_b0",
     "input_mode": "clahe_rgb",
     "params_m": 6.067961,
-    "train_seconds": 5.811806917190552,
+    "train_seconds": 5.092627286911011,
     "device": "cuda:0"
   },
   "metal_mlography_unet_vgg16_gray": {
@@ -344,7 +344,7 @@
     "encoder": "vgg16",
     "input_mode": "gray",
     "params_m": 23.748829,
-    "train_seconds": 9.413995265960693,
+    "train_seconds": 9.275118827819824,
     "device": "cuda:0"
   }
 }
