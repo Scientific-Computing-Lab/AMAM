@@ -26,7 +26,6 @@ import pandas as pd
 from PIL import Image
 from scipy.optimize import linear_sum_assignment
 from scipy.ndimage import distance_transform_edt
-from scipy.spatial.distance import cdist
 from skimage import color, filters, feature, segmentation
 from skimage.filters import gabor
 from skimage.morphology import binary_opening, disk
@@ -37,15 +36,19 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVC
 
-SEED = 17
-RNG = np.random.default_rng(SEED)
-random.seed(SEED)
-np.random.seed(SEED)
+from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
+from segmentation_metrics import segmentation_metric_protocol_metadata, segmentation_metrics
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_JSON = REPO_ROOT / "assets/data/amam-dataset.json"
-RESULT_DIR = REPO_ROOT / "repro/results/classical"
-RESULT_DIR.mkdir(parents=True, exist_ok=True)
+DEFAULT_SEED = 17
+DEFAULT_RESULT_DIR = REPO_ROOT / "repro/results/classical"
+
+SEED = DEFAULT_SEED
+RNG = np.random.default_rng(SEED)
+RESULT_DIR = DEFAULT_RESULT_DIR
+random.seed(SEED)
+np.random.seed(SEED)
 
 IMG_SIZE = (256, 256)
 SPLIT_MODE = "fullset_no_holdout"
@@ -172,31 +175,6 @@ def sanitize_features(features: np.ndarray, clip: float = 8.0) -> np.ndarray:
     return x.astype(np.float64, copy=False)
 
 
-def estimate_mask_centroids(split: Dict[str, SplitData], k_by_subset: Dict[str, int]) -> Dict[str, np.ndarray]:
-    centroids = {}
-    for subset_id, sdata in split.items():
-        k = k_by_subset[subset_id]
-        px = []
-        for sample in sdata.train:
-            m = read_image(sample.mask_path, mode="RGB").reshape(-1, 3)
-            if len(m) > 15000:
-                idx = RNG.choice(len(m), 15000, replace=False)
-                m = m[idx]
-            px.append(m)
-        all_px = np.concatenate(px, axis=0).astype(np.float64, copy=False)
-        km = KMeans(n_clusters=k, n_init=5, random_state=SEED)
-        km.fit(all_px)
-        centroids[subset_id] = km.cluster_centers_
-    return centroids
-
-
-def mask_to_labels(mask_rgb: np.ndarray, centers: np.ndarray) -> np.ndarray:
-    flat = mask_rgb.reshape(-1, 3).astype(np.float32)
-    d = cdist(flat, centers.astype(np.float32))
-    labels = np.argmin(d, axis=1)
-    return labels.reshape(mask_rgb.shape[:2])
-
-
 def hu_map(pred: np.ndarray, gt: np.ndarray, k: int) -> np.ndarray:
     conf = np.zeros((k, k), dtype=np.int64)
     for i in range(k):
@@ -207,22 +185,6 @@ def hu_map(pred: np.ndarray, gt: np.ndarray, k: int) -> np.ndarray:
     for r, c in zip(row_ind, col_ind):
         mapped[pred == r] = c
     return mapped
-
-
-def metrics(pred: np.ndarray, gt: np.ndarray, k: int) -> Dict[str, float]:
-    ious = []
-    dices = []
-    for c in range(k):
-        p = pred == c
-        g = gt == c
-        inter = np.logical_and(p, g).sum()
-        union = np.logical_or(p, g).sum()
-        iou = inter / union if union else 1.0
-        dice = (2 * inter) / (p.sum() + g.sum()) if (p.sum() + g.sum()) else 1.0
-        ious.append(iou)
-        dices.append(dice)
-    acc = (pred == gt).mean()
-    return {"miou": float(np.mean(ious)), "dice": float(np.mean(dices)), "pixel_acc": float(acc)}
 
 
 def feat_rgb(img_rgb: np.ndarray) -> np.ndarray:
@@ -325,15 +287,19 @@ def felzenszwalb_cluster(img_rgb: np.ndarray, k: int) -> np.ndarray:
     return seg_labels[seg]
 
 
-def train_pixel_model(split: Dict[str, SplitData], centers: Dict[str, np.ndarray], mode: str):
+def train_pixel_model(split: Dict[str, SplitData], mode: str):
     models = {}
     for subset_id, sdata in split.items():
         Xs = []
         ys = []
         for sample in sdata.train:
             img = read_image(sample.original_path, mode="RGB")
-            mask = read_image(sample.mask_path, mode="RGB")
-            y = mask_to_labels(mask, centers[subset_id]).reshape(-1)
+            y = decode_ground_truth(
+                sample.mask_path,
+                subset_id=sample.subset_id,
+                output_size=IMG_SIZE,
+                expected_phase_count=sample.phase_count,
+            ).reshape(-1)
             f = feat_rgb_grad(img)
             # sample pixels
             n = len(y)
@@ -445,6 +411,8 @@ def write_outputs(
         "seed": SEED,
         "img_size": IMG_SIZE,
         "split_mode": SPLIT_MODE,
+        **ground_truth_protocol_metadata(),
+        **segmentation_metric_protocol_metadata(),
         "n_pairs": len(pairs),
         "train_images": int(sum(len(v.train) for v in split.values())),
         "test_images": int(sum(len(v.test) for v in split.values())),
@@ -461,6 +429,18 @@ def write_outputs(
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Run AMAM classical benchmark methods.")
     p.add_argument(
+        "--seed",
+        type=int,
+        default=DEFAULT_SEED,
+        help=f"Random seed for sampling and randomized estimators (default: {DEFAULT_SEED}).",
+    )
+    p.add_argument(
+        "--output-dir",
+        type=Path,
+        default=DEFAULT_RESULT_DIR,
+        help="Output directory (default: repro/results/classical).",
+    )
+    p.add_argument(
         "--methods",
         type=str,
         default="",
@@ -474,10 +454,25 @@ def parse_args() -> argparse.Namespace:
     return p.parse_args()
 
 
-def run(method_filter: List[str] | None = None, no_resume: bool = False):
+def configure_run(seed: int, output_dir: Path) -> None:
+    global SEED, RNG, RESULT_DIR
+    SEED = seed
+    RNG = np.random.default_rng(seed)
+    RESULT_DIR = output_dir
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    random.seed(seed)
+    np.random.seed(seed)
+
+
+def run(
+    method_filter: List[str] | None = None,
+    no_resume: bool = False,
+    seed: int = DEFAULT_SEED,
+    output_dir: Path = DEFAULT_RESULT_DIR,
+):
+    configure_run(seed, output_dir)
     pairs, k_by_subset, subset_meta = load_dataset_pairs()
     split = deterministic_split(pairs)
-    centers = estimate_mask_centroids(split, k_by_subset)
 
     methods = list(ALL_METHODS)
     if method_filter:
@@ -502,9 +497,9 @@ def run(method_filter: List[str] | None = None, no_resume: bool = False):
 
     trained_models = {}
     if "rf_pixel" in pending:
-        trained_models["rf_pixel"] = train_pixel_model(split, centers, "rf")
+        trained_models["rf_pixel"] = train_pixel_model(split, "rf")
     if "svm_pixel" in pending:
-        trained_models["svm_pixel"] = train_pixel_model(split, centers, "svm")
+        trained_models["svm_pixel"] = train_pixel_model(split, "svm")
 
     for method, category in methods:
         if method in done_methods:
@@ -516,8 +511,12 @@ def run(method_filter: List[str] | None = None, no_resume: bool = False):
             k = k_by_subset[subset_id]
             for sample in sdata.test:
                 img = read_image(sample.original_path, mode="RGB")
-                mask = read_image(sample.mask_path, mode="RGB")
-                gt = mask_to_labels(mask, centers[subset_id])
+                gt = decode_ground_truth(
+                    sample.mask_path,
+                    subset_id=sample.subset_id,
+                    output_size=IMG_SIZE,
+                    expected_phase_count=sample.phase_count,
+                )
                 pred = predict_method(
                     method,
                     img,
@@ -526,7 +525,7 @@ def run(method_filter: List[str] | None = None, no_resume: bool = False):
                     trained=trained_models.get(method),
                 )
                 pred = hu_map(pred, gt, k)
-                m = metrics(pred, gt, k)
+                m = segmentation_metrics(pred, gt, k)
                 method_rows.append(
                     {
                         "method": method,
@@ -546,4 +545,9 @@ def run(method_filter: List[str] | None = None, no_resume: bool = False):
 if __name__ == "__main__":
     args = parse_args()
     method_filter = [m.strip() for m in args.methods.split(",") if m.strip()] if args.methods else None
-    run(method_filter=method_filter, no_resume=args.no_resume)
+    run(
+        method_filter=method_filter,
+        no_resume=args.no_resume,
+        seed=args.seed,
+        output_dir=args.output_dir,
+    )
