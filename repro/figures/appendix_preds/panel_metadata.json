@@ -1,0 +1,51 @@
+{
+  "schema_version": "canonical-qualitative-panels-v1",
+  "deep_seed": 17,
+  "classical_seed": 17,
+  "panel_size": [
+    192,
+    192
+  ],
+  "models": [
+    "rf_pixel",
+    "dl_unet_effb0",
+    "metal_unetpp_clahe_effb0"
+  ],
+  "classical_display_transform": "nearest-neighbor label resize 256x256 -> 192x192",
+  "deep_display_transform": "none",
+  "ground_truth_display_transform": "decode source RGB then nearest-neighbor label resize",
+  "classical_manifest_sha256": "eadcbe9d2c6dfcb638aef59669fb7af05518851d596f158eb3b655f3ba1f40b7",
+  "deep_manifest_sha256": "caaca3afbc0945bf7999e5390f450df1450abea45e2c48b193c4c0d2f24a8c6c",
+  "generated_files": [
+    "4130-steel-pred-classic-rf.png",
+    "4130-steel-pred-deep-unet-effb0.png",
+    "4130-steel-pred-metal-unetpp-clahe-effb0.png",
+    "4130-steel-viz-mask.png",
+    "4130-steel-viz-original.png",
+    "418-17-4ph-x20-pred-classic-rf.png",
+    "418-17-4ph-x20-pred-deep-unet-effb0.png",
+    "418-17-4ph-x20-pred-metal-unetpp-clahe-effb0.png",
+    "418-17-4ph-x20-viz-mask.png",
+    "418-17-4ph-x20-viz-original.png",
+    "418-17-4ph-x5-pred-classic-rf.png",
+    "418-17-4ph-x5-pred-deep-unet-effb0.png",
+    "418-17-4ph-x5-pred-metal-unetpp-clahe-effb0.png",
+    "418-17-4ph-x5-viz-mask.png",
+    "418-17-4ph-x5-viz-original.png",
+    "5884-armor-steel-pred-classic-rf.png",
+    "5884-armor-steel-pred-deep-unet-effb0.png",
+    "5884-armor-steel-pred-metal-unetpp-clahe-effb0.png",
+    "5884-armor-steel-viz-mask.png",
+    "5884-armor-steel-viz-original.png",
+    "6280-cast-iron-high-pred-classic-rf.png",
+    "6280-cast-iron-high-pred-deep-unet-effb0.png",
+    "6280-cast-iron-high-pred-metal-unetpp-clahe-effb0.png",
+    "6280-cast-iron-high-viz-mask.png",
+    "6280-cast-iron-high-viz-original.png",
+    "6280-cast-iron-low-pred-classic-rf.png",
+    "6280-cast-iron-low-pred-deep-unet-effb0.png",
+    "6280-cast-iron-low-pred-metal-unetpp-clahe-effb0.png",
+    "6280-cast-iron-low-viz-mask.png",
+    "6280-cast-iron-low-viz-original.png"
+  ]
+}

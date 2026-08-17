@@ -1,0 +1,2841 @@
+{
+  "schema_version": "canonical-predictions-v1",
+  "track": "deep",
+  "seed": 17,
+  "image_size": [
+    192,
+    192
+  ],
+  "split_mode": "fullset_no_holdout",
+  "protocol_metadata": {
+    "gt_decoder_version": "gt-source-rgb-v1",
+    "gt_palette_sha256": "bd9e45cc659f06fa5cf0a45004592c7c8b67691d2880f35d39a2e88ca5b56e6f",
+    "gt_decode_order": "source_rgb_to_labels_then_nearest_resize",
+    "segmentation_metric_version": "present-classes-per-image-v1",
+    "absent_class_policy": "exclude_if_absent_in_gt_and_prediction",
+    "metric_aggregation": "per_image_present_class_macro_then_subset_macro"
+  },
+  "model_ids": [
+    "dl_unet_effb0",
+    "metal_unetpp_clahe_effb0"
+  ],
+  "file_count": 256,
+  "files": [
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (1).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "fa4ef833f3f8cc5bc5edee6717326ed9c795970310ca5a4244d7b171cf3ab22b"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (10).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c0d9e7bd4e8e3cd2b1f559a59cf76c9ee2516a7762964f263b59e1cc446c214e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (11).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f7e5a1af019bd3c03e6a4e8f5e3fbb773f364fd3d4f7b9ab0be43a3201426f02"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (12).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (12).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "85461ac3090e7a0fd4edf72d90f2c0c9f2f83679c9cad4bc8d4620c423a39492"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (13).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (13).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "001ffe145e3ce1aab953716a6765e61cfd35f3e766cf02b95c5dc99841a772c0"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (14).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (14).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "10d7ef3b734d4386c6e2bac3e393b71f4c59b9ee333ffb48fca2b73333387259"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (15).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (15).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "88d53ad604bfd83fe088ca8201431efda7c8016fc5b4c913ce7efb8410343404"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (16).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (16).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "32e419083e6e96f2007ba479db1e36f501d6b5b6777cb5cd904738de96d9abae"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (17).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (17).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "7a6dff338036cae23a4848b7de8e91a50ade9d66254238551b284bb9a3e4468f"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (18).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (18).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "d206cc9afac6172d16032670061a70be4abedb3d99ac9c7c2d70ba7b63f5dee8"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (19).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (19).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4805a552e9cf136c9fd8302e2f4fd917b8512d20cee1bb2bcc949a45fa80ac42"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (2).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4c94cb77d9c5e5c2f8f7bc6ba7096bb972012ba77791fb2e6b705007a5fac296"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (20).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (20).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ddaff1f1fd43cb4fa47d0674049dc69fce3b47780dbd143c74569cfdc37e7a49"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (3).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ce7f50e1e84c090cfeb9277c24dd7a5525b2a9c77a3a1ef55ad2421f414bb4c0"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (4).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f21b572e78defb9633fc18d3cd40bbea55635869a7baabe46429f2f28d269ab4"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (5).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4bd54558f746281ecbe92c19d39cd7d1aab16ea348400225b2f8ef9543971c58"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (6).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "78a5b83d48e60f204a8c6891945755fb92fa4faf0f70c757e5ec7e9a13eabe18"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (7).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "98dcda30afcbcfe3e57f7807d22b935d83fecad78c2afefc817e4c76746f8166"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (8).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "3300164ecdc09b43ef3533b719f8f258dc72733932ad6bfc2df9456ae929d138"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (9).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 10 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6a6256cd39985cacf81074b82d8703d605bc993568911ed5c287baab34718276"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (1).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "9687b05b2201d712b257dbc336d02c6cf0cc3cbe87440a1fafe149639c94be77"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (10).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "8d2c417a1edf5d705f04deadda8c581a39313ee2108098bee6570fbcc7499ef9"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (11).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2a0dd3dece7fcbe0097b6f352d548f58a5a96fd1c3966e38d727d78743a7023e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (12).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (12).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "46ff68c037bb8a21a0222e6ab2fdee909f8eea5da60b6b419dcf8cc865559d1e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (13).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (13).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "3e4e4614f443c510e3865dcb76f09ce569276ca06bb19873cb9d5d81b425a1f5"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (14).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (14).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4edab16e21b4ca944ead8762ebef32aa0b81eda15033c2c244ae844b7ffd1645"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (15).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (15).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a4b0ec6af5d78a8370c200ea5a283b3a9d2d25b3a249a7566dc5839dc195b3a2"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (16).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (16).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "1df70e7bf82e8e7530da9cea80bbf70019fcf4f5fb64695b8cf52b1362337d04"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (17).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (17).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "10150cec16c340dcb0823afd7e390d20276529b3c1cc0a5287805fc3bf35f8b2"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (18).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (18).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6793c7e478333c93f53d657508878098eea5df2f39d1ce5c2d106586b300dbb5"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (19).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (19).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "28329c43c25a9231836b01aad0e3659eabf5cbb52f4c23e1f031faf84b094ee9"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (2).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "bb1f2ad8d2de1d8c2a9ddb7e01abf81a78132fd98e9c6f58d18b5215a245c054"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (20).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (20).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c063232eee4f13d1ee07a3ba24b2b12f4b6db0829fcfa36fa1a96305f127241c"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (3).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b9e5556a4fda4bf63d2e6996a0c9928e0af7241f20536307c8258d7864063f7b"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (4).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "3c6f5b3e4b1952bac0806e6cc35a1ada14a0aeccf26427eb138a436baad332bf"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (5).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "eeaf73bfc6b268ca6428a32a50194508cc23c142b1a73389cdf2924809082abd"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (6).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "64c4cca3b636cd84c12f4b7dfe57e5557ed2220999e3db0a66fe0bece496a9de"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (7).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "880a238e6fa6a890c54b15138fed22ebd4f9386b5dcd58e4307536e82b07b946"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (8).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "3d103a99ab2441b5efcf59992a526e58d86d641f3686c06b6358901eec615a5c"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (9).jpg",
+      "path": "dl_unet_effb0/4130-steel/4130 x 20 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "59c4547b11405ab65d816655177c27a40214b2c924bf97f2c2c0d4d60ddce043"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (1).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "cb7be83ee1a9fc21efc4154f56534f6ba6d25a2036659b99240badc8092b3a3a"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (10).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6d3ea25509bf722fd5e69992bccf2e8827080f7c53b07bc3cc6e14f2bacb77c0"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (11).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4689e347988cf6a33b76fdecb2a683ccd50aa49cdf46a6974dbabfa249c29899"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (12).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (12).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "67cc1692fe94994acf6e5377c21838f070198929a33a4038ca76709c62c866be"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (13).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (13).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "be89815df914ce41fb3bbdbb24fe745effe81b0d890df9087725c9ac062913a4"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (14).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (14).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "68f7d24003c053b79e8d9625d7d192179c12f6c8913e43616ff0f0d16d962cd7"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (15).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (15).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "66a7c2115a09f0b0939716c376c6021fee908936cf4af20e4486ee7650feffc1"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (16).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (16).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "32fb2976b1f9f6303eb7f89f4dd59aa9e39bf686e12b14ba95d037395ea9249d"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (17).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (17).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "88f9b4b1fef5e51e33006648fa09954a56900ad1fd3f7d825c401546c290560d"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (18).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (18).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "05cd79b6b803bf18ebc5c8318cdd72c0f9609c2b8334a991b051f392923c3106"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (19).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (19).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "74826635417f57ded8308ffab3678bbf244b611223985ad6ab20a18b5a63cded"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (2).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2018dec1e2fb7b9a2937af77c245c379850947bdd2e1eeb880c16756d7814321"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (20).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (20).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ca47492a0c487ae6a9317c05f8068222684befcd603653fb004dceaa0a768a9f"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (21).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (21).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "341cca2d55a44d779d8cfdd8b27e4ce6aaa158de1b795902e209033be299cf8e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (3).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b462022e7b08075d0d611894f0cf8516cf19afbaabfcb02510e5e8101377b2d3"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (4).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "8382acc881911ac1ad494e376deff6f05dae3a4c05ed1f8991fd069e97dd8842"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (5).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4fa56e564f809e6a4921d18fed10d8daf0b3c057d9a73601ba087120d5c699f6"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (6).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c55feac29569384253e1f8dcd4f417cb94655323d1bb8cc024fffc3d6cae3512"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (7).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "feba7b62d368eac1709fc8569290750a21311a113f0e6c0aa5bafc34a725b79c"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (8).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "8ada13821009cee2e36948a7a3823830697810bc91b2af21774a22b9ecec14a9"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (9).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x20/x20 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2f4e10f6944f4026b2f96df2e43820a50ae82b6b094dc2d8ee0ef49fdd98816a"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (1).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "1cc5a7196d8fb31dea59ddf7997cc4be58e9f711d8c32e9cbfc633cef0f49b04"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (10).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "3f3fb0b87d7a3721906e2b4350823279e82dbffc62aced71ce1213215f6b5a3d"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (11).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6063c8d9ad15c66f5c82c5ccf58f75cef0ca95c16f9e2ce3ccc5a0930e818000"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (12).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (12).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "9a767d4d287fbabce11b8d76ed76ff4c3855da46400d053a16b094ebb1f68e8c"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (13).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (13).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "0ae9c1a473730d09ee52ada2329f9a2abaf13f23ee397c7a7df7b0886f057b36"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (14).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (14).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e6a6fdea8d3937667c87da0c9795ac1146a0cb69081dbd2bebc8a42246d7b92d"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (15).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (15).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2b41cff1f2ec822be7a1cbde95ec328afbf8ba7b85de04e358ffc694277cab7b"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (16).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (16).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "d014e71047b85558b483ccb818e80159a21bcec2691492da94a1a84a9054f337"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (17).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (17).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ef69c34ec853137c62d3eed422c4b51e90a726b9e61b1c371e1189818283975e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (18).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (18).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "779e8817baeceae0465f2a7785b43d40257b7ff50e0e53b174659aa259439025"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (19).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (19).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5eee63cf313c3e41d76d68467400ea60079ad57d585c0a127e4467014cb75700"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (2).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "1d9adc0d4ba3ad5f5f6e10b02d39074f8e7834adc9450e8c87a550446e8a2e8c"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (20).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (20).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "3eb7b09f835871f8f6baee5d82281fafe6ad1bed95990ef5573223f0908db328"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (21).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (21).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "832edfda12409d9ff10dcd8938b3a911c53ef080868403b671d448ef9fe64a6f"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (22).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (22).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2377c845b1ac79baece5d1e6f35be4a533f4ae0ac735b5f080e879912d907f20"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (23).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (23).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "63910e738a3a7e4961204f75aa49c495fc7c1b4b15f227f162819b2141149f3e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (24).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (24).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "120ff08d1bbbe590b7c33a1c821d0b9c3aa091cadf2ed388bd18f53bd173a3a8"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (25).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (25).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e1fb3fb2b99f725f368b3502c0cba879c1770a2173ca69c9179779ade4bc1962"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (3).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "834820d5e447c06eeac934eddefde1eae1d4ab277eeed6589ed1e7aa18f05d94"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (4).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b9100596e6f3bcdcf3e88111d0a5f73913df9fbacf4b1c62425bce273a46c5bb"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (5).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e548fdda87fc49e901e567ea140fa5584150668f4dda550ab374500a37f540fd"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (6).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4258655487693b572fffeb57f1a2144e6721a40fbdb0319d1986ffef548d08b3"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (7).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a558a2ac9d1d2dcdf53e8498c1a2687eb951d3b053acbf480d37be446e6b8cf9"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (8).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a4b20ec16c205d2aa246354594557187ea19cc5feccd15e8016901db1a9cc100"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (9).jpg",
+      "path": "dl_unet_effb0/418-17-4ph-x5/x5 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "efec949c8bbda13d6fbfdcc227d262e15c9d37cb744a77bd95c66f03ba50b18a"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (1).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 10 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "89d20ac919b055420b955384b20d0be3bb04981d69b233d9ffdbc22a5d45b7cd"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (2).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 10 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "59307d003358781f94889022b23c80989fc10ded9546aff75cd173b5ef79d5dc"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (3).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 10 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e3afd8f544c7028fe73242f550b1ae35330155de72aab27b39d8e9af6092d34d"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (4).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 10 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "922c25bd287fe5c06e2db6efce8e35776234f4d12d45269082af57fdd9bbb0ba"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (5).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 10 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "8ffe042042c4925dff487145ee31e7859e8f65c7a1d29cef312db47367c29f0f"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (6).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 10 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ace2dfbc3ce4a335a24104a9bf06574d80bac7e9a96af09cff920c3e931d696e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (1).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 20 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "52bf1bb6a79a911af4fd2402031a52b18b29a35234b0eb36d1d2a41b5554ce3c"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (2).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 20 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f701ea269a3f61ee17fc0378f3a7cca477fabf1911fee45c2d7090b370a31763"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (3).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 20 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c12ca36396d951271ccf5f4f7e9b0344ae13caa0d5c96ff90152a51f2f5904ad"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (4).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 20 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "7acbf5322679a7890f05d6cb484563479febee69929397bd49753b6538d1ad5a"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (5).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 20 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "46e81a44e47160be1b79138e8ad1d5d61a49a40ab28d83f6c7b3d2f1ee130f78"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (6).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 20 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2e2986c6d4a6d5d85e274eb2af1462ab0eaea6c199f07e846d0685c21cad6d7b"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (1).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 5 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5e61aa63360373802e88e4e18321a4289b81275684ea340c313c1f9ac3d087c2"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (2).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 5 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "93d1cffed4275a863a5febe652535c1157aa7dff3f1175429f0339433008c4c4"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (3).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 5 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "31dcb81ba0602c7984ffd87431a87cbaf09ac261a5c653c7d5503b9948e06549"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (4).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 5 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "364d12dde48f44833932f44288300e4b5db8d75e0021ffc9ab53fb17144bcb82"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (5).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 5 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "0a014107c2db26fa4654614afd10677f6c6d833cbca3a0a40c7788c48cd3c9b3"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 50 (1).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 50 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "99c65e1d383a0f2f57cc553b4fea66cd0884f9738dddb754a3ced3d7966ae28f"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 50 (2).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 50 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5d17b127dcdcb661d5c572860e4ce802fd292eb4ee95113f63676202e9072222"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 50 (3).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 50 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5dd9b6e4cb178fc081a4432b7d104bb306fc865dff2483bdc9739a15504599e8"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 50 (4).jpg",
+      "path": "dl_unet_effb0/5884-armor-steel/5884 x 50 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2d12beaaaf18f9d99e4d41ea7e579595446eb7a7e5fce1abf0d901f3005b5017"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (1).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5d4ae1cb345b3b405a34e8319860cc58033e515b9ece2c0b2fdca5299d8a37f1"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (10).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c8236ab99c353a1a807e0448574037b640fa5eb4dec861e8c24f72cd6375be25"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (2).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ca854aeb1aef596b5f61fe15982c90e6be5ed7881e87cc15a8d88affa44153ea"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (3).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ae5ee65535d21187a51f5c2516fd4e0711315936acf5d81da5ef027cf494c819"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (4).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "09a0f9d2ab40a2abf6c8f8ce39bb808071df8c463d317bb853d5ace9f326dd14"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (5).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "eca8eeb141ace32d031e5117faab26273bfea47d9bf54c5004e2d5a764a57a64"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (6).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6a0a4b1857299b9cf6af96e6ef33d8daa2e5fe2e86a8f193eb1b712e22a9ac47"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (7).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "111e57333edb591a31afc4b9f422d660eaf6fa523033d2c1f4f6e685d3933dd7"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (8).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ca400b500b7b3d89693c7a659324e05290235c97202612c8de94a365b5e8bc6f"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (9).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-high/6280 x 20 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ae42f60865669414fe52929bc3ec4e30b17bd729fb23d0442d87acb5f2e2e648"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (1).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "04aa2ae135a45396e5e25a69508e2791c18eb9d7a147650d5913f12adac9b526"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (10).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5d3babcc594a655fb4013ec349a0f90982663b7f3708358644bae175585dc94e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (11).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "471140827a5c42c3ae482d450180be15e8803fb989242b690a8c77248a8af45f"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (2).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "0a2fa14f61dd83b8f288887f242c89a6a1de50da36496006c7a4bb0872dfc9c1"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (3).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c4593d5591dcdf789e7ad502500f75754083f006489c2c1e5c15328a4ea31fc0"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (4).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "fec1632f6cb768b2653707ac3874a6314d9c5ef878f2f33d9cbf10a2e91b5c1e"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (5).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e0b510b0a0546778479f29a543f689700579b260974bb8293e2909c14b14ecbd"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (6).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a6c2d9a96805d5c5c9da876577d0d17298c03fd5bc6998d468b00baa442670a2"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (7).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "280309ba294bc3f3af50812a356e54c39e774af62ed34b98b310e42d7fd24293"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (8).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "14abb163caddbbe17d7d9780e13c055b2758e05dd8f1a15b1b84e9b048f3edc8"
+    },
+    {
+      "model_id": "dl_unet_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (9).jpg",
+      "path": "dl_unet_effb0/6280-cast-iron-low/6280 x 10 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "27f9ddca8e3c5c34154fc6d6b191d0dd87dbae08e0e6162cca8888105be65dab"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a4d978846731d55643bc1c1ebb54675171c64c6e2b88e7cb06f8978a24b4b04e"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (10).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "df5ab63b1152723d726b1bf92ca24a9da4beb39bb9057e6914e8e2c474044429"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (11).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6614d85bf7de38cdd9a6aae888a554bdb6aee00383666bdc9fa86e57a9d3e441"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (12).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (12).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b7bf5d73fdb8435c3cc7b6a0bb29227737f46213a7f723eb14488c8671e9e706"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (13).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (13).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c772dc2e51212a9a3ba3617f062b5e57a2cf1843793caf83197a19fdfeac6667"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (14).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (14).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6885ece3e7b6d411c3df0f2df1d11c0db28839af8b71e4c8184385729bb8e4d6"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (15).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (15).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "987324b79c51929f0986479c0fdcebbab8d469d72ce6b7aebe924c73a50a7946"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (16).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (16).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f037f2dca9c2b829371c5aebb493759247430c3aade2ff41a5e41609acd15a7b"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (17).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (17).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "edf1c265d5c0275edf3ea707e0e81c09c97f09987fdefdcbff68ad292c197bf3"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (18).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (18).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "21190aa32313f65ca4f9f276fec95e559203bbde8eecc8df29dcbc968967fdbe"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (19).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (19).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4ddd9ea9e4181bedc2807d6bc02bd483c142e003c16a85e9d1b42d9076dd4a5c"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "d0110d5f1955a8895a83455c6214d566f577c44b56ff83baafa127a5f18bedc4"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (20).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (20).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c9551359d4b3f6ea5b3ff937f8f10862289f80a952c8a5893c65a3c395a557ea"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "26611c655879a152846ca2e52848cab4759dc1ec5bdc0a733368e9e971e8f354"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "70f9180297222fefd9a10debc1f650a41190e0cb83fc21db15ec8a007e5e6fa5"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e5ba20c33014a4daa87e41e9e6bd4bc18c41648e45945a292ddf6aa5e4ddd678"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (6).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b42b317608235f5544f1f397d665eb5057f31a85f5ab64f27b97383c0ef9b239"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (7).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a0455cb2ccd9645c448ff182eed1a2f7ae1caee7aa7dd5b913a2b275efe9fd94"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (8).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a005723df7ec218ca3ac4560302a45600304c51c732902767bbdb61918f656b6"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 10 (9).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 10 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c936502e9fd30aa767dbeab5d633c692727a106cb9cedb5451faca3275a6f172"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f001103d3af63591d81f6030d55b21332e75bc074a1c51380b25a472559c6973"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (10).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "82775b386a68f96c39cd2376afdfd8d1c3a247eb07d00d995543505faabc031e"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (11).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "eed194d9fc877024aaa3969bee61f9fe2e8933f2ffdb57518172af1b6e2f95c2"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (12).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (12).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "bdc8527475215ab3eb8f506bde0e4609c5851da312b3e48a68d32d8f512532d7"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (13).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (13).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f59f2ef307dc6b43dff54c7cb54bcf4f5d8394cac7f63ed394d042991254a9ce"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (14).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (14).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "92fcc7f694bf91ceedb88d6b43b21210479b2bd262616fe30c1669c5aa1645cd"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (15).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (15).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "3d74552915591fc39b393c1c6ab4b2db58128fbf24b2fbe22e580d49a54fcdf0"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (16).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (16).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "51d31503484b1aeae58b9c5f4b308dd722ab048f6953b81d3628b460f44e5d7a"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (17).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (17).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b56c926e6fe638c02b1e79d4ac96cae858da05d2bc562c0883edab65a6e92a95"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (18).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (18).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "caf20fb589ead3069a836e61eeda6cb49cc17f57515db715c42e274842a62dc3"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (19).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (19).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "de0b58a2c2384beb1620d74f58d59b5208098829f080fc5c114128e37cc531de"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "095a9e0a980f6b8c4d1b979a7467b21a54724e1958f30c78f94d2e5a0654143d"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (20).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (20).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a7dd5c31208f53a71cc17e24ad887f4c036992e982fdd0050ec160b81eef5678"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "54afbb23b8f6984a894f2a9090e9356554c20fbaa553e07701bd6db41a716006"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "27ceba570cd9cd4e7988e4978b8bb069ddf6f791fde333bf32bb2bc9c0c5febb"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "8a1bcb1dcda68ff778f24ac40f6d0bc2f5c5eb9c388018ef3580ffbaddd1c82d"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (6).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4aff81d7e12934897b0b3888082f08e751220823138fa773dc3b5b1aa3832dff"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (7).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "71ef826c04e893c1283dec027bceeb0633c9f34f06f1ad9085b88f38d24ed17b"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (8).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "0d77ceef92024e70e7ca1acab2178e6ee96ef45bc2d2ca4370eb723427cf00aa"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "4130-steel",
+      "image_name": "4130 x 20 (9).jpg",
+      "path": "metal_unetpp_clahe_effb0/4130-steel/4130 x 20 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2c1d123e14ae66d473261dc785e9f20b7b8fc1bcdbe0d9aece0aa1786cba278a"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e415d6760c2badba5f7595f5855954a60fa5445333d979d8ed6a5cd1b9c92396"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (10).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5cbff54f99367d92e303dae9a0442a2b3b8d73882233c17b3d82c0b342e31f94"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (11).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "53945e20c5145ca42d3c1b90d3c9f82a8d38eaf82e693d8b877593aea81ec629"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (12).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (12).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6798e079671dd08982b4c3c0d776c7982fbecc9fa0d861e59b0dcfae06c25c9f"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (13).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (13).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ee6398cd5adcea0c814a167d78708ecf09524499eaa14df671b07a91d3300e8b"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (14).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (14).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5a72cf8475ec2c706ab23a2f153faa0c7d6854a3a543d0b26c8bf69f1cdcf295"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (15).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (15).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "1f7d6c43d3e3be8486ed4fcfde0eea3b4e41c7b867d676759f85348b4cc95382"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (16).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (16).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ac3681637e3cb69a0dca52ca367eecb4438c17dbbe7669ca5a5996459bec78be"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (17).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (17).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2eeebe86226b3891e8d3e9ffc3888965d66feb541488c2c56e09b69682c30641"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (18).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (18).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6a6f0ed8fb5988a60f31dc2e08a5897ac2581d0f9d06a5b44306272e1ff50b08"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (19).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (19).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "31a3c4c29ef20eb9194f8e51056b5d60861b6f516104fe6217d74caff132a5ee"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "47ae3abb3dbf6a17fefa21442cca3c60a5797c42ef76579f71ee7f85a47c9a95"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (20).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (20).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c6f746c53e4d69baf8db7f54d90c1411c975869a0d66e54a6fbfe9a94ee3f842"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (21).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (21).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e0458b5a8afd2dbe13cc2b912d6121743175814c7efbdafdc20bbababc2c4140"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6e47dda0eda7c96a772fc58c66348a32c3fb1ebefe86ec650e9f9a275f627cd3"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a76559d373d76aab5afe43494993424632ef304dd1eacc19fbb1863763895275"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "cc73ace504f209d0b06a85cbe63c6cf76ba2f64de3752061b6343a857cee6892"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (6).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f5707e7e730a48d9226970046959c37f1631358a583f456ec8d116f3e6d89c11"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (7).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "59fee17fbbb8234af50387fa2aed91315cacf461578b2e08b93d873760e0367c"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (8).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f682650ade1ef3df59cb2c997c3a6c0d3b417c972745e88557f197652488ae42"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x20",
+      "image_name": "x20 (9).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x20/x20 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "7b69c16bbd94240cbfa9410a857104812790031882badc4ea2622b684602b2b8"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b2cd093ea2516de049ab2d589e358a4c6ee9b2e1d307d0cf19e79a5f86cbd93c"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (10).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c72fcff3b682969bb8e2088d70c3fba37e157f35bb7f7a5eedf1e52a2acdd298"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (11).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "074bd0874d829e0936eaeef8bd60a33661435e90aec94df7935223c28e7fa6ab"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (12).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (12).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "d4612dbc6e949aefd0f3ac9db5701292941c723cb13046b82babdfdbc17128a0"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (13).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (13).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ff3d52c756a3ad5df8e5097f5b9fe7dcf3539c3417683322e5d6b0946c68fb35"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (14).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (14).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2357ce6a008779dc1e5e4cc7ee90e2ee05d8bca6f8961afff18405b963406e24"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (15).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (15).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "8e020a89b7744f5c16d4d2f61f97a25af57a7b298d3fbcbe22c9251c36a613c3"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (16).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (16).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "98992d7ba9c22071f3f8865476a614296e0dc63e8f1f863ed20e90667f2783ac"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (17).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (17).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "490aa219780cc757907e78e8a39026c018c0a112b97c23b94ff77c5c0d5dee8b"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (18).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (18).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b72c57d3f0da9d726576674de1a96ad964b45125862439cc4c8c4ba775fb32e7"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (19).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (19).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "1052ff150918836328d6d1f1f48fc1a3425c6b3cca5933b293cfeee802f5c98b"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c89f063797cf412eeaa0e44ac07b3aa6387438818cd53e6121ca78e6f3db429f"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (20).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (20).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "54c7750d6d889eee49b1eef61a3b0f3233e208730dcf0b088a8faa6098ef24b7"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (21).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (21).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b53fbae896730773d8e2a7371a5f85b45862a7f5e2b46bee0bdd6f5b1360155a"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (22).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (22).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "89b2f65244e25924ad52e79cceaa0223cc60844ab356c87e0cf49d74992dadad"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (23).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (23).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "9247c94dc0cbfda9ec8d137d443f2e41405ea1b81a93cddb607bdc35ecbf0d3b"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (24).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (24).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e22922622c18bce3ec1dd2878246dabf757775354075f99cc60110702cdd250d"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (25).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (25).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b92b7d4ce017ff254f842524911b7ec4da75da73ccb415b88a567ed99e1c42cb"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "18bc617fa789e9d23ec7d659bd0b519214833d6854a1ecd50486ac40f1c13085"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "32fafd3f884dd8ce2cdad6185c5247d08058b2e5572597d20de938cdf311a3ee"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "57aa4291f94c8e4396bf670d14e32219f670c56359d7693bf1774552098b22e3"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (6).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "82974c8b3973f859b367ac6e70d317196040a278d14f8d0a73cf728f27348708"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (7).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "915886f995c044c264f81c15bfd70991711575bd1f87ec21379fd08d2e9ec7e4"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (8).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2034b4c48d8ab1324d759a993065ea78bbe6f36ed067648abc79169f0cb8e086"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "418-17-4ph-x5",
+      "image_name": "x5 (9).jpg",
+      "path": "metal_unetpp_clahe_effb0/418-17-4ph-x5/x5 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "164ef038fb3ffa47ec89271c5bcab5f85479a87bb3bffb4e82c4dbee76d5d9da"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 10 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c8243faf32f5165706b65754f3572a969aeb929950cf984bc3cb60a6d1841307"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 10 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "307879f6bd39eb71dc7ff4536f1d7748da13923104ad7cad59d3d57e870bbdd7"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 10 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "f176b4621bf6954649f39857a562ca9719f537a8e42eb3ee9ed7760d0779123d"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 10 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "ff2e4ed4d1115f99de7db60ff92f66a4a5cc9f33fbffdfd0eb0772f95b345d46"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 10 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "acec375575f0e2226c9ef09371e535eec9bbb6291c668087ad47dbc42bae0d6d"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 10 (6).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 10 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "8095d6af5acfd6e911d6343e5d560b076c342966e42e2127747ff7656d2fd7d8"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 20 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "53004b35726d6986a1bc142acd7b8043a3f29b84a28cfe5db40d92838cc661d8"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 20 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a0fda8ccce6ac635ac3aea10d879e5032518ce680c4d90a5f5d118dc783077df"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 20 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "7c063d8c8c0ca0d5c045c19915c2dd1f3c637f04bd6e2a563ffdb2ef76053cc2"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 20 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "c17f40f3a99a180dfbb9a1420b48d7024682c4f3fab9bfebc782eb1630a8e929"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 20 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a74c6ca7b06f204f62308e0a7a9912b9ac403ecf25f2b7d56a9b601ff0c7ba34"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 20 (6).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 20 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "eb045c5b1f1d299aa86937379cadb08a5e17257e5a7a0f40b1098df8ddcf6f29"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 5 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "a086facfceda89a4839e7254ba5d3c2311c5c9578d19951d98c0a28384291a2c"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 5 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2da04a026eec56120d8fb2adccbbd7b1b2448febf1459a5a17e3701e41985557"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 5 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b1f0e63d814aed39f0f202b7be1a87fb64b362b077241e0b008d44517455aa60"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 5 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "775a2cb49bb73f32ac57f362b0316a3e9b5f419c7bf083d98841bc0cd95b18a1"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 5 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 5 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "89d12edef891461bc841db0921fd9f892dc32c7dd46671f54536705a351334da"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 50 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 50 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "1329376536a240cbaf2a0e57b8d9726d08f57da09e5785323389bcaed7b2a7f8"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 50 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 50 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b3a5edc8e91aa967a5ab8e5a218349e2e60217221a59235648ed66d15cc1cb27"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 50 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 50 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "1f9dcc81220158f1c0a14b3acc583be76c74a91536edf3005dc1e94aebca297f"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "5884-armor-steel",
+      "image_name": "5884 x 50 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/5884-armor-steel/5884 x 50 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2622364d24a884d5c539897314cbac8732469dd6d26563945bf25120f01e1da6"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2123805616951e1fe5ca7dd6fb0effd0c780a55262c04c561ff0ca8426f4ab6b"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (10).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "535c377b6124c089a4db7b035f752a7b0ddff28858aadfcfe42de9d9af4079c9"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "265ed120a82a973c91ea5cc3f2104c4caad91895bf53296611e6a78419394c9e"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e051251cd0290927895103c453581913843b3e61f3675bbae4dafc5a2b68d06c"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "7a58b734ba22d58bd6c2acc573179dcca209be95d19abd9fdfe6edd9a412a2d8"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "179496710aff45f69711b2713d86a76c989cdb366106df71e8f600279796a837"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (6).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "2ac8bf7d7f2ab9b531a7993ef485f0e39fa0e29d18c9cea71addc8da216cf55a"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (7).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b45d6b99996f8017dabddaaf6adff2ef844dac69253b973c34ce31594264afff"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (8).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "93f68ab5493e87ac56bb7ad76bc1fbba782bfd755132116e7e8f60d1463c8d14"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-high",
+      "image_name": "6280 x 20 (9).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-high/6280 x 20 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "4ba62b0880dd100c49bcda5a02e339d557f447beab445d23c36f9369a9dca675"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (1).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (1).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "1d7992761e16656a7b4d66e56a2f39e1668d8f2f49705642a99f8f55b6d5a73b"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (10).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (10).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "6adfe48ebc267e08f0dc58c75dcfed95416bac06806185cff38c916c92271cec"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (11).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (11).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "9e26e75049c8d8d2bebae0548e7a3c258a8dcc6b30b0cbb24fe1355cb3848cae"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (2).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (2).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "124c3b1083815bf21ae181a456e41b59649f0fe2e2f3a618018ca7f76d527538"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (3).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (3).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "79c77b3bf72b1b6ea60ae512f52f7732eadce9bb3dceafed74232bd039fd4b23"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (4).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (4).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "b6f9f8d385d8d90aba9999e2dfb7d415aac4239e6f7c183e9fd934268bc406af"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (5).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (5).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "26f012741994945353c88ed8baeaf81cf7841744ea98e07bece7fff24e407576"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (6).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (6).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "963103764fbaf31162b80b37cb306ebceecb997d63daaa6135abf984b946057d"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (7).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (7).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "0a806da1e930e9ca4205776926caf3b064cb9422c41d43a65e19332ef8c9df1c"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (8).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (8).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "5f85f88be0a0e73d22075fa6c0c9ffc41ee5a45d77c33f0109c5d5fe32f72cb7"
+    },
+    {
+      "model_id": "metal_unetpp_clahe_effb0",
+      "subset_id": "6280-cast-iron-low",
+      "image_name": "6280 x 10 (9).jpg",
+      "path": "metal_unetpp_clahe_effb0/6280-cast-iron-low/6280 x 10 (9).png",
+      "shape": [
+        192,
+        192
+      ],
+      "sha256": "e0f3c8e70468bcbf4be57a5dd6bdde8100eadf8a03b0c8b4890e3b8f69119dd1"
+    }
+  ]
+}

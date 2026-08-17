@@ -1,20 +1,20 @@
 {
-  "texturesam_03": {
-    "runtime_sec": 430.8841164112091
-  },
-  "hed_watershed": {
-    "runtime_sec": 25.193551778793335
-  },
-  "pidi_watershed": {
-    "runtime_sec": 25.879039764404297
-  },
   "sam_vit_base": {
-    "runtime_sec": 438.35688042640686
+    "runtime_sec": 444.84141182899475
   },
   "slimsam_50": {
-    "runtime_sec": 420.38350915908813
+    "runtime_sec": 423.43547201156616
   },
   "slimsam_77": {
-    "runtime_sec": 427.68611550331116
+    "runtime_sec": 429.07087564468384
+  },
+  "texturesam_03": {
+    "runtime_sec": 434.6929032802582
+  },
+  "hed_watershed": {
+    "runtime_sec": 28.2360737323761
+  },
+  "pidi_watershed": {
+    "runtime_sec": 28.402329921722412
   }
 }
