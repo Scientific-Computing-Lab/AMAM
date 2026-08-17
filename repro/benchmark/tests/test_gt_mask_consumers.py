@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import ast
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -8,6 +10,18 @@ BENCHMARK_DIR = Path(__file__).resolve().parents[1]
 
 
 class GroundTruthConsumerTests(unittest.TestCase):
+    def test_classical_runner_help_exposes_multiseed_options(self) -> None:
+        result = subprocess.run(
+            [sys.executable, str(BENCHMARK_DIR / "run_benchmark.py"), "--help"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("--seed", result.stdout)
+        self.assertIn("--output-dir", result.stdout)
+
     def test_consumers_use_shared_decoder_without_runtime_gt_clustering(self) -> None:
         minimum_decode_calls = {
             "run_benchmark.py": 2,
