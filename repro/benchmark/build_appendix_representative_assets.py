@@ -28,6 +28,7 @@ from torch.utils.data import DataLoader
 
 import run_benchmark as rb
 import run_deep_survey as rds
+from gt_mask_decoder import decode_ground_truth, get_subset_prototypes
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REPRO_ROOT = REPO_ROOT / "repro"
@@ -115,12 +116,11 @@ def read_resized_rgb(path: Path, size: int) -> np.ndarray:
     )
 
 
-def train_best_classical_rf() -> tuple[Dict[str, object], Dict[str, np.ndarray], Dict[str, int]]:
+def train_best_classical_rf() -> tuple[Dict[str, object], Dict[str, int]]:
     pairs, phase_count, _subset_meta = rb.load_dataset_pairs()
     split = rb.deterministic_split(pairs)
-    centers = rb.estimate_mask_centroids(split, phase_count)
-    models = rb.train_pixel_model(split=split, centers=centers, mode="rf")
-    return models, centers, phase_count
+    models = rb.train_pixel_model(split=split, mode="rf")
+    return models, phase_count
 
 
 def train_deep_model_return_model(
@@ -197,12 +197,10 @@ def train_best_deep_models():
     pairs, phase_count, _subset_meta = rds.load_dataset_pairs()
     split = rds.deterministic_split(pairs)
     img_size = 192
-    centers = rds.estimate_mask_centroids(split=split, phase_count=phase_count, img_size=img_size)
     subset_offsets, subset_global_ids, num_classes = rds.build_subset_offsets(phase_count)
     records = rds.build_records(
         pairs=pairs,
         split=split,
-        centers=centers,
         subset_offsets=subset_offsets,
         subset_global_ids=subset_global_ids,
         img_size=img_size,
@@ -247,7 +245,7 @@ def train_best_deep_models():
 
     return {
         "img_size": img_size,
-        "centers": centers,
+        "phase_count": phase_count,
         "subset_global_ids": subset_global_ids,
         "spec_general": spec_general,
         "spec_metal": spec_metal,
@@ -281,7 +279,7 @@ def save_png(path: Path, arr_rgb: np.ndarray) -> None:
 def main() -> None:
     set_seed(rb.SEED)
     print("[classic] train best classical model: RF pixel")
-    rf_models, centers_classic, phase_count_classic = train_best_classical_rf()
+    rf_models, phase_count_classic = train_best_classical_rf()
 
     print("[deep] train best general + best metallography models")
     deep_bundle = train_best_deep_models()
@@ -296,13 +294,17 @@ def main() -> None:
         # Use a unified 192x192 canvas for all displayed panels (original/mask/predictions)
         # so visual comparisons remain spatially aligned.
         img_viz = read_resized_rgb(sample.original, size=img_size_deep)
-        mask_viz = read_resized_rgb(sample.mask, size=img_size_deep)
+        prototypes = get_subset_prototypes(sample.subset_id, k_classic)
+        gt_viz = decode_ground_truth(
+            sample.mask,
+            sample.subset_id,
+            (img_size_deep, img_size_deep),
+            k_classic,
+        )
         save_png(OUT_DIR / f"{sample.slug}-viz-original.png", img_viz)
-        save_png(OUT_DIR / f"{sample.slug}-viz-mask.png", mask_viz)
+        save_png(OUT_DIR / f"{sample.slug}-viz-mask.png", labels_to_rgb(gt_viz, prototypes))
 
         img_classic = img_viz
-        mask_classic = mask_viz
-        gt_classic = rb.mask_to_labels(mask_classic, centers_classic[sample.subset_id])
         pred_classic = rb.predict_method(
             method="rf_pixel",
             img_rgb=img_classic,
@@ -310,17 +312,14 @@ def main() -> None:
             subset_id=sample.subset_id,
             trained=rf_models,
         )
-        pred_classic = rb.hu_map(pred_classic, gt_classic, k_classic)
-        rgb_classic = labels_to_rgb(pred_classic, centers_classic[sample.subset_id])
+        pred_classic = rb.hu_map(pred_classic, gt_viz, k_classic)
+        rgb_classic = labels_to_rgb(pred_classic, prototypes)
         save_png(OUT_DIR / f"{sample.slug}-pred-classic-rf.png", rgb_classic)
 
-        centers_deep = deep_bundle["centers"]
         subset_global_ids = deep_bundle["subset_global_ids"]
-        k_deep = centers_deep[sample.subset_id].shape[0]
+        k_deep = deep_bundle["phase_count"][sample.subset_id]
 
         img_deep = img_viz
-        mask_deep = mask_viz
-        gt_deep = rds.mask_to_local_labels(mask_deep, centers_deep[sample.subset_id])
 
         pred_general = infer_deep_local(
             model=deep_bundle["model_general"],
@@ -330,8 +329,8 @@ def main() -> None:
             subset_global_ids=subset_global_ids,
             device=deep_device,
         )
-        pred_general = map_hungarian(pred_general, gt_deep, k_deep)
-        rgb_general = labels_to_rgb(pred_general, centers_deep[sample.subset_id])
+        pred_general = map_hungarian(pred_general, gt_viz, k_deep)
+        rgb_general = labels_to_rgb(pred_general, prototypes)
         save_png(OUT_DIR / f"{sample.slug}-pred-deep-unet-effb0.png", rgb_general)
 
         pred_metal = infer_deep_local(
@@ -342,8 +341,8 @@ def main() -> None:
             subset_global_ids=subset_global_ids,
             device=metal_device,
         )
-        pred_metal = map_hungarian(pred_metal, gt_deep, k_deep)
-        rgb_metal = labels_to_rgb(pred_metal, centers_deep[sample.subset_id])
+        pred_metal = map_hungarian(pred_metal, gt_viz, k_deep)
+        rgb_metal = labels_to_rgb(pred_metal, prototypes)
         save_png(OUT_DIR / f"{sample.slug}-pred-metal-unetpp-clahe-effb0.png", rgb_metal)
 
     print(f"[done] wrote prediction assets to {OUT_DIR}")

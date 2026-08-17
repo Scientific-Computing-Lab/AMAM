@@ -31,30 +31,18 @@ import torch.nn as nn
 import torch.nn.functional as F
 from PIL import Image
 from scipy.optimize import linear_sum_assignment
-from scipy.spatial.distance import cdist
 from skimage import feature, filters
 from skimage.filters import gabor
-from sklearn.cluster import KMeans
 from torch.utils.data import DataLoader, Dataset
+
+from gt_mask_decoder import decode_ground_truth, ground_truth_protocol_metadata
 
 warnings.filterwarnings(
     "ignore",
     message=r".*urllib3 v2 only supports OpenSSL.*",
 )
-warnings.filterwarnings(
-    "ignore",
-    category=RuntimeWarning,
-    module=r"sklearn\.utils\.extmath",
-)
-warnings.filterwarnings(
-    "ignore",
-    category=RuntimeWarning,
-    module=r"sklearn\.cluster\._kmeans",
-)
-
 SEED = 17
 SPLIT_MODE = "fullset_no_holdout"
-MAX_PIXELS_PER_MASK = 20_000
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_JSON = REPO_ROOT / "assets/data/amam-dataset.json"
@@ -181,35 +169,6 @@ def read_image(path: Path, img_size: int, mode: str = "RGB", nearest: bool = Fal
     return np.array(img)
 
 
-def estimate_mask_centroids(
-    split: Dict[str, SplitData], phase_count: Dict[str, int], img_size: int
-) -> Dict[str, np.ndarray]:
-    centers: Dict[str, np.ndarray] = {}
-    for subset_id, sdata in split.items():
-        k = phase_count[subset_id]
-        pixels = []
-        for sample in sdata.train:
-            mask = read_image(sample.mask_path, img_size=img_size, mode="RGB", nearest=False).reshape(-1, 3)
-            if len(mask) > MAX_PIXELS_PER_MASK:
-                idx = np.random.choice(len(mask), MAX_PIXELS_PER_MASK, replace=False)
-                mask = mask[idx]
-            pixels.append(mask.astype(np.float32))
-        x = np.concatenate(pixels, axis=0).astype(np.float64, copy=False)
-        x = np.nan_to_num(x, nan=0.0, posinf=0.0, neginf=0.0)
-        x = np.clip(x, 0.0, 255.0)
-        km = KMeans(n_clusters=k, n_init=10, random_state=SEED)
-        km.fit(x)
-        centers[subset_id] = km.cluster_centers_
-    return centers
-
-
-def mask_to_local_labels(mask_rgb: np.ndarray, centers: np.ndarray) -> np.ndarray:
-    flat = mask_rgb.reshape(-1, 3).astype(np.float32)
-    d = cdist(flat, centers.astype(np.float32))
-    labels = np.argmin(d, axis=1)
-    return labels.reshape(mask_rgb.shape[:2]).astype(np.int64)
-
-
 def build_subset_offsets(phase_count: Dict[str, int]) -> Tuple[Dict[str, int], Dict[str, List[int]], int]:
     offsets: Dict[str, int] = {}
     subset_ids: Dict[str, List[int]] = {}
@@ -225,7 +184,6 @@ def build_subset_offsets(phase_count: Dict[str, int]) -> Tuple[Dict[str, int], D
 def build_records(
     pairs: List[PairSample],
     split: Dict[str, SplitData],
-    centers: Dict[str, np.ndarray],
     subset_offsets: Dict[str, int],
     subset_global_ids: Dict[str, List[int]],
     img_size: int,
@@ -235,8 +193,12 @@ def build_records(
     records: List[SampleRecord] = []
     for p in pairs:
         img = read_image(p.original_path, img_size=img_size, mode="RGB", nearest=False)
-        mask = read_image(p.mask_path, img_size=img_size, mode="RGB", nearest=False)
-        local = mask_to_local_labels(mask, centers[p.subset_id])
+        local = decode_ground_truth(
+            p.mask_path,
+            subset_id=p.subset_id,
+            output_size=(img_size, img_size),
+            expected_phase_count=p.phase_count,
+        )
         global_mask = local + subset_offsets[p.subset_id]
         in_train = p.original_path in train_keys
         in_test = p.original_path in test_keys
@@ -818,7 +780,7 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=SEED,
         help=(
-            "Random seed for weight init, batch order, and centroid k-means. "
+            "Random seed for weight initialization and batch order. "
             "Note that seeding alone does not make GPU training reproducible; see "
             "the 'Scope of reproducibility' section in repro/benchmark/README.md."
         ),
@@ -850,12 +812,10 @@ def main() -> None:
 
     pairs, phase_count, _subset_meta = load_dataset_pairs()
     split = deterministic_split(pairs)
-    centers = estimate_mask_centroids(split=split, phase_count=phase_count, img_size=args.img_size)
     subset_offsets, subset_global_ids, num_classes = build_subset_offsets(phase_count)
     records = build_records(
         pairs=pairs,
         split=split,
-        centers=centers,
         subset_offsets=subset_offsets,
         subset_global_ids=subset_global_ids,
         img_size=args.img_size,
@@ -1000,6 +960,7 @@ def main() -> None:
         "lr": args.lr,
         "weight_decay": args.weight_decay,
         "split_mode": SPLIT_MODE,
+        **ground_truth_protocol_metadata(),
         "n_pairs": len(records),
         "train_images": len(train_indices),
         "test_images": len(test_indices),
