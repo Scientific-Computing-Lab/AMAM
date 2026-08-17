@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a main-paper figure that visualizes the benchmark performance gap.
+"""Create the main-paper track-specific benchmark score figure.
 
 This figure is built directly from the released CSV outputs:
 - repro/results/classical/benchmark_macro_over_subsets.csv
@@ -25,6 +25,13 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 RESULTS = REPO_ROOT / "repro" / "results"
 OUT_PDF = REPO_ROOT / "repro" / "figures" / "benchmark-gap-overview.pdf"
 OUT_PNG = REPO_ROOT / "repro" / "figures" / "benchmark-gap-overview.png"
+FAMILY_ORDER = ["Classical", "Deep-General", "Deep-Metallography", "Foundation/Edge"]
+PALETTE = {
+    "Classical": "#1f77b4",
+    "Deep-General": "#2ca02c",
+    "Deep-Metallography": "#d62728",
+    "Foundation/Edge": "#9467bd",
+}
 
 
 def load_all_results() -> pd.DataFrame:
@@ -81,26 +88,23 @@ def load_all_results() -> pd.DataFrame:
     return df
 
 
-def build_figure(df: pd.DataFrame) -> None:
-    family_order = ["Classical", "Deep-General", "Deep-Metallography", "Foundation/Edge"]
-    palette = {
-        "Classical": "#1f77b4",
-        "Deep-General": "#2ca02c",
-        "Deep-Metallography": "#d62728",
-        "Foundation/Edge": "#9467bd",
-    }
-
-    fig = plt.figure(figsize=(12.4, 4.9))
-    gs = fig.add_gridspec(1, 2, width_ratios=[1.15, 1.35], wspace=0.28)
-    ax_left = fig.add_subplot(gs[0, 0])
-    ax_right = fig.add_subplot(gs[0, 1])
+def create_figure(df: pd.DataFrame) -> plt.Figure:
+    """Build Figure 3 without saving it so callers can inspect the rendered contract."""
+    fig = plt.figure(figsize=(13.4, 5.8))
+    outer = fig.add_gridspec(1, 2, width_ratios=[1.0, 1.65], wspace=0.25)
+    ax_left = fig.add_subplot(outer[0, 0])
+    facet_grid = outer[0, 1].subgridspec(2, 2, hspace=0.50, wspace=0.24)
+    facet_axes = [
+        fig.add_subplot(facet_grid[row, column])
+        for row in range(2)
+        for column in range(2)
+    ]
     ax_left.set_facecolor("white")
-    ax_right.set_facecolor("white")
 
-    # Left panel: per-group distributions with highest-score markers.
+    # Left panel: per-track distributions with track-local leader markers.
     rng = np.random.default_rng(7)
-    positions = np.arange(len(family_order))
-    family_values = [df.loc[df["family"] == fam, "miou"].to_numpy() for fam in family_order]
+    positions = np.arange(len(FAMILY_ORDER))
+    family_values = [df.loc[df["family"] == fam, "miou"].to_numpy() for fam in FAMILY_ORDER]
 
     bp = ax_left.boxplot(
         family_values,
@@ -112,30 +116,30 @@ def build_figure(df: pd.DataFrame) -> None:
         whiskerprops={"color": "#666666", "linewidth": 1.0},
         capprops={"color": "#666666", "linewidth": 1.0},
     )
-    for patch, fam in zip(bp["boxes"], family_order):
-        patch.set_facecolor(palette[fam])
+    for patch, fam in zip(bp["boxes"], FAMILY_ORDER):
+        patch.set_facecolor(PALETTE[fam])
         patch.set_alpha(0.24)
-        patch.set_edgecolor(palette[fam])
+        patch.set_edgecolor(PALETTE[fam])
         patch.set_linewidth(1.2)
 
-    for idx, fam in enumerate(family_order):
+    for idx, fam in enumerate(FAMILY_ORDER):
         vals = df.loc[df["family"] == fam, "miou"].to_numpy()
         jitter = rng.normal(0.0, 0.06, size=len(vals))
         ax_left.scatter(
             np.full_like(vals, idx, dtype=float) + jitter,
             vals,
             s=26,
-            color=palette[fam],
+            color=PALETTE[fam],
             alpha=0.82,
             edgecolor="white",
             linewidth=0.35,
             zorder=3,
         )
-        best_idx = df.loc[df["family"] == fam, "miou"].idxmax()
-        best_row = df.loc[best_idx]
+        leader_idx = df.loc[df["family"] == fam, "miou"].idxmax()
+        leader_row = df.loc[leader_idx]
         ax_left.scatter(
             idx,
-            best_row["miou"],
+            leader_row["miou"],
             marker="*",
             s=190,
             color="#ffcc00",
@@ -145,8 +149,8 @@ def build_figure(df: pd.DataFrame) -> None:
         )
         ax_left.text(
             idx,
-            best_row["miou"] + 0.015,
-            f"{best_row['miou']:.3f}",
+            leader_row["miou"] + 0.015,
+            f"{leader_row['miou']:.3f}",
             ha="center",
             va="bottom",
             fontsize=8,
@@ -164,101 +168,115 @@ def build_figure(df: pd.DataFrame) -> None:
         ["Classical\n(n=10)", "Deep-General\n(n=14)", "Deep-Metal\n(n=15)", "Foundation/Edge\n(n=6)"],
         fontsize=8,
     )
-    ax_left.set_title("Track-Group Performance Distributions")
+    ax_left.set_title("Track-Group Score Distributions")
     ax_left.grid(axis="y", alpha=0.22, linewidth=0.7)
 
-    # Right panel: descriptive ordering and unresolved gap.
-    ranked = df.sort_values("miou", ascending=False).reset_index(drop=True)
-    ranked["rank"] = np.arange(1, len(ranked) + 1)
+    # Right panel: four independent within-track score orderings.
+    for facet_index, (axis, family) in enumerate(zip(facet_axes, FAMILY_ORDER)):
+        subset = (
+            df.loc[df["family"] == family]
+            .sort_values(["miou", "model"], ascending=[False, True])
+            .reset_index(drop=True)
+        )
+        facet_positions = np.arange(1, len(subset) + 1)
+        values = subset["miou"].to_numpy()
 
-    ax_right.fill_between(
-        ranked["rank"].to_numpy(),
-        ranked["miou"].to_numpy(),
-        np.ones(len(ranked)),
-        color="#f6d2d2",
-        alpha=0.5,
-        label="Unresolved gap to perfect segmentation",
-        zorder=1,
-    )
-    ax_right.plot(
-        ranked["rank"],
-        ranked["miou"],
-        color="#333333",
-        linewidth=1.15,
-        zorder=2,
-    )
-
-    for fam in family_order:
-        sub = ranked[ranked["family"] == fam]
-        ax_right.scatter(
-            sub["rank"],
-            sub["miou"],
-            s=30,
-            color=palette[fam],
-            alpha=0.9,
+        axis.set_facecolor("white")
+        axis.scatter(
+            facet_positions,
+            values,
+            s=27,
+            color=PALETTE[family],
+            alpha=0.88,
             edgecolor="white",
             linewidth=0.35,
-            label=fam,
             zorder=3,
         )
-
-    best = ranked.iloc[0]
-    median_val = ranked["miou"].median()
-    ax_right.axhline(1.0, color="#555555", linestyle="--", linewidth=1.0)
-    ax_right.axhline(median_val, color="#6a6a6a", linestyle=":", linewidth=1.0)
-    ax_right.text(45.5, 1.0, "1.0", fontsize=8, va="bottom", ha="right", color="#555555")
-    ax_right.text(45.5, median_val, f"Median {median_val:.3f}", fontsize=8, va="bottom", ha="right", color="#666666")
-    # Label the highest displayed point while keeping the ranking descriptive:
-    # deep points are five-run means, whereas classical and foundation/edge
-    # points are fixed-seed estimates.
-    ax_right.annotate(
-        f"Highest displayed score: {best['model']} ({best['miou']:.3f});\n"
-        "ranking is descriptive under the executed protocol",
-        xy=(best["rank"], best["miou"]),
-        xytext=(6.5, 0.945),
-        textcoords="data",
-        fontsize=8,
-        arrowprops={"arrowstyle": "->", "color": "#333333", "lw": 0.9},
-    )
-    ax_right.set_xlim(0.5, 45.5)
-    ax_right.set_ylim(0.30, 1.02)
-    ax_right.set_xlabel("Position in Descriptive Ordering (45 methods)")
-    ax_right.set_ylabel("Subset-Macro mIoU")
-    ax_right.set_title("Displayed Score Ordering and Remaining Gap")
-    ax_right.grid(axis="y", alpha=0.22, linewidth=0.7)
-
-    handles, labels = ax_right.get_legend_handles_labels()
-    dedup = {}
-    for h, l in zip(handles, labels):
-        dedup.setdefault(l, h)
-    ax_right.legend(
-        [dedup[k] for k in ["Classical", "Deep-General", "Deep-Metallography", "Foundation/Edge"]],
-        ["Classical", "Deep-General", "Deep-Metallography", "Foundation/Edge"],
-        loc="lower left",
-        fontsize=8,
-        frameon=True,
-    )
+        axis.plot(
+            facet_positions,
+            values,
+            color=PALETTE[family],
+            linewidth=1.0,
+            alpha=0.65,
+            zorder=2,
+        )
+        axis.scatter(
+            1,
+            values[0],
+            marker="*",
+            s=135,
+            color="#ffcc00",
+            edgecolor="black",
+            linewidth=0.6,
+            zorder=4,
+        )
+        axis.text(
+            1,
+            values[0] + 0.020,
+            f"{values[0]:.3f}",
+            ha="center",
+            va="bottom",
+            fontsize=7.5,
+            weight="bold",
+        )
+        axis.axhline(1.0, color="#777777", linestyle="--", linewidth=0.8)
+        axis.set_xlim(0.5, len(subset) + 0.5)
+        axis.set_ylim(0.30, 1.02)
+        middle_position = max(1, round(len(subset) / 2))
+        axis.set_xticks(sorted({1, middle_position, len(subset)}))
+        axis.set_xlabel("Within-track position", fontsize=8)
+        axis.set_title(f"{family} (n={len(subset)})", fontsize=9.5, weight="bold")
+        axis.tick_params(axis="both", labelsize=7.5)
+        axis.grid(axis="y", alpha=0.22, linewidth=0.65)
+        if facet_index % 2 == 0:
+            axis.set_ylabel("Subset-Macro mIoU", fontsize=8)
+        else:
+            axis.tick_params(axis="y", labelleft=False)
 
     fig.suptitle(
-        "AMAM-128 Benchmark Gap Overview: 45 Methods Across Four Model Groups",
-        y=0.99,
+        "AMAM-128 Track-Specific Reported Score Distributions",
+        y=0.975,
         fontsize=12,
         weight="bold",
     )
-    fig.subplots_adjust(left=0.055, right=0.995, bottom=0.14, top=0.87, wspace=0.28)
-    OUT_PDF.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUT_PDF, dpi=300, bbox_inches="tight")
-    fig.savefig(OUT_PNG, dpi=300, bbox_inches="tight")
-    plt.close(fig)
+    fig.text(
+        0.5,
+        0.018,
+        "Deep points are five-run means (seeds 17–21); classical and foundation/edge points are seed-17 "
+        "estimates. Label handling differs across tracks.",
+        ha="center",
+        va="bottom",
+        fontsize=8,
+        color="#333333",
+    )
+    fig.subplots_adjust(left=0.060, right=0.985, bottom=0.17, top=0.86)
+    return fig
+
+
+def build_figure(
+    df: pd.DataFrame,
+    out_pdf: Path = OUT_PDF,
+    out_png: Path = OUT_PNG,
+) -> None:
+    """Save Figure 3 in both released formats."""
+    fig = create_figure(df)
+    try:
+        out_pdf.parent.mkdir(parents=True, exist_ok=True)
+        out_png.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(out_pdf, dpi=300, bbox_inches="tight")
+        fig.savefig(out_png, dpi=300, bbox_inches="tight")
+    finally:
+        plt.close(fig)
 
 
 def main() -> None:
     df = load_all_results()
     build_figure(df)
-    best = df.loc[df["miou"].idxmax()]
     print(f"[ok] wrote {OUT_PDF}")
     print(f"[ok] wrote {OUT_PNG}")
-    print(f"[summary] methods={len(df)} best={best['model']} mIoU={best['miou']:.4f}")
+    counts = df["family"].value_counts()
+    count_text = ", ".join(f"{family}={counts[family]}" for family in FAMILY_ORDER)
+    print(f"[summary] methods={len(df)}; {count_text}")
 
 
 if __name__ == "__main__":
