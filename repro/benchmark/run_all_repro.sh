@@ -20,8 +20,15 @@ RUN_LOG="${RUN_LOG:-repro/run_all_repro.log}"
 # step 8 would then verify stale output. A reproduction run must recompute;
 # export RESUME=1 to continue a genuinely interrupted run instead.
 RESUME_ARGS=(--no-resume)
+CLASSICAL_PREDICTION_ARGS=(--save-canonical-predictions --prediction-models rf_pixel)
+DEEP_PREDICTION_ARGS=(
+  --save-canonical-predictions
+  --prediction-models dl_unet_effb0,metal_unetpp_clahe_effb0
+)
 if [[ "${RESUME:-0}" == "1" ]]; then
   RESUME_ARGS=()
+  CLASSICAL_PREDICTION_ARGS=()
+  DEEP_PREDICTION_ARGS=()
   echo "[info] RESUME=1 -> reusing completed models from a previous run"
 fi
 
@@ -47,12 +54,14 @@ if [[ "${PREFLIGHT_ONLY:-0}" == "1" ]]; then
 fi
 
 echo "[1/8] Classical benchmark (10 methods)"
-"$PYTHON_BIN" -u repro/benchmark/run_benchmark.py "${RESUME_ARGS[@]}"
+"$PYTHON_BIN" -u repro/benchmark/run_benchmark.py \
+  "${RESUME_ARGS[@]}" "${CLASSICAL_PREDICTION_ARGS[@]}"
 
 if [[ "${SKIP_DEEP:-0}" != "1" ]]; then
   echo "[2/8] Deep supervised survey (29 models)"
   "$PYTHON_BIN" -u repro/benchmark/run_deep_survey.py \
-    --img-size "$IMG_SIZE" --epochs 5 --batch-size 4 --device "$DEVICE" "${RESUME_ARGS[@]}"
+    --img-size "$IMG_SIZE" --epochs 5 --batch-size 4 --device "$DEVICE" \
+    "${RESUME_ARGS[@]}" "${DEEP_PREDICTION_ARGS[@]}"
 else
   echo "[2/8] SKIP_DEEP=1 -> skipping deep survey"
 fi

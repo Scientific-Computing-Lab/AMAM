@@ -1,40 +1,41 @@
 #!/usr/bin/env python3
-"""
-Build representative appendix prediction assets for AMAM paper.
-
-Produces, for each representative sample:
-- best classical prediction (RF pixel model),
-- best general deep prediction (U-Net EfficientNet-B0),
-- best metallography-oriented deep prediction (Metal-U-Net++ CLAHE EfficientNet-B0).
-
-Outputs are written to:
-  amam-site/repro/figures/appendix_preds/
-"""
+"""Build appendix panels only from validated canonical prediction artifacts."""
 
 from __future__ import annotations
 
-import random
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List
 
 import numpy as np
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
 from PIL import Image
-from scipy.optimize import linear_sum_assignment
-from torch.utils.data import DataLoader
 
-import run_benchmark as rb
-import run_deep_survey as rds
-from gt_mask_decoder import decode_ground_truth, get_subset_prototypes
+from canonical_predictions import (
+    load_canonical_manifest,
+    load_canonical_prediction,
+    sha256_file,
+)
+from gt_mask_decoder import (
+    decode_ground_truth,
+    get_subset_prototypes,
+    ground_truth_protocol_metadata,
+)
+from segmentation_metrics import segmentation_metric_protocol_metadata
+
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REPRO_ROOT = REPO_ROOT / "repro"
-OUT_DIR = REPRO_ROOT / "figures" / "appendix_preds"
 DATA_ROOT = REPO_ROOT / "data" / "local"
-OUT_DIR.mkdir(parents=True, exist_ok=True)
+DATA_JSON = REPO_ROOT / "assets" / "data" / "amam-dataset.json"
+OUT_DIR = REPRO_ROOT / "figures" / "appendix_preds"
+CLASSICAL_PREDICTION_ROOT = REPRO_ROOT / "results" / "classical" / "canonical_predictions"
+DEEP_PREDICTION_ROOT = REPRO_ROOT / "results" / "deep_survey_seed17" / "canonical_predictions"
+PANEL_SIZE = (192, 192)
+CANONICAL_SEED = 17
+CLASSICAL_MODEL = "rf_pixel"
+GENERAL_DEEP_MODEL = "dl_unet_effb0"
+METAL_DEEP_MODEL = "metal_unetpp_clahe_effb0"
 
 
 @dataclass(frozen=True)
@@ -85,267 +86,157 @@ REP_SAMPLES: List[RepSample] = [
 ]
 
 
-def set_seed(seed: int) -> None:
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
-
-
-def map_hungarian(pred: np.ndarray, gt: np.ndarray, k: int) -> np.ndarray:
-    conf = np.zeros((k, k), dtype=np.int64)
-    for i in range(k):
-        for j in range(k):
-            conf[i, j] = int(np.sum((pred == i) & (gt == j)))
-    row_ind, col_ind = linear_sum_assignment(conf.max() - conf)
-    mapped = np.zeros_like(pred)
-    for r, c in zip(row_ind, col_ind):
-        mapped[pred == r] = c
-    return mapped
-
-
-def labels_to_rgb(labels: np.ndarray, centers: np.ndarray) -> np.ndarray:
-    palette = np.clip(np.round(centers), 0, 255).astype(np.uint8)
-    return palette[labels]
-
-
-def read_resized_rgb(path: Path, size: int) -> np.ndarray:
-    return np.array(
-        Image.open(path).convert("RGB").resize((size, size), Image.Resampling.BILINEAR)
-    )
-
-
-def train_best_classical_rf() -> tuple[Dict[str, object], Dict[str, int]]:
-    pairs, phase_count, _subset_meta = rb.load_dataset_pairs()
-    split = rb.deterministic_split(pairs)
-    models = rb.train_pixel_model(split=split, mode="rf")
-    return models, phase_count
-
-
-def train_deep_model_return_model(
-    spec: rds.ModelSpec,
-    records: List[rds.SampleRecord],
-    train_indices: List[int],
-    feature_cache: rds.ModeFeatureCache,
-    num_classes: int,
-    device: torch.device,
-    epochs: int = 5,
-    batch_size: int = 4,
-    lr: float = 1e-3,
-    weight_decay: float = 1e-4,
-    workers: int = 0,
-) -> nn.Module:
-    in_channels = {
-        "rgb": 3,
-        "gray": 1,
-        "clahe_rgb": 3,
-        "edge4": 4,
-        "gabor3": 3,
-        "lbp3": 3,
-    }[spec.input_mode]
-
-    train_ds = rds.SegDataset(
-        indices=train_indices,
-        records=records,
-        feature_cache=feature_cache,
-        input_mode=spec.input_mode,
-        augment=True,
-    )
-    train_loader = DataLoader(
-        train_ds,
-        batch_size=batch_size,
-        shuffle=True,
-        num_workers=workers,
-        drop_last=False,
-    )
-
-    model = rds.make_model(spec, num_classes=num_classes, in_channels=in_channels).to(device)
-
-    class_hist = np.zeros((num_classes,), dtype=np.float64)
-    for idx in train_indices:
-        y = records[idx].gt_global
-        vals, cnt = np.unique(y, return_counts=True)
-        class_hist[vals] += cnt
-    class_hist = np.maximum(class_hist, 1.0)
-    inv = 1.0 / np.sqrt(class_hist)
-    weights = (inv / inv.mean()).astype(np.float32)
-
-    loss_fn = nn.CrossEntropyLoss(weight=torch.from_numpy(weights).to(device))
-    optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
-
-    for _ in range(epochs):
-        model.train()
-        for xb, yb in train_loader:
-            xb = xb.to(device).contiguous()
-            yb = yb.to(device).contiguous()
-            optimizer.zero_grad(set_to_none=True)
-            logits = model(xb).contiguous()
-            if logits.shape[-2:] != yb.shape[-2:]:
-                logits = F.interpolate(logits, size=yb.shape[-2:], mode="bilinear", align_corners=False)
-            loss = loss_fn(logits, yb)
-            loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-            optimizer.step()
-
-    model.eval()
-    return model
-
-
-def train_best_deep_models():
-    set_seed(rds.SEED)
-    pairs, phase_count, _subset_meta = rds.load_dataset_pairs()
-    split = rds.deterministic_split(pairs)
-    img_size = 192
-    subset_offsets, subset_global_ids, num_classes = rds.build_subset_offsets(phase_count)
-    records = rds.build_records(
-        pairs=pairs,
-        split=split,
-        subset_offsets=subset_offsets,
-        subset_global_ids=subset_global_ids,
-        img_size=img_size,
-    )
-    # In fullset_no_holdout mode, deep records are tagged as "train_test".
-    train_indices = [i for i, r in enumerate(records) if r.split in {"train", "train_test"}]
-
-    specs = {s.model_id: s for s in rds.build_model_specs()}
-    spec_general = specs["dl_unet_effb0"]
-    spec_metal = specs["metal_unetpp_clahe_effb0"]
-    feature_cache = rds.ModeFeatureCache(records=records, modes=[spec_general.input_mode, spec_metal.input_mode])
-
-    device = rds.get_device("auto")
-    print(f"[deep] device={device}")
-
-    def _train_with_fallback(spec: rds.ModelSpec) -> nn.Module:
-        try:
-            print(f"[deep] train {spec.model_id}")
-            return train_deep_model_return_model(
-                spec=spec,
-                records=records,
-                train_indices=train_indices,
-                feature_cache=feature_cache,
-                num_classes=num_classes,
-                device=device,
-            )
-        except RuntimeError as exc:
-            if device.type == "mps":
-                print(f"[deep] retry on cpu for {spec.model_id} due to: {exc}")
-                return train_deep_model_return_model(
-                    spec=spec,
-                    records=records,
-                    train_indices=train_indices,
-                    feature_cache=feature_cache,
-                    num_classes=num_classes,
-                    device=torch.device("cpu"),
-                )
-            raise
-
-    model_general = _train_with_fallback(spec_general)
-    model_metal = _train_with_fallback(spec_metal)
-
+def phase_counts() -> Dict[str, int]:
+    data = json.loads(DATA_JSON.read_text())
     return {
-        "img_size": img_size,
-        "phase_count": phase_count,
-        "subset_global_ids": subset_global_ids,
-        "spec_general": spec_general,
-        "spec_metal": spec_metal,
-        "model_general": model_general,
-        "model_metal": model_metal,
+        subset["id"]: len(subset.get("phases", []))
+        for subset in data["subsets"]
+        if len(subset.get("phases", [])) >= 2
     }
 
 
-def infer_deep_local(
-    model: nn.Module,
-    spec: rds.ModelSpec,
-    img_rgb: np.ndarray,
-    subset_id: str,
-    subset_global_ids: Dict[str, List[int]],
-    device: torch.device,
-) -> np.ndarray:
-    x = rds.make_input_features(img_rgb, mode=spec.input_mode)
-    if x.ndim == 2:
-        x = x[..., None]
-    xt = torch.from_numpy(np.transpose(x, (2, 0, 1))).unsqueeze(0).float().to(device)
-    with torch.no_grad():
-        logits = model(xt)[0].detach().cpu().numpy()
-    local_logits = logits[subset_global_ids[subset_id], :, :]
-    return np.argmax(local_logits, axis=0).astype(np.int64)
+def labels_to_rgb(labels: np.ndarray, prototypes: np.ndarray) -> np.ndarray:
+    labels = np.asarray(labels)
+    if labels.ndim != 2:
+        raise ValueError("Panel labels must be two-dimensional")
+    if labels.size and int(labels.max()) >= len(prototypes):
+        raise ValueError("Panel labels contain an out-of-range class id")
+    palette = np.clip(np.round(prototypes), 0, 255).astype(np.uint8)
+    return palette[labels]
 
 
-def save_png(path: Path, arr_rgb: np.ndarray) -> None:
-    Image.fromarray(arr_rgb.astype(np.uint8)).save(path)
+def resize_labels_nearest(labels: np.ndarray, size: tuple[int, int]) -> np.ndarray:
+    """Resize a discrete label map without introducing intermediate labels."""
+    return np.asarray(
+        Image.fromarray(np.asarray(labels, dtype=np.uint8), mode="L").resize(
+            size, Image.Resampling.NEAREST
+        ),
+        dtype=np.uint8,
+    )
+
+
+def read_resized_rgb(path: Path, size: tuple[int, int]) -> np.ndarray:
+    return np.asarray(Image.open(path).convert("RGB").resize(size, Image.Resampling.BILINEAR))
+
+
+def save_png(path: Path, array: np.ndarray) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    Image.fromarray(np.asarray(array, dtype=np.uint8)).save(path, format="PNG")
+
+
+def _validate_manifest_dimensions(manifest: dict, expected: list[int], track: str) -> None:
+    if manifest.get("image_size") != expected:
+        raise ValueError(
+            f"Canonical {track} prediction image size mismatch: "
+            f"got {manifest.get('image_size')}, expected {expected}"
+        )
+    if manifest.get("split_mode") != "fullset_no_holdout":
+        raise ValueError(f"Canonical {track} prediction split mode mismatch")
+
+
+def build_assets(
+    classical_root: Path = CLASSICAL_PREDICTION_ROOT,
+    deep_root: Path = DEEP_PREDICTION_ROOT,
+    out_dir: Path = OUT_DIR,
+) -> dict:
+    protocol_metadata = {
+        **ground_truth_protocol_metadata(),
+        **segmentation_metric_protocol_metadata(),
+    }
+    classical_manifest = load_canonical_manifest(
+        root=classical_root,
+        expected_track="classical",
+        expected_seed=CANONICAL_SEED,
+        expected_models={CLASSICAL_MODEL},
+        expected_protocol=protocol_metadata,
+        expected_count=128,
+    )
+    deep_manifest = load_canonical_manifest(
+        root=deep_root,
+        expected_track="deep",
+        expected_seed=CANONICAL_SEED,
+        expected_models={GENERAL_DEEP_MODEL, METAL_DEEP_MODEL},
+        expected_protocol=protocol_metadata,
+        expected_count=256,
+    )
+    _validate_manifest_dimensions(classical_manifest, [256, 256], "classical")
+    _validate_manifest_dimensions(deep_manifest, [192, 192], "deep")
+
+    counts = phase_counts()
+    generated: list[str] = []
+    for sample in REP_SAMPLES:
+        print(f"[sample] {sample.slug}")
+        phase_count = counts[sample.subset_id]
+        prototypes = get_subset_prototypes(sample.subset_id, phase_count)
+        original = read_resized_rgb(sample.original, PANEL_SIZE)
+        gt = decode_ground_truth(
+            sample.mask,
+            subset_id=sample.subset_id,
+            output_size=PANEL_SIZE,
+            expected_phase_count=phase_count,
+        )
+        classical = load_canonical_prediction(
+            classical_root,
+            classical_manifest,
+            CLASSICAL_MODEL,
+            sample.subset_id,
+            sample.original.name,
+            expected_classes=phase_count,
+        )
+        general = load_canonical_prediction(
+            deep_root,
+            deep_manifest,
+            GENERAL_DEEP_MODEL,
+            sample.subset_id,
+            sample.original.name,
+            expected_classes=phase_count,
+        )
+        metal = load_canonical_prediction(
+            deep_root,
+            deep_manifest,
+            METAL_DEEP_MODEL,
+            sample.subset_id,
+            sample.original.name,
+            expected_classes=phase_count,
+        )
+
+        if classical.shape != PANEL_SIZE:
+            classical = resize_labels_nearest(classical, PANEL_SIZE)
+        if general.shape != PANEL_SIZE or metal.shape != PANEL_SIZE:
+            raise ValueError(f"Deep canonical panel shape mismatch for {sample.slug}")
+
+        outputs = {
+            f"{sample.slug}-viz-original.png": original,
+            f"{sample.slug}-viz-mask.png": labels_to_rgb(gt, prototypes),
+            f"{sample.slug}-pred-classic-rf.png": labels_to_rgb(classical, prototypes),
+            f"{sample.slug}-pred-deep-unet-effb0.png": labels_to_rgb(general, prototypes),
+            f"{sample.slug}-pred-metal-unetpp-clahe-effb0.png": labels_to_rgb(metal, prototypes),
+        }
+        for filename, array in outputs.items():
+            save_png(out_dir / filename, array)
+            generated.append(filename)
+
+    metadata = {
+        "schema_version": "canonical-qualitative-panels-v1",
+        "deep_seed": CANONICAL_SEED,
+        "classical_seed": CANONICAL_SEED,
+        "panel_size": list(PANEL_SIZE),
+        "models": [CLASSICAL_MODEL, GENERAL_DEEP_MODEL, METAL_DEEP_MODEL],
+        "classical_display_transform": "nearest-neighbor label resize 256x256 -> 192x192",
+        "deep_display_transform": "none",
+        "ground_truth_display_transform": "decode source RGB then nearest-neighbor label resize",
+        "classical_manifest_sha256": sha256_file(classical_root / "manifest.json"),
+        "deep_manifest_sha256": sha256_file(deep_root / "manifest.json"),
+        "generated_files": sorted(generated),
+    }
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "panel_metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
+    print(f"[done] wrote canonical prediction assets to {out_dir}")
+    return metadata
 
 
 def main() -> None:
-    set_seed(rb.SEED)
-    print("[classic] train best classical model: RF pixel")
-    rf_models, phase_count_classic = train_best_classical_rf()
-
-    print("[deep] train best general + best metallography models")
-    deep_bundle = train_best_deep_models()
-    deep_device = next(deep_bundle["model_general"].parameters()).device
-    metal_device = next(deep_bundle["model_metal"].parameters()).device
-
-    for sample in REP_SAMPLES:
-        print(f"[sample] {sample.slug}")
-        k_classic = phase_count_classic[sample.subset_id]
-        img_size_deep = int(deep_bundle["img_size"])
-
-        # Use a unified 192x192 canvas for all displayed panels (original/mask/predictions)
-        # so visual comparisons remain spatially aligned.
-        img_viz = read_resized_rgb(sample.original, size=img_size_deep)
-        prototypes = get_subset_prototypes(sample.subset_id, k_classic)
-        gt_viz = decode_ground_truth(
-            sample.mask,
-            sample.subset_id,
-            (img_size_deep, img_size_deep),
-            k_classic,
-        )
-        save_png(OUT_DIR / f"{sample.slug}-viz-original.png", img_viz)
-        save_png(OUT_DIR / f"{sample.slug}-viz-mask.png", labels_to_rgb(gt_viz, prototypes))
-
-        img_classic = img_viz
-        pred_classic = rb.predict_method(
-            method="rf_pixel",
-            img_rgb=img_classic,
-            k=k_classic,
-            subset_id=sample.subset_id,
-            trained=rf_models,
-        )
-        pred_classic = rb.hu_map(pred_classic, gt_viz, k_classic)
-        rgb_classic = labels_to_rgb(pred_classic, prototypes)
-        save_png(OUT_DIR / f"{sample.slug}-pred-classic-rf.png", rgb_classic)
-
-        subset_global_ids = deep_bundle["subset_global_ids"]
-        k_deep = deep_bundle["phase_count"][sample.subset_id]
-
-        img_deep = img_viz
-
-        pred_general = infer_deep_local(
-            model=deep_bundle["model_general"],
-            spec=deep_bundle["spec_general"],
-            img_rgb=img_deep,
-            subset_id=sample.subset_id,
-            subset_global_ids=subset_global_ids,
-            device=deep_device,
-        )
-        pred_general = map_hungarian(pred_general, gt_viz, k_deep)
-        rgb_general = labels_to_rgb(pred_general, prototypes)
-        save_png(OUT_DIR / f"{sample.slug}-pred-deep-unet-effb0.png", rgb_general)
-
-        pred_metal = infer_deep_local(
-            model=deep_bundle["model_metal"],
-            spec=deep_bundle["spec_metal"],
-            img_rgb=img_deep,
-            subset_id=sample.subset_id,
-            subset_global_ids=subset_global_ids,
-            device=metal_device,
-        )
-        pred_metal = map_hungarian(pred_metal, gt_viz, k_deep)
-        rgb_metal = labels_to_rgb(pred_metal, prototypes)
-        save_png(OUT_DIR / f"{sample.slug}-pred-metal-unetpp-clahe-effb0.png", rgb_metal)
-
-    print(f"[done] wrote prediction assets to {OUT_DIR}")
+    build_assets()
 
 
 if __name__ == "__main__":

@@ -12,7 +12,8 @@ All model testing is executed locally from these scripts (not via a hosted infer
   reproduces their per-seed and aggregate CSV artifacts.
 - `run_foundation_edge_addons.py`: 6 foundation/edge add-ons (including the required TextureSAM model).
 - `plot_benchmark_gap_figure.py`: main benchmark-gap figure.
-- `build_appendix_representative_assets.py`: appendix visual audit assets.
+- `build_appendix_representative_assets.py`: appendix visual audit assets,
+  loaded only from validated canonical prediction masks (no retraining).
 - `publish_results_to_site.py`: syncs reproducibility outputs into website CSV artifacts.
 - `build_model_provenance_manifest.py`: writes a 45-row per-model checkpoint/source manifest.
 - `verify_45_model_repro.py`: hard verification that all 45 model ids/checkpoint rows/results are consistent.
@@ -134,9 +135,17 @@ Create the isolated runs and regenerate both published CSVs with:
 
 ```bash
 for seed in 17 18 19 20 21; do
+  prediction_args=()
+  if [[ "$seed" == "17" ]]; then
+    prediction_args=(
+      --save-canonical-predictions
+      --prediction-models dl_unet_effb0,metal_unetpp_clahe_effb0
+    )
+  fi
   .venv/bin/python repro/benchmark/run_deep_survey.py \
     --img-size 192 --epochs 5 --batch-size 4 --device auto \
-    --seed "$seed" --out-dir "repro/results/deep_survey_seed${seed}" --no-resume
+    --seed "$seed" --out-dir "repro/results/deep_survey_seed${seed}" --no-resume \
+    "${prediction_args[@]}"
 done
 .venv/bin/python repro/benchmark/aggregate_deep_multiseed.py
 ```
@@ -156,6 +165,10 @@ Use the multi-seed summary for deep mIoU, Dice, and Pixel Accuracy. The
 
 `benchmark_summary.csv` is the canonical subset-macro summary used by the paper and website.
 
+The seed-17 RF masks used by Tables 6–7 are stored under
+`repro/results/classical/canonical_predictions/`. They are captured after the
+same canonical label assignment and immediately before metric calculation.
+
 ### Supervised Deep (29)
 
 - `repro/results/deep_survey/deep_general_summary.csv`
@@ -165,6 +178,10 @@ Use the multi-seed summary for deep mIoU, Dice, and Pixel Accuracy. The
 - `repro/results/deep_survey/deep_per_image.csv`
 - `repro/results/deep_survey_multiseed_runs.csv`
 - `repro/results/deep_survey_multiseed_summary.csv`
+
+The two seed-17 deep-model mask sets used by Tables 6–7 are stored under
+`repro/results/deep_survey_seed17/canonical_predictions/`. The panel builder
+validates their manifest and hashes and applies no GT-based label remapping.
 
 ### Foundation / Edge (6)
 
@@ -191,7 +208,9 @@ Use the multi-seed summary for deep mIoU, Dice, and Pixel Accuracy. The
 python3 repro/benchmark/verify_45_model_repro.py
 ```
 
-This command fails if any model id is missing/misaligned across result files, or if the provenance manifest is incomplete. On success, it writes:
+This command fails if any model id is missing/misaligned across result files,
+if the provenance manifest is incomplete, or if a canonical prediction mask,
+hash, protocol field, or representative-image entry is missing. On success, it writes:
 
 - `repro/results/reproducibility_audit_45_models.json`
 - `repro/results/reproducibility_audit_45_models.md`
