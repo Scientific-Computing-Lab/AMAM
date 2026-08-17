@@ -5,6 +5,7 @@ repro/external/
 
 # Local Python environment (multi-GB; rebuild from repro/requirements.txt)
 .venv/
+.worktrees/
 __pycache__/
 *.pyc
 
