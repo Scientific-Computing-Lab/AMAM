@@ -122,8 +122,8 @@
 
     <section class="panel" id="model-results">
       <div class="panel-head">
-        <h2>Model Benchmark Results (All 45 Runs)</h2>
-        <p>Complete campaign table across 10 classical baselines, 29 supervised deep models, and 6 foundation/edge inference add-ons under one no-split protocol.</p>
+        <h2>Model Benchmark Results (45 Methods)</h2>
+        <p>Track-specific reported scores for 10 classical baselines, 29 supervised deep models, and 6 foundation/edge inference add-ons under the documented no-split protocol.</p>
       </div>
 
       <div class="results-summary" id="resultsSummary"></div>
@@ -194,7 +194,9 @@
         all 45 methods. The displayed-position column reflects the currently
         selected sorting and filtering and is descriptive. The 10 classical and
         6 foundation/edge entries are seed-17 point estimates, so no cross-seed uncertainty
-        is claimed for those tracks. See
+        is claimed for those tracks. At evaluation time, subset identity and its
+        valid class set are assumed known; this preserves subset-native semantics
+        rather than merging incompatible taxonomies. See
         <code>repro/benchmark/README.md</code>, &ldquo;Scope of
         reproducibility&rdquo;.
       </p>
