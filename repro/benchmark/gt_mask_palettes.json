@@ -1,0 +1,144 @@
+{
+  "calibration": {
+    "algorithm": "lloyd",
+    "color_space": "RGB",
+    "estimator": "sklearn.cluster.KMeans",
+    "init": "k-means++",
+    "interpolation_before_calibration": false,
+    "max_iter": 300,
+    "n_init": 20,
+    "random_state": 0,
+    "sklearn_version": "1.7.2",
+    "source_resolution": true,
+    "tol": 0.0001
+  },
+  "decoder_version": "gt-source-rgb-v1",
+  "subsets": {
+    "4130-steel": {
+      "phase_count": 2,
+      "phase_names": [
+        "Ferrite",
+        "Pearlite"
+      ],
+      "prototypes_rgb": [
+        [
+          171.83905082,
+          147.3317909,
+          231.2561992
+        ],
+        [
+          214.91125531,
+          119.69650957,
+          124.77605464
+        ]
+      ],
+      "source_mask_sha256": "d99c8d2f20cbbc5270a8715b9147853fea27478ace4355c06d0580ac5a5ccb96"
+    },
+    "418-17-4ph-x20": {
+      "phase_count": 2,
+      "phase_names": [
+        "Equiaxed Ferrite Grains",
+        "Intergranular Ferrite"
+      ],
+      "prototypes_rgb": [
+        [
+          132.96846698,
+          106.44830177,
+          184.48831282
+        ],
+        [
+          212.23242993,
+          104.85607761,
+          96.81193666
+        ]
+      ],
+      "source_mask_sha256": "2d371823a4da6e76043008315a11a12f53906defc4c772b04e540e374104f99b"
+    },
+    "418-17-4ph-x5": {
+      "phase_count": 2,
+      "phase_names": [
+        "Equiaxed Ferrite Grains",
+        "Intergranular Ferrite"
+      ],
+      "prototypes_rgb": [
+        [
+          26.56869055,
+          101.24279779,
+          24.56657521
+        ],
+        [
+          174.49690546,
+          125.34159724,
+          185.59876801
+        ]
+      ],
+      "source_mask_sha256": "dc69883724909386e4b31b33d3d01942f50fb39e388b507ec70772a82b25379d"
+    },
+    "5884-armor-steel": {
+      "phase_count": 2,
+      "phase_names": [
+        "Pre-Austenite Dendrites",
+        "Interdendritic Region"
+      ],
+      "prototypes_rgb": [
+        [
+          156.30813365,
+          123.51047973,
+          185.50785895
+        ],
+        [
+          169.29666521,
+          77.29527453,
+          60.00329513
+        ]
+      ],
+      "source_mask_sha256": "5d2655ec9c189149ed4cb806552facb01aa55f6c16866db490f66905e5ce60d3"
+    },
+    "6280-cast-iron-high": {
+      "phase_count": 2,
+      "phase_names": [
+        "Ferrite Matrix",
+        "Graphite Flakes"
+      ],
+      "prototypes_rgb": [
+        [
+          94.54606169,
+          74.62958554,
+          159.96985849
+        ],
+        [
+          235.29978176,
+          142.88455622,
+          151.10396399
+        ]
+      ],
+      "source_mask_sha256": "a78f14ff6fde91b0255a8f9e217945c94c27897a4f14565da605004d2e06b5d2"
+    },
+    "6280-cast-iron-low": {
+      "phase_count": 3,
+      "phase_names": [
+        "Ferrite Dendrites",
+        "Interdendritic Region",
+        "Graphite Flakes"
+      ],
+      "prototypes_rgb": [
+        [
+          65.49097574,
+          45.91001716,
+          130.0444878
+        ],
+        [
+          165.24677019,
+          134.21657474,
+          208.68050345
+        ],
+        [
+          250.29138486,
+          148.02054243,
+          147.40305152
+        ]
+      ],
+      "source_mask_sha256": "aa0c55c1a3d492fb190b86697f48c3991159c8bd8095fd826fb87ea0f4d2899e"
+    }
+  }
+}
