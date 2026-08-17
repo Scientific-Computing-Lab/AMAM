@@ -41,6 +41,9 @@ from its completed per-model checkpoints, use:
 RESUME=1 DEVICE=cuda:0 bash repro/benchmark/run_all_repro.sh
 ```
 
+Do not use `RESUME=1` for the first run after a ground-truth decoder or metric
+policy change; cached per-image rows were computed under the previous protocol.
+
 To validate Python, GPU selection, and TextureSAM assets without starting any
 model run:
 
@@ -78,6 +81,8 @@ python3 repro/benchmark/run_foundation_edge_addons.py --img-size 192 --device au
 - Default reporting seed: `17` for randomized internals.
 - Evaluation mode: `fullset_no_holdout` (all 128 paired tuples are used for per-model inference/evaluation).
 - Subset-aware macro metrics: mIoU, Dice, Pixel Accuracy.
+- Per-image mIoU and Dice exclude any class absent from both ground truth and
+  prediction; present-class scores are averaged per image, then per subset.
 - Ground-truth RGB masks are decoded at source resolution using the frozen
   per-subset prototypes in `gt_mask_palettes.json`; only the resulting class-ID
   maps are resized, using nearest-neighbor interpolation.
