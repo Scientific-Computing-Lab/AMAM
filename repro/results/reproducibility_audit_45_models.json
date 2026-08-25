@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "git_commit": "d6cfe6bd0bd099f58a391e596b26035a4166783b",
+  "git_commit": "3c3e3e87f8608c4674e55cef3aa0b1c0408a8d15",
   "counts": {
     "classical": 10,
     "deep_general": 14,
@@ -38,11 +38,11 @@
     "repro/results/deep_survey_seed17/canonical_predictions/manifest.json": "caaca3afbc0945bf7999e5390f450df1450abea45e2c48b193c4c0d2f24a8c6c",
     "repro/figures/appendix_preds/panel_metadata.json": "baf7c3e72c93748c55b12bb432686e2ce0108a01db73ebe1f6bd69e7a1d52eb2",
     "repro/results/model_provenance_manifest.csv": "65645e1d4c2b61020be590f98661f6b0b465f1b4b81b53c8f5400196d215a22b",
-    "assets/data/amam-dataset.json": "7ea757a15626a00ecd03faac727a98deea836390ffd499ea78c910f65329c2cd",
-    "repro/benchmark/run_deep_survey.py": "cc31989c366441b4630ccdc191f876e97e470f373ac528826a96fa2e7060d961",
+    "assets/data/amam-dataset.json": "227fc057a460cbc2e63ab8634704b46f4e19256971c4ab616e467d0ff10cfc9c",
+    "repro/benchmark/run_deep_survey.py": "fdbc4e0edd05fa43900328dd1f34f68e831854de1e3cf223283046f5aed8d193",
     "repro/benchmark/aggregate_deep_multiseed.py": "d042896d426d00a6f0bfd7925b6b34d7d2aca19adc2c0396d9348e8acff846f4",
     "repro/benchmark/plot_benchmark_gap_figure.py": "f75f5669f4c0d0793cba9dce19db78737d003b4296310ba9b30b4818c3ce1575",
-    "repro/benchmark/canonical_predictions.py": "f5877be8218a51f09c593f3523fe451d48e56bbafe74066a572e25019d874c25",
+    "repro/benchmark/canonical_predictions.py": "19558b5405f4cfef96542748daabbfe6e808d03c5d589752946b656be9611148",
     "repro/benchmark/build_appendix_representative_assets.py": "b7fca125f5dda5062fe48a237a43312ffa8f4b8acf12bb2d391e472d627a8109",
     "repro/requirements.txt": "395286726e8046f58cd63a06ea87e2fce8199153ef9da7b57dde5eab9d7e699a",
     "assets/js/report.js": "3fd96adc4fbd637d3ab461048371204afb3cde011e23d9e356c26d12dc45c9ff"

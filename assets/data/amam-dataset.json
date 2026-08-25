@@ -1679,7 +1679,7 @@
       "family": "Steel",
       "condition": "Quenched and Tempered",
       "magnification": "Mixed",
-      "description": "Etched to reveal pre-austenite grains with challenging blurry grain boundaries.",
+      "description": "Etched to reveal dendritic segregation with challenging blurry interdendritic boundaries.",
       "annotationNotes": "Dendrites are marked in red and interdendritic areas in blue; boundary blur can produce small local errors.",
       "phases": [
         "Pre-Austenite Dendrites",
