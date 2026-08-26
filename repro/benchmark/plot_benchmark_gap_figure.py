@@ -242,7 +242,7 @@ def create_figure(df: pd.DataFrame) -> plt.Figure:
     fig.text(
         0.5,
         0.018,
-        "Deep points are five-run means (seeds 17–21); classical and foundation/edge points are seed-17 "
+        "Deep points are five-run means (seeds 17-21); classical and foundation/edge points are seed-17 "
         "estimates. Label handling differs across tracks.",
         ha="center",
         va="bottom",

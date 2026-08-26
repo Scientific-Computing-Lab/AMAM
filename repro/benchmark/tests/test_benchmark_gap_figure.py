@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -79,6 +81,21 @@ class BenchmarkGapFigureTests(unittest.TestCase):
             build_figure(load_all_results(), out_pdf=pdf, out_png=png)
             self.assertGreater(pdf.stat().st_size, 0)
             self.assertGreater(png.stat().st_size, 0)
+
+    @unittest.skipUnless(shutil.which("pdftotext"), "pdftotext is required")
+    def test_pdf_footer_preserves_seed_range_in_text_layer(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            pdf = root / "figure.pdf"
+            png = root / "figure.png"
+            build_figure(load_all_results(), out_pdf=pdf, out_png=png)
+            result = subprocess.run(
+                ["pdftotext", str(pdf), "-"],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            self.assertIn("seeds 17-21", result.stdout)
 
 
 if __name__ == "__main__":
