@@ -1,7 +1,7 @@
 # AMAM-128 Artifact Consistency Audit (45 Methods)
 
 - Status: **PASS**
-- Git commit: `81fd30d3052a873d92679b47f78ca98524925ff6`
+- Git commit: `5c818a8ccb1c967810f927c0d51a02b29e4abbf0`
 - Model counts:
   - Classical: 10
   - Deep general: 14
@@ -32,14 +32,14 @@
 - `repro/results/foundation_edge/foundation_edge_summary.csv`: `abce555e4b8e689065c4d91bee9f26e499f94b77ffa4f7ae6435e5384df5ce60`
 - `repro/results/foundation_edge/foundation_edge_per_image.csv`: `ef5e15a378032edcad058269a0b0dcda3d05f6657de89c78ba1e7d2167a0bbd8`
 - `repro/results/foundation_edge/foundation_edge_per_subset.csv`: `5d3dc6dd34c68b9975b7a2a3096fdcbf0c278a00dc84784ade2c2520e930d2cb`
-- `repro/results/classical/benchmark_protocol.json`: `b8bbee2af19c0b89b3f4c119f645c4df578bb7c949d9456b2895c3378a59b8e7`
-- `repro/results/deep_survey/deep_protocol.json`: `6e8021540649575699313898957d09bcd3674a77314f80f8e446ab8ccbb378a6`
-- `repro/results/foundation_edge/foundation_edge_protocol.json`: `ea6115c8499c8ceac408d95463c2707640274fd298a5687a93a8de7905723495`
-- `repro/results/classical/canonical_predictions/manifest.json`: `eadcbe9d2c6dfcb638aef59669fb7af05518851d596f158eb3b655f3ba1f40b7`
-- `repro/results/deep_survey_seed17/canonical_predictions/manifest.json`: `caaca3afbc0945bf7999e5390f450df1450abea45e2c48b193c4c0d2f24a8c6c`
+- `repro/results/classical/benchmark_protocol.json`: `fa845736f62e967410cf4c8404f3ba65287b8945e8684c5c8906fb37c750bc19`
+- `repro/results/deep_survey/deep_protocol.json`: `b3a9b0e4dd6bc79ec598be626fc4691ac372069005d67613cb3bbfc975204968`
+- `repro/results/foundation_edge/foundation_edge_protocol.json`: `1980a39faf039524c635c179e179ed441ea45cb1ed88d46c82580c90dc645fc2`
+- `repro/results/classical/canonical_predictions/manifest.json`: `2a65e9e5e7ba9138b9b0cc862b4d34c457515cd8591a93fc685b0b4a8f66976d`
+- `repro/results/deep_survey_seed17/canonical_predictions/manifest.json`: `4c7e5813417a6f415235f3c2cd072dc129ab78a47a44d7863beff919d9117722`
 - `repro/figures/appendix_preds/panel_metadata.json`: `baf7c3e72c93748c55b12bb432686e2ce0108a01db73ebe1f6bd69e7a1d52eb2`
 - `repro/results/model_provenance_manifest.csv`: `65645e1d4c2b61020be590f98661f6b0b465f1b4b81b53c8f5400196d215a22b`
-- `assets/data/amam-dataset.json`: `227fc057a460cbc2e63ab8634704b46f4e19256971c4ab616e467d0ff10cfc9c`
+- `assets/data/amam-dataset.json`: `82b5604f710e8c6c0f908a4f0a5d807882d9fd43d112ecc13236db7970e8ec31`
 - `repro/benchmark/run_deep_survey.py`: `fdbc4e0edd05fa43900328dd1f34f68e831854de1e3cf223283046f5aed8d193`
 - `repro/benchmark/aggregate_deep_multiseed.py`: `d042896d426d00a6f0bfd7925b6b34d7d2aca19adc2c0396d9348e8acff846f4`
 - `repro/benchmark/plot_benchmark_gap_figure.py`: `05a16516bb06deb39ba59244c092418a47d4fda26b6aa7c83678f43612ce046e`

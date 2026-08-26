@@ -9,6 +9,7 @@ from pathlib import Path
 from PIL import Image
 
 BENCHMARK_DIR = Path(__file__).resolve().parents[1]
+REPO_ROOT = BENCHMARK_DIR.parents[1]
 sys.path.insert(0, str(BENCHMARK_DIR))
 
 from build_gt_mask_palettes import build_artifact, check_artifact
@@ -64,6 +65,15 @@ class PaletteArtifactTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "source mask digest mismatch for toy"):
             check_artifact(artifact_path, self.dataset_json, self.root)
+
+    def test_5884_dendritic_taxonomy_is_propagated_to_palette(self) -> None:
+        expected = ["Dendritic Region", "Interdendritic Region"]
+        dataset = json.loads((REPO_ROOT / "assets/data/amam-dataset.json").read_text())
+        subset = next(row for row in dataset["subsets"] if row["id"] == "5884-armor-steel")
+        artifact = json.loads((BENCHMARK_DIR / "gt_mask_palettes.json").read_text())
+
+        self.assertEqual(subset["phases"], expected)
+        self.assertEqual(artifact["subsets"]["5884-armor-steel"]["phase_names"], expected)
 
 
 if __name__ == "__main__":

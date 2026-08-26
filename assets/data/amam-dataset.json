@@ -1682,7 +1682,7 @@
       "description": "Etched to reveal dendritic segregation with challenging blurry interdendritic boundaries.",
       "annotationNotes": "Dendrites are marked in red and interdendritic areas in blue; boundary blur can produce small local errors.",
       "phases": [
-        "Pre-Austenite Dendrites",
+        "Dendritic Region",
         "Interdendritic Region"
       ],
       "localOnly": true,

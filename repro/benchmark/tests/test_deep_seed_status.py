@@ -81,7 +81,7 @@ PER_SUBSET_FIELDS = [
 ]
 PROTOCOL_METADATA = {
     "gt_decoder_version": "gt-source-rgb-v1",
-    "gt_palette_sha256": "bd9e45cc659f06fa5cf0a45004592c7c8b67691d2880f35d39a2e88ca5b56e6f",
+    "gt_palette_sha256": "0ecd553e6a0a5c68c69bd0e92f77c1a9a8c96c56a5a7b02ffec139905b76c641",
     "gt_decode_order": "source_rgb_to_labels_then_nearest_resize",
     "segmentation_metric_version": "present-classes-per-image-v1",
     "absent_class_policy": "exclude_if_absent_in_gt_and_prediction",
@@ -118,7 +118,7 @@ def write_seed_fixture(
     canonical_manifest: bool = False,
     img_size: int = 192,
     gt_decoder_version: str = "gt-source-rgb-v1",
-    gt_palette_sha256: str = "bd9e45cc659f06fa5cf0a45004592c7c8b67691d2880f35d39a2e88ca5b56e6f",
+    gt_palette_sha256: str = "0ecd553e6a0a5c68c69bd0e92f77c1a9a8c96c56a5a7b02ffec139905b76c641",
 ) -> None:
     selected = list(EXPECTED_DEEP if model_ids is None else model_ids)
     seed_dir.mkdir(parents=True, exist_ok=True)
