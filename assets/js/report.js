@@ -73,7 +73,7 @@
   }
 
   function toAssetUrl(path) {
-    return encodeURI(path);
+    return window.AmamAssetUrl.toAssetUrl(path);
   }
 
   function humanizeToken(value) {
