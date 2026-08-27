@@ -14,6 +14,16 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 CHROME = shutil.which("google-chrome") or shutil.which("chromium")
 
 
+def website_script(stem: str) -> Path:
+    """Resolve a content-hashed website script by its unhashed stem."""
+    matches = sorted((REPO_ROOT / "assets/js").glob(f"{stem}.*.js"))
+    if len(matches) != 1:
+        raise AssertionError(
+            f"expected exactly one assets/js/{stem}.<digest>.js, found {matches}"
+        )
+    return matches[0]
+
+
 class ScriptSourceParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
@@ -32,7 +42,7 @@ class ScriptSourceParser(HTMLParser):
 @unittest.skipUnless(CHROME, "A Chromium-compatible browser is required")
 class AssetUrlResolverTests(unittest.TestCase):
     def run_resolver(self) -> list[str]:
-        asset_script = (REPO_ROOT / "assets/js/asset-url.js").as_uri()
+        asset_script = website_script("asset-url").as_uri()
         html = f"""<!doctype html>
 <html>
   <body>
@@ -52,7 +62,9 @@ class AssetUrlResolverTests(unittest.TestCase):
         resolver(
           "https://example.org/reference image.jpg",
           "/w/AMAM-D580/index.html"
-        )
+        ),
+        window.AmamAssetUrl.toRepoZipUrl("/w/AMAM-D580/index.html", "anonymous.4open.science"),
+        window.AmamAssetUrl.toRepoZipUrl("/AMAM/index.html", "example-lab.github.io")
       ] : ["resolver-missing", "resolver-missing", "resolver-missing"];
       document.getElementById("result").textContent = JSON.stringify(output);
     </script>
@@ -100,6 +112,25 @@ class AssetUrlResolverTests(unittest.TestCase):
             "data/local/4130-steel/images/4130%20x%2010%20(1).jpg",
         )
         self.assertEqual(resolved[2], "https://example.org/reference image.jpg")
+
+    def test_repo_zip_url_follows_the_serving_host(self) -> None:
+        """The anonymous host must get its own zip route, never an upstream URL.
+
+        A published GitHub archive link would name the authors to a reviewer, so
+        the anonymous case has to stay on the 4open origin.
+        """
+        resolved = self.run_resolver()
+        self.assertEqual(resolved[3], "/api/repo/AMAM-D580/zip")
+        self.assertEqual(
+            resolved[4],
+            "https://github.com/example-lab/AMAM/archive/refs/heads/main.zip",
+        )
+
+    def test_published_metadata_names_no_upstream_repository(self) -> None:
+        published = (REPO_ROOT / "assets/data/amam-dataset.json").read_text(
+            encoding="utf-8"
+        )
+        self.assertNotIn("github.com", published)
 
 
 class WebsiteScriptReferenceTests(unittest.TestCase):

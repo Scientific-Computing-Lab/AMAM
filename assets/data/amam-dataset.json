@@ -23,7 +23,6 @@
     ]
   },
   "localDataNote": "Only categories with both root images and a detected label/mask subfolder are included.",
-  "downloadAllRepoZip": "https://github.com/Scientific-Computing-Lab/AMAM/archive/refs/heads/main.zip",
   "totalImages": 128,
   "includedSubsets": 6,
   "gallerySummary": {
