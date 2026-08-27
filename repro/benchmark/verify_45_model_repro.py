@@ -67,7 +67,9 @@ CODE_ARTIFACTS = [
     REPO_ROOT / "repro/benchmark/canonical_predictions.py",
     REPO_ROOT / "repro/benchmark/build_appendix_representative_assets.py",
     REPO_ROOT / "repro/requirements.txt",
-    REPO_ROOT / "assets/js/report.js",
+    # report.js carries a content hash in its filename to defeat the anonymous
+    # host's edge cache, so resolve whatever the current name is.
+    *sorted((REPO_ROOT / "assets/js").glob("report.*.js")),
 ]
 
 OUT_JSON = RESULTS / "reproducibility_audit_45_models.json"
